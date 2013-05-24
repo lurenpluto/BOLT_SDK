@@ -1,0 +1,32 @@
+<XLUE>
+	<resource>
+		<texture id="texture.tasklist.bkg" type="NineInOne" image="bitmap\tasklist_bkg.png" />
+		<texture id="texture.tasklist.select" type="NineInOne" image="bitmap\tasklist_select.png" />
+		<texture id="texture.tasklist.greymask" image="bitmap\tasklist_greymask.png"/>
+		<texture id="texture.tasklist.alphashowmask" image="bitmap\tasklist_alphashowmask.png" />
+	
+		<texture id="texture.tasklist.progress.white" type="ThreeInOneH" image="bitmap\Progress_white.png" />
+		<texture id="texture.tasklist.progress.blue" type="ThreeInOneH" image="bitmap\Progress_blue.png" />
+		<texture id="texture.tasklist.item.bk" type="NineInOne" image="bitmap\task_item_bk.png" />
+		<texture id="texture.tasklist.select_item.bk" type="NineInOne" image="bitmap\task_select_item_bk.png"/>
+
+		<imagelist id="imagelist.tasklist.status" splitter="1" vertical="0" blocksize="19" varyblock="0" image="bitmap\taskstatus_icon.png"/>
+		<bitmap id="bitmap.tasklist.status.succeed" imagelist="imagelist.tasklist.status" index="1"/>
+		<bitmap id="bitmap.tasklist.status.downloading" imagelist="imagelist.tasklist.status" index="2"/>
+		<bitmap id="bitmap.tasklist.status.pause" imagelist="imagelist.tasklist.status" index="3"/>
+		<bitmap id="bitmap.tasklist.status.fail" imagelist="imagelist.tasklist.status" index="4"/>
+		<bitmap id="bitmap.tasklist.status.uploading" imagelist="imagelist.tasklist.status" index="5"/>
+		<bitmap id="bitmap.tasklist.status.waiting" imagelist="imagelist.tasklist.status" index="6"/>
+		<bitmap id="bitmap.tasklist.status.vip_downloading" imagelist="imagelist.tasklist.status" index="7"/>
+		
+	
+
+
+		<imagelist id="imagelist.tasklist.icon" splitter="1" vertical="0" blocksize="17" varyblock="0" image="bitmap\tasklist_icon.png"/>
+		<bitmap id="bitmap.tasklist.scan_button.icon" imagelist="imagelist.tasklist.icon" index="1"/>
+		<bitmap id="bitmap.tasklist.offline_download_button.icon" imagelist="imagelist.tasklist.icon" index="2"/>
+		<bitmap id="bitmap.tasklist.vip_download_button.icon" imagelist="imagelist.tasklist.icon" index="3"/>
+
+		<bitmap id="bitmap.tasklist.bt_task_icon" image="bitmap\tasklist_bt_icon.png" />
+	</resource>
+</XLUE>

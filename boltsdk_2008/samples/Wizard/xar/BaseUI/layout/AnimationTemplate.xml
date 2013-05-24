@@ -1,0 +1,55 @@
+<xlue>
+
+    <animationtemplate id = "system.animation.helper.alphachange" class="AlphaChangeAnimation">
+	    <attr>
+	    	<totaltime>400</totaltime>
+			<loop>false</loop>
+			<curve></curve>
+	    </attr>
+	</animationtemplate>
+	<animationtemplate id = "system.animation.helper.poschange" class="PosChangeAnimation">
+	    <attr>
+	    	<totaltime>400</totaltime>
+			<loop>false</loop>
+			<curve></curve>
+	    </attr>
+	</animationtemplate>
+	
+	<animationtemplate id = "system.animation.helper.showwindow" class="Animation.Show.Window">
+	    <attr>
+	    	<totaltime>400</totaltime>
+			<loop>false</loop>
+			<curve>dlg.pop.curve</curve>
+	    </attr>
+	</animationtemplate>
+	<animationtemplate id = "system.animation.helper.hidewindow" class="Animation.Show.Window">
+	    <attr>
+	    	<totaltime>400</totaltime>
+			<loop>false</loop>
+			<curve>dlg.hidden.curve</curve>
+	    </attr>
+	</animationtemplate>
+
+	<animationtemplate id = "system.animation.helper.cycleobject" class="Animation.Cycle.Object">
+	    <attr>
+	    	<totaltime>300</totaltime>
+			<loop>false</loop>
+			<curve></curve>
+	    </attr>
+	</animationtemplate>
+	
+	<animationtemplate id = "system.animation.helper.focus.light" class="Animation.Focus.Light">
+	    <attr>
+	    	<totaltime>8000</totaltime>
+			<loop>true</loop>
+	    </attr>
+	</animationtemplate>
+
+    <animationtemplate id = "system.animation.helper.slidedownobject" class="PosChangeAnimation">
+	    <attr>
+	    	<totaltime>500</totaltime>
+			<loop>false</loop>
+			<curve>system.obj.slidedown.curve</curve>
+	    </attr>
+	</animationtemplate>	
+</xlue>

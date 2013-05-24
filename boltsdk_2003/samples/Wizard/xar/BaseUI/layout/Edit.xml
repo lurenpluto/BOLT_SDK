@@ -1,0 +1,389 @@
+<xlue>
+    <control class="BaseUI.Edit">
+        <attr_def>
+            <attr name="NormalBkgID" type="string">
+                <default>texture.edit.bkg.normal</default>
+            </attr>
+            <attr name="HoverBkgID" type="string" >
+                <default>texture.edit.bkg.hover</default>
+            </attr>
+            <attr name="DisableBkgID" type="string">
+                <default>texture.edit.bkg.disable</default>
+            </attr>
+			<attr name="DisableTextColor" type="string"><default>color.text.normal</default></attr>
+			<attr name="NormalTextColor" type="string"><default>color.text.normal</default></attr>
+			<attr name="HoverTextColor" type="string"><default>color.text.normal</default></attr>
+            <attr name="Text" type="string" />
+			<attr name="CharNumber" type="int" >
+				<default>0</default>
+			</attr>
+			<attr name="IsNumber" type="bool" >
+				<default>false</default>
+			</attr>
+			<attr name="FilterBlock" type="bool" >
+				<default>false</default>
+			</attr>
+			<attr name="Min" type="int" >
+				<default>0</default>
+			</attr>
+			<attr name="Max" type="int" >
+				<default>0</default>
+			</attr>
+            <attr name="Width" type="int" >
+                <default>50</default>
+            </attr>
+			<attr name="EditCustom" type="bool" >
+				<default>false</default>
+			</attr>
+			<attr name="EditLeft" type="int" >
+				<default>0</default>
+			</attr>
+			<attr name="EditTop" type="int" >
+				<default>0</default>
+			</attr>
+			<attr name="EditWidth" type="string" >
+				<default>0</default>
+			</attr>
+			<attr name="EditHeight" type="string" >
+				<default>0</default>
+			</attr>
+            <attr name="TopMargin" type="int" />
+            <attr name="NowState" type="int">
+                <default>0</default>
+            </attr>
+            <attr name="ReadOnly" type="bool">
+                <default>false</default>
+            </attr>
+            <attr name="Multiline" type="bool">
+                <default>false</default>
+            </attr>
+            <attr name="Enable" type="bool">
+                <default>true</default>
+            </attr>
+			<attr name="Font" type="string">
+				<default>default.font</default>
+			</attr>
+			<attr name="Password" type="bool"><default>fasle</default></attr>
+			<attr name="AllowVSB" type="bool">
+				<default>0</default>
+			</attr>
+			<attr name="AllowHSB" type="bool">
+				<default>0</default>
+			</attr>
+			<attr name="TipType" type="int"><default>1</default></attr>
+			<attr name="TabID" type="int" />
+			<attr name="HitSelAll" type="bool" >
+				<default>true</default>
+			</attr>
+			<attr name="WordWrap" type="bool">
+				<default>true</default>
+			</attr>
+			<attr name="AutoUrlDetect" type="bool">
+				<default>false</default>
+			</attr>
+			<attr name="ViewinsetLeft" type="int" />
+			<attr name="ViewinsetRight" type="int" />
+			<attr name="ViewinsetTop" type="int" />
+			<attr name="ViewinsetButtom" type="int" />
+			<attr name="ShowMenu" type="bool" >
+				<default>true</default>
+			</attr>
+			<attr name="MenuTreeID" type="string" >
+				<default>tree.thunder.edit.context</default>
+			</attr>
+			<attr name="MenuID" type="string" >
+				<default>context_menu</default>
+			</attr>
+        </attr_def>
+        <method_def>
+            <SetReadOnly file="Edit.xml.lua" func="SetReadOnly" />
+            <SetMultiline file="Edit.xml.lua" func="SetMultiline" />
+            <GetReadOnly file="Edit.xml.lua" func="GetReadOnly" />
+            <GetMultiline file="Edit.xml.lua" func="GetMultiline" />
+            <SetText file="Edit.xml.lua" func="SetText" />
+            <GetText file="Edit.xml.lua" func="GetText" />
+            <SetEnable file="Edit.xml.lua" func="SetEnable"/>
+			<GetEnable file="Edit.xml.lua" func="GetEnable"/>
+            <AddTip file="Edit.xml.lua" func="AddTip"/>
+            <RemoveTip file="Edit.xml.lua" func="RemoveTip"/>
+            <SetState file="Edit.xml.lua" func="SetState"/>
+			<SetSel file="Edit.xml.lua" func="SetSel" />
+			<GetSel file="Edit.xml.lua" func="GetSel" />
+			<SetRange file="Edit.xml.lua" func="SetRange" />
+			<AppendText file="Edit.xml.lua" func="AppendText" />
+			<GetLineCount file="Edit.xml.lua" func="GetLineCount" />
+			<GetLine file="Edit.xml.lua" func="GetLine" />
+			<LineIndex file="Edit.xml.lua" func="LineIndex" />
+			<PosFromChar file="Edit.xml.lua" func="PosFromChar" />
+			<SetFocus file="Edit.xml.lua" func="SetFocus" />
+			<ScrollCaret file="Edit.xml.lua" func="ScrollCaret" />
+			<SetEmptyBkgID file="Edit.xml.lua" func="SetEmptyBkgID" />
+			<SetEmptyBkgBkgID file="Edit.xml.lua" func="SetEmptyBkgBkgID" />
+        </method_def>
+        <event_def>
+            <OnEditChange>
+                <param>
+                    <string/>
+                </param>
+            </OnEditChange>
+            <OnEditFocusChange>
+                <param>
+                    <bool/>
+                </param>
+            </OnEditFocusChange>
+			<OnEditKeyDown>
+				<param>
+					<int/>
+					<int/>
+					<int/>
+				</param>
+			</OnEditKeyDown>
+			<OnEditKeyUp>
+				<param>
+					<int/>
+					<int/>
+					<int/>
+				</param>
+			</OnEditKeyUp>
+        </event_def>
+        <objtemplate>
+            <children>
+                <obj id="newedit.bkg" class="TextureObject">
+                    <attr>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>father.width</width>
+                        <height>father.height</height>
+                    </attr>
+                    <children>
+						<obj id="edit.limit" class="LayoutObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+								<limitchild>1</limitchild>
+							</attr>
+							<children>
+								<obj id="newedit.emptybkg" class="ImageObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>father.height</height>
+									</attr>
+								</obj>
+								<obj id="newedit.emptybkgbkg" class="ImageObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>father.height</height>
+										<zorder>-1</zorder>
+									</attr>
+								</obj>
+								<obj id="newedit.edit" class="EditObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>father.height</height>
+										<zorder>1</zorder>
+										<transparent>1</transparent>
+									</attr>
+									<children>
+										<obj id="vsb" class="Thunder.ScrollBar">
+											<attr>
+												<Type>1</Type>
+												<NormalBkn>texture.vsb.big.bkg.normal</NormalBkn>
+												<HoverBkn>texture.vsb.big.bkg.hover</HoverBkn>
+												<ThumbBtn_normal>texture.vsb.big.thumb.normal</ThumbBtn_normal>
+												<ThumbBtn_hover>texture.vsb.big.thumb.hover</ThumbBtn_hover>
+												<ThumbBtn_down>texture.vsb.big.thumb.down</ThumbBtn_down>
+												<LeftBtn_normal>texture.vsb.leftbtn.normal</LeftBtn_normal>
+												<LeftBtn_hover>texture.vsb.leftbtn.hover</LeftBtn_hover>
+												<LeftBtn_down>texture.vsb.leftbtn.down</LeftBtn_down>
+												<RightBtn_normal>texture.vsb.rightbtn.normal</RightBtn_normal>
+												<RightBtn_hover>texture.vsb.rightbtn.hover</RightBtn_hover>
+												<RightBtn_down>texture.vsb.rightbtn.down</RightBtn_down>
+												<NormalDecorateID>scrollbar.vsb.big.decorate.normal</NormalDecorateID>
+												<HoverDecorateID>scrollbar.vsb.big.decorate.hover</HoverDecorateID>
+												<DownDecorateID>scrollbar.vsb.big.decorate.down</DownDecorateID>
+
+												<SideBtnLength>12</SideBtnLength>
+												<PageSize>0</PageSize>
+												<RangeBegin>0</RangeBegin>
+												<RangeEnd>0</RangeEnd>
+												<ScrollPos>0</ScrollPos>
+												<Visible>false</Visible>			
+												<width>23</width>
+												<ThumbBtnWidth>11</ThumbBtnWidth> 
+												<ThumbRightMagrin>2</ThumbRightMagrin>
+												<cursor>IDC_ARROW</cursor>
+											</attr>
+											<eventlist>
+												<event name="OnVScroll" file="Edit.xml.lua" func="OnVScroll" />
+												<event name="OnScrollBarMouseWheel" file="Edit.xml.lua" func="OnScrollBarMouseWheel" />
+											</eventlist>			
+										</obj>
+										<obj id="hsb" class="Thunder.ScrollBar">
+											<attr>
+												<Type>0</Type>
+												<NormalBkn>texture.hsb.big.bkg.normal</NormalBkn>
+												<HoverBkn>texture.hsb.big.bkg.hover</HoverBkn>
+												<ThumbBtn_normal>texture.hsb.big.thumb.normal</ThumbBtn_normal>
+												<ThumbBtn_hover>texture.hsb.big.thumb.hover</ThumbBtn_hover>
+												<ThumbBtn_down>texture.hsb.big.thumb.down</ThumbBtn_down>										
+												<SideBtnLength>0</SideBtnLength>
+												<PageSize>0</PageSize>
+												<RangeBegin>0</RangeBegin>
+												<RangeEnd>0</RangeEnd>
+												<Visible>false</Visible>
+												<height>23</height>
+												<cursor>IDC_ARROW</cursor>
+												<ThumbBtnWidth>11</ThumbBtnWidth> 
+												<ThumbRightMagrin>2</ThumbRightMagrin>
+												<NormalDecorateID>scrollbar.hsb.big.decorate.normal</NormalDecorateID>
+												<HoverDecorateID>scrollbar.hsb.big.decorate.hover</HoverDecorateID>
+												<DownDecorateID>scrollbar.hsb.big.decorate.down</DownDecorateID>
+											</attr>
+											<eventlist>
+												<event name="OnHScroll" file="Edit.xml.lua" func="OnHScroll"/>
+												<event name="OnScrollBarMouseWheel" file="Edit.xml.lua" func="OnScrollBarMouseWheel" />
+											</eventlist>
+										</obj>
+									</children>
+									<eventlist>
+										<event name="OnChange" file="Edit.xml.lua" func="Edit__OnChange"/>
+										<event name="OnMouseMove" file="Edit.xml.lua" func="Edit__OnMouseMove"/>
+										<event name="OnMouseLeave" file="Edit.xml.lua" func="Edit__OnMouseLeave" />
+										<event name="OnFocusChange" file="Edit.xml.lua" func="Edit__OnFocusChange"/>
+										<event name="OnChar" file="Edit.xml.lua" func="Edit__OnChar"/>
+										<event name="OnGetSBVisible" file="Edit.xml.lua" func="OnGetSBVisible"/>
+										<event name="OnSetSBVisible" file="Edit.xml.lua" func="OnSetSBVisible"/>
+										<event name="OnGetSBEnable" file="Edit.xml.lua" func="OnGetSBEnable"/>
+										<event name="OnSetSBEnable" file="Edit.xml.lua" func="OnSetSBEnable"/>
+										<event name="OnGetSBPageSize" file="Edit.xml.lua" func="OnGetSBPageSize"/>
+										<event name="OnSetSBPageSize" file="Edit.xml.lua" func="OnSetSBPageSize"/>
+										<event name="OnSetSBRange" file="Edit.xml.lua" func="OnSetSBRange"/>
+										<event name="OnGetSBRange" file="Edit.xml.lua" func="OnGetSBRange"/>
+										<event name="OnSetSBPos" file="Edit.xml.lua" func="OnSetSBPos"/>
+										<event name="OnGetSBPos" file="Edit.xml.lua" func="OnGetSBPos"/>
+										<event name="OnGetSBIdealSize" file="Edit.xml.lua" func="OnGetSBIdealSize"/>
+										<event name="OnSetSBRect" file="Edit.xml.lua" func="OnSetSBRect"/>
+										<event name="OnRButtonUp" file="Edit.xml.lua" func="Edit_OnRButtonUp"/>
+										<event name="OnKeyDown" file="Edit.xml.lua" func="Edit_OnKeyDown"/>
+										<event name="OnKeyUp" file="Edit.xml.lua" func="Edit_OnKeyUp"/>
+									</eventlist>
+								</obj>
+							</children>
+						</obj>
+                    </children>
+					<eventlist>
+						<event name="OnMouseMove" file="Edit.xml.lua" func="OnMouseMove" />
+						<event name="OnMouseLeave" file="Edit.xml.lua" func="OnMouseLeave" />
+						<event name="OnFocusChange" file="Edit.xml.lua" func="OnFocusChange" />
+					</eventlist>
+                </obj>
+            </children>
+            <eventlist>
+                <event name="OnBind" file="Edit.xml.lua" func="OnBind" />
+                <event name="OnInitControl" file="Edit.xml.lua" func="OnInitControl"/>
+				<event name="OnFocusChange" file="Edit.xml.lua" func="Control_OnFocusChange" />
+            </eventlist>
+        </objtemplate>
+    </control>
+	
+	<objtemplate id="thunder.edit.menu.context" class="MenuObject" templateid="menu.object.template">
+        <attr>
+        </attr>
+		<children>
+            <obj id="thunder.edit.undo" class="MenuItemObject" templateid="menu.main.item">
+                <attr>
+                    <Text>撤销</Text>
+                </attr>
+				<eventlist>
+					<event name="OnInit" file="Edit.xml.lua" func="Undo_OnInit" />
+					<event name="OnSelect" file="Edit.xml.lua" func="Undo_OnSelect" />
+				</eventlist>
+            </obj>
+            <obj id="thunder.edit.line.1" class="MenuItemObject" templateid="menu.main.splitter">
+                <attr>
+					<Icon>menu.line.1</Icon>
+                </attr>
+            </obj>
+            <obj id="thunder.edit.cut" class="MenuItemObject" templateid="menu.main.item">
+                <attr>
+                    <Text>剪切</Text>
+                </attr>
+				<eventlist>
+					<event name="OnInit" file="Edit.xml.lua" func="Cut_OnInit" />
+					<event name="OnSelect" file="Edit.xml.lua" func="Cut_OnSelect" />
+				</eventlist>
+            </obj>
+            <obj id="thunder.edit.copy" class="MenuItemObject" templateid="menu.main.item">
+                <attr>
+                    <Text>复制</Text>
+                </attr>
+				<eventlist>
+					<event name="OnInit" file="Edit.xml.lua" func="Copy_OnInit" />
+					<event name="OnSelect" file="Edit.xml.lua" func="Copy_OnSelect" />
+				</eventlist>
+            </obj>
+            <obj id="thunder.edit.paste" class="MenuItemObject" templateid="menu.main.item">
+                <attr>
+                    <Text>粘贴</Text>
+                </attr>
+				<eventlist>
+					<event name="OnInit" file="Edit.xml.lua" func="Paste_OnInit" />
+					<event name="OnSelect" file="Edit.xml.lua" func="Paste_OnSelect" />
+				</eventlist>
+            </obj>
+			<obj id="thunder.edit.delete" class="MenuItemObject" templateid="menu.main.item" >
+				<attr>
+					<Text>删除</Text>
+				</attr>
+				<eventlist>
+					<event name="OnInit" file="Edit.xml.lua" func="Delete_OnInit" />
+					<event name="OnSelect" file="Edit.xml.lua" func="Delete_OnSelect" />
+				</eventlist>
+			</obj>
+            <obj id="thunder.edit.line.2" class="MenuItemObject" templateid="menu.main.splitter">
+                <attr>
+					<Icon>menu.line.1</Icon>
+                </attr>
+            </obj>
+            <obj id="thunder.edit.sel.all" class="MenuItemObject" templateid="menu.main.item">
+                <attr>
+                    <Text>全选</Text>
+                </attr>
+				<eventlist>
+					<event name="OnInit" file="Edit.xml.lua" func="SelAll_OnInit" />
+					<event name="OnSelect" file="Edit.xml.lua" func="SelAll_OnSelect" />
+				</eventlist>
+            </obj>
+		</children>
+	</objtemplate>
+	<objtreetemplate id="tree.thunder.edit.context">
+		<attr>
+			<left>-1000</left>
+			<top>-1000</top>
+			<width>2000</width>
+			<height>2000</height>
+		</attr>
+
+		<obj id="context_menu" class="NormalMenu">
+			<attr>
+				<width>180</width>
+				<height>370</height>
+				<ContextID>thunder.edit.menu.context</ContextID>
+				<BknID>menu.bkn</BknID>
+				<ShadingID>mainmenu.light</ShadingID>
+				<SrcColorID>menu.color.src</SrcColorID>
+				<DestColorID>menu.color.dest</DestColorID>
+				<DefaultItemTemplate>menu.main.itemex</DefaultItemTemplate>
+				<DefaultSpliterTemplate>menu.main.splitter</DefaultSpliterTemplate>
+			</attr>
+		</obj>
+	</objtreetemplate>
+</xlue>

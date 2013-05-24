@@ -1,0 +1,215 @@
+<xlue>
+	<control class="BoltFox.System.ButtonEx.Ctrl">
+	    <attr_def>
+		    <attr name="MiniShow" type="bool">
+			    <default>true</default>
+			</attr>
+			<attr name="MaxShow" type="bool">
+			    <default>true</default>
+			</attr>
+			<attr name="CloseShow" type="bool">
+			    <default>true</default>
+			</attr>
+			<attr name="MaxState" type="bool">
+			    <default>true</default>
+			</attr>
+			<attr name="Mini_NormalImageID" type="string">
+			    <default>bitmap.sysbtn.mini.normal</default>
+			</attr>
+			<attr name="Mini_HoverImageID" type="string">
+			    <default>bitmap.sysbtn.mini.hover</default>
+			</attr>
+			<attr name="Mini_DownImageID" type="string">
+			    <default>bitmap.sysbtn.mini.down</default>
+			</attr>
+			<attr name="Mini_DisableImageID" type="string">
+			    <default>bitmap.sysbtn.mini.disable</default>
+			</attr>
+			<attr name="Max_NormalImageID" type="string">
+			    <default>bitmap.sysbtn.max.normal</default>
+			</attr>
+			<attr name="Max_HoverImageID" type="string">
+			    <default>bitmap.sysbtn.max.hover</default>
+			</attr>
+			<attr name="Max_DownImageID" type="string">
+			    <default>bitmap.sysbtn.max.down</default>
+			</attr>
+			<attr name="Max_DisableImageID" type="string">
+			    <default>bitmap.sysbtn.max.disable</default>
+			</attr>
+			<attr name="Restore_NormalImageID" type="string">
+			    <default>bitmap.sysbtn.restore.normal</default>
+			</attr>
+			<attr name="Restore_HoverImageID" type="string">
+			    <default>bitmap.sysbtn.restore.hover</default>
+			</attr>
+			<attr name="Restore_DownImageID" type="string">
+			    <default>bitmap.sysbtn.restore.down</default>
+			</attr>
+			<attr name="Restore_DisableImageID" type="string">
+			    <default>bitmap.sysbtn.restore.disable</default>
+			</attr>
+			<attr name="Close_NormalImageID" type="string">
+			    <default>bitmap.sysbtn.close.normal</default>
+			</attr>
+			<attr name="Close_HoverImageID" type="string">
+			    <default>bitmap.sysbtn.close.hover</default>
+			</attr>
+			<attr name="Close_DownImageID" type="string">
+			    <default>bitmap.sysbtn.close.down</default>
+			</attr>
+			<attr name="Close_DisableImageID" type="string">
+			    <default>bitmap.sysbtn.close.disable</default>
+			</attr>
+			
+			<attr name="SingleClose_NormalImageID" type="string">
+			    <default>system.btn.exit.normal</default>
+			</attr>
+			<attr name="SingleClose_HoverImageID" type="string">
+			    <default>system.btn.exit.hover</default>
+			</attr>
+			<attr name="SingleClose_DownImageID" type="string">
+			    <default>system.btn.exit.down</default>
+			</attr>
+			<attr name="SingleClose_DisableImageID" type="string">
+			    <default>system.btn.exit.disable</default>
+			</attr>
+			
+			<attr name="MiniEnable" type="bool">
+			    <default>true</default>
+			</attr>
+			<attr name="MaxEnable" type="bool">
+			    <default>true</default>
+			</attr>
+			<attr name="CloseEnable" type="bool">
+			    <default>true</default>
+			</attr>
+			<attr name="ItemWidthIsSame" type="bool">
+			    <default>true</default>
+			</attr>
+			<attr name="MiniWidth" type="int">
+			    <default>30</default>
+			</attr>
+			<attr name="MaxWidth" type="int">
+			    <default>29</default>
+			</attr>
+			<attr name="CloseWidth" type="int">
+			    <default>48</default>
+			</attr>
+		</attr_def>
+		<method_def>
+		    <GetMaxState file="SystemButtonEx.xml.lua" func="System_Button_GetMaxState" />
+		    <SetMaxState file="SystemButtonEx.xml.lua" func="System_Button_SetMaxState"/>
+		    <MiniIsShow file="SystemButtonEx.xml.lua" func="System_Button_MiniIsShow"/>
+			<MaxIsShow file="SystemButtonEx.xml.lua" func="System_Button_MaxIsShow"/>
+			<CloseIsShow file="SystemButtonEx.xml.lua" func="System_Button_CloseIsShow"/>
+			<MiniIsEnable file="SystemButtonEx.xml.lua" func="System_Button_MiniIsEnable"/>
+			<MaxIsEnable file="SystemButtonEx.xml.lua" func="System_Button_MaxIsEnable"/>
+			<CloseIsEnable file="SystemButtonEx.xml.lua" func="System_Button_CloseIsEnable"/>
+		    <SetMiniEnable file="SystemButtonEx.xml.lua" func="System_Button_SetMiniEnable"/>
+			<SetMaxEnable file="SystemButtonEx.xml.lua" func="System_Button_SetMaxEnable"/>
+			<SetCloseEnable file="SystemButtonEx.xml.lua" func="System_Button_SetCloseEnable"/>
+		    <System_Button_Mini_OnClick file="SystemButtonEx.xml.lua" func="System_Button_Mini_OnClick"/>
+			<System_Button_Max_OnClick file="SystemButtonEx.xml.lua" func="System_Button_Max_OnClick"/>
+			<System_Button_Close_OnClick file="SystemButtonEx.xml.lua" func="System_Button_Close_OnClick"/>
+		</method_def>
+		<event_def> 
+		    <OnMinisize />
+			<OnMaxSize />
+			<OnReStore />
+			<OnClose />
+		</event_def>
+		<objtemplate>
+			<children>
+			</children>
+			<eventlist>
+				<event name="OnBind" file="SystemButtonEx.xml.lua" func="System_Button_Ctrl_OnBind" />
+			</eventlist>
+		</objtemplate>
+	</control>
+
+	<control class="IDE.System.ItemEx">
+		<attr_def>
+			<attr name="ImageID" type="string">
+			</attr>
+			<attr name="BkgNormalImageID" type="string">
+			</attr>
+			<attr name="BkgHoverImageID" type="string">
+			</attr>
+			<attr name="BkgDownImageID" type="string">
+			</attr>
+			<attr name="BkgDisableImageID" type="string">
+			</attr>
+            <attr name="State" type="int">
+			    <default>0</default>
+			</attr>
+            <attr name="type" type="int">
+			    <default>0</default>
+			</attr>	
+			<attr name="NowState" type="int">
+			    <default>0</default>
+			</attr>
+			<attr name="Enable" type="bool">
+			    <default>true</default>
+			</attr>
+		</attr_def>
+		<method_def>
+            <SetEnable file="SystemButtonEx.xml.lua" func="System_Item_SetEnable"/>
+            <SetImageID file="SystemButtonEx.xml.lua" func="System_Item_SetImageID"/>
+            <SetState file="SystemButtonEx.xml.lua" func="SetState"/>	
+            <SetOldImagePos file="SystemButtonEx.xml.lua" func="SetOldImagePos" />	
+            <SetInitImage file="SystemButtonEx.xml.lua" func="SetInitImage" />			
+		</method_def>
+		<event_def> 
+		    <OnClick />
+		</event_def>
+		<objtemplate>
+			<children>
+			    <obj id="layout.texture" class="TextureObject">
+				    <attr>
+					    <left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+						<limitchild>1</limitchild>
+					</attr>
+					<children>
+					    <obj id="item.bkg.image" class="ImageObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+								<zorder>200</zorder>
+							</attr>
+                            <children>
+							    <obj id="old.image" class="ImageObject">
+									<attr>
+										<left>-1</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>father.height</height>
+										<zorder>200</zorder>
+									</attr>						
+								</obj>
+							</children>	
+                            						
+						</obj>
+					</children>
+					<eventlist>
+						
+						
+					</eventlist>	
+				</obj>
+			</children>
+			<eventlist>
+			    <event name="OnBind" file="SystemButtonEx.xml.lua" func="System_Item_OnBind" />
+				<event name="OnInitControl" file="SystemButtonEx.xml.lua" func="System_Item_OnInitControl" />
+				<event name="OnMouseMove" file="SystemButtonEx.xml.lua" func="System_Item_OnMouseMove"/>
+				<event name="OnMouseLeave" file="SystemButtonEx.xml.lua" func="System_Item_OnMouseLeave"/>
+				<event name="OnLButtonDown" file="SystemButtonEx.xml.lua" func="System_Item_OnLButtonDown"/>
+				<event name="OnLButtonUp" file="SystemButtonEx.xml.lua" func="System_Item_OnLButtonUp"/>
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

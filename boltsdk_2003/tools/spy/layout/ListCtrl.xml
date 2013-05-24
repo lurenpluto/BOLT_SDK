@@ -1,0 +1,210 @@
+<xlue>
+	<control class="ListCtrl">
+		<method_def>
+			<SetSel file="ListCtrl.xml.lua" func="List_SetSel" />
+			<GetSel file="ListCtrl.xml.lua" func="List_GetSel" />
+			<InsertItem file="ListCtrl.xml.lua" func="InsertItem" />
+			<DeleteAllItems file="ListCtrl.xml.lua" func="DeleteAllItems" />
+			<SetAdjust file="ListCtrl.xml.lua" func="SetAdjust" />
+			<MouseWheel file="ListCtrl.xml.lua" func="MouseWheel" />
+			<UpdateScroll file="ListCtrl.xml.lua" func="UpdateScroll" />
+		</method_def>
+		<event_def>
+		    <OnSelectChanged />
+		</event_def>
+		<objtemplate>
+            <children>
+				<obj id="list.bkg" class="TextureObject">
+                    <attr>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>father.width</width>
+                        <height>father.height</height>
+                        <texture>texture.edit.bkg.normal</texture>
+						<zorder>1</zorder>
+                    </attr>
+					<children>
+						<obj id="header" class="LayoutObject">
+							<attr>
+								<left>3</left>
+								<top>3</top>
+								<width>father.width-6</width>
+								<height>18</height>
+							</attr>
+							<children>
+								<obj id="Header.Bkg.id" class="ImageObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>father.height</height>
+										<drawmode>1</drawmode>
+										<image>bitmap.listctrl.header.bkg</image>
+									</attr>
+									<children>
+										<obj id="Item.Bkg.id" class="ImageObject">
+											<attr>
+												<limitchild>1</limitchild>
+												<left>0</left>
+												<top>0</top>
+												<width>father.width/2</width>
+												<height>father.height</height>
+												<alpha>255</alpha>
+												<drawmode>1</drawmode>	
+												<image>ListCtrl.HeaderItem.Normal</image>
+											</attr>
+											<children>						
+												<obj id="Item.Text.id" class="TextObject">
+													<attr>
+														<width>father.width</width>
+														<height>father.height</height>
+														<font>listheader.font</font>
+														<texttype>gdi</texttype>
+														<textcolor>system.white</textcolor>
+														<valign>center</valign>
+														<text>属性</text>
+													</attr>
+												</obj>
+											</children>
+										</obj>
+										<obj id="Item.Bkg.value" class="ImageObject">
+											<attr>
+												<limitchild>1</limitchild>
+												<left>father.width/2</left>
+												<top>0</top>
+												<width>father.width/2</width>
+												<height>father.height</height>
+												<alpha>255</alpha>
+												<drawmode>1</drawmode>	
+												<image>ListCtrl.HeaderItem.Normal</image>
+											</attr>
+											<children>						
+												<obj id="Item.Text.value" class="TextObject">
+													<attr>
+														<width>father.width</width>
+														<height>father.height</height>
+														<font>listheader.font</font>
+														<textcolor>system.white</textcolor>
+														<valign>center</valign>
+														<texttype>gdi</texttype>
+														<text>值</text>
+													</attr>
+												</obj>
+											</children>
+										</obj>
+									</children>
+								</obj>
+							</children>
+						</obj>
+						<obj id="content" class="LayoutObject">
+							<attr>
+								<left>3</left>
+								<top>21</top>
+								<width>father.width-6</width>
+								<height>father.height-24</height>
+								<limitchild>1</limitchild>
+							</attr>	
+							<eventlist>
+								<event name="OnMouseWheel" file="ListCtrl.xml.lua" func="OnMouseWheel" />
+							</eventlist>
+						</obj>
+						<obj id="vscroll" class="Thunder.ScrollBar">
+							<attr>
+								<left>father.width - 16</left>
+								<top>21</top>
+								<width>15</width>
+								<height>father.height-24</height>
+								<Type>1</Type>
+								<NormalBkn>texture.vsb.big.bkg.normal</NormalBkn>
+								<HoverBkn>texture.vsb.big.bkg.hover</HoverBkn>
+								<ThumbBtn_normal>texture.vsb.big.thumb.normal</ThumbBtn_normal>
+								<ThumbBtn_hover>texture.vsb.big.thumb.hover</ThumbBtn_hover>
+								<ThumbBtn_down>texture.vsb.big.thumb.hover</ThumbBtn_down>
+								<SideBtnLength>0</SideBtnLength>
+								<ThumbBtnLength>49</ThumbBtnLength>
+								<ThumbBtnWidth>11</ThumbBtnWidth>
+								<ThumbRightMagrin>4</ThumbRightMagrin>
+
+								<PageSize>0</PageSize>
+								<RangeBegin>0</RangeBegin>
+								<RangeEnd>0</RangeEnd>
+								<ScrollPos>0</ScrollPos>
+								<zorder>100000</zorder>
+							</attr>
+							<eventlist>
+								<event name="OnVScroll" file="ListCtrl.xml.lua" func="OnVScroll" />
+								<event name="OnScrollBarMouseWheel" file="ListCtrl.xml.lua" func="OnScrollBarMouseWheel" />								
+							</eventlist>
+						</obj>
+					</children>
+				</obj>				
+			</children>
+			<eventlist>
+				<event name="OnBind" file="ListCtrl.xml.lua" func="OnBind" />
+				<event name="OnInitControl" file="ListCtrl.xml.lua" func="List_OnInitControl" />
+				<event name="OnPosChange" file="ListCtrl.xml.lua" func="OnPosChange" />
+			</eventlist>
+		</objtemplate>
+	</control>
+	<control class="ListItem">
+		<attr_def>
+			<attr name="key" type="string" />
+			<attr name="value" type="string" />
+		</attr_def>
+		<method_def>
+			<SetSel file="ListCtrl.xml.lua" func="SetSel" />
+		</method_def>
+		<objtemplate>
+			<children>
+				<obj id="item" class="LayoutObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>22</height>
+					</attr>
+					<children>
+						<obj id="background" class="TextureObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+								<texture>texture.tasklist.item.bk</texture>
+							</attr>
+							<children>
+								<obj id="key" class="TextObject">
+									<attr>
+										<width>father.width/2</width>
+										<height>22</height>
+										<text>txt1</text>
+										<valign>center</valign>
+										<texttype>gdi</texttype>
+									</attr>
+								</obj>
+								<obj id="value" class="TextObject">
+									<attr>
+										<left>father.width/2</left>
+										<width>father.width/2</width>
+										<height>22</height>
+										<text>value1</text>
+										<valign>center</valign>
+										<font>default.font</font>
+										<texttype>gdi</texttype>
+									</attr>
+								</obj>
+							</children>
+						</obj>						
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="ListCtrl.xml.lua" func="OnInitControl" />
+				<event name="OnLButtonDown" file="ListCtrl.xml.lua" func="OnLButtonDown" />
+				<event name="OnLButtonDbClick" file="ListCtrl.xml.lua" func="OnLButtonDbClick" />
+				<event name="OnRButtonDbClick" file="ListCtrl.xml.lua" func="OnRButtonDbClick" />
+				<event name="OnMouseWheel" file="ListCtrl.xml.lua" func="OnMouseWheel_Item" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

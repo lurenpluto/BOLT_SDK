@@ -1,0 +1,173 @@
+<xlue>
+	<control class="Wizard.MenuItem">
+		<attr_def>
+			<attr name="Text" type="string">
+				<default>""</default>
+			</attr>
+		</attr_def>
+		<method_def>
+			
+		</method_def>
+		<event_def>
+			<OnClick />
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="menuitem.root" class="LayoutObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<limitchild>1</limitchild>
+					</attr>
+					<children>
+						<obj id="menuitem.bkg" class="FillObject">
+							<attr>
+								<width>father.width</width>
+								<height>father.height </height>
+								<filltype>Monochrome</filltype>
+								<blendtype>Source</blendtype>
+								<srcpt>0,0</srcpt>
+								<destpt>0,height</destpt>
+								<srccolor>100,100,100,255</srccolor>
+								<visible>0</visible>
+							</attr>
+						</obj>
+						<obj id="menuitem.text" class="TextObject">
+							<attr>
+								<left>20</left>
+								<width>father.width - 20</width>
+								<height>father.height</height>
+								<valign>center</valign>
+								<zorder>10</zorder>
+								<textcolor>menu.item.text</textcolor>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="Menu.lua" func="OnMenuItemInitControl" />
+				<event name="OnControlMouseEnter" file="Menu.lua" func="OnMenuItemControlMouseEnter" />
+				<event name="OnControlMouseLeave" file="Menu.lua" func="OnMenuItemControlMouseLeave" />
+				<event name="OnLButtonUp" file="Menu.lua" func="OnMenuItemLButtonUp" />
+			</eventlist>
+		</objtemplate>
+	</control>
+	
+	<objtreetemplate id="Wizard.Menu">
+		<attr>
+			<left>-1000</left>
+			<top>-1000</top>
+			<width>2000</width>
+			<height>2000</height>
+		</attr>
+	
+		<obj id="menu.root" class="LayoutObject">
+			<attr>
+				<width>200</width>
+				<height>152</height>
+				<limitchild>1</limitchild>
+			</attr>
+			<children>
+				<obj id="menu.border" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height </height>
+						<texture>menu.bkn</texture>
+					</attr>
+				</obj>			
+				<obj id="menu.bkg" class="FillObject">
+					<attr>
+						<left>1</left>
+						<top>1</top>
+						<width>father.width - 3</width>
+						<height>father.height - 5</height>
+						<filltype>Line</filltype>
+						<blendtype>Source</blendtype>
+						<srcpt>0,0</srcpt>
+						<destpt>0,height * 78 / 100</destpt>
+						<alpha>230</alpha>
+						<srccolor>mainwnd.bkg.top.color</srccolor>
+						<destcolor>mainwnd.bkg.bottom.color</destcolor>
+						<zorder>1</zorder>
+					</attr>		
+					<children>
+						<obj id="menu.body" class="LayoutObject">
+							<attr>
+								<left>4</left>
+								<top>4</top>
+								<width>father.width - 8</width>
+								<height>father.height - 8</height>
+								<limitchild>1</limitchild>
+							</attr>
+							<children>
+								<obj id="menu.transparent" class="Wizard.MenuItem">
+									<attr>
+										<width>father.width</width>
+										<height>30</height>
+										<Text>开启\关闭界面透明效果</Text>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="Menu.lua" func="OnTransprentClick" />
+									</eventlist>
+								</obj>
+								<obj id="menu.blur" class="Wizard.MenuItem">
+									<attr>
+										<top>34</top>
+										<width>father.width</width>
+										<height>30</height>
+										<Text>开启\关闭界面毛玻璃效果</Text>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="Menu.lua" func="OnBlurClick" />
+									</eventlist>
+								</obj>
+								<obj id="menu.alpha.text" class="TextObject">
+									<attr>
+										<left>20</left>
+										<top>70</top>
+										<width>father.width</width>
+										<height>30</height>
+										<text>调整界面透明度</text>
+										<valign>center</valign>
+										<textcolor>menu.item.text</textcolor>
+									</attr>
+								</obj>
+								<obj id="menu.alpha.selector" class="FillObject">
+									<attr>
+										<left>20</left>
+										<top>104</top>
+										<width>father.width - 40</width>
+										<height>40</height>
+										<filltype>Line</filltype>
+										<blendtype>Source</blendtype>
+										<srcpt>0,0</srcpt>
+										<destpt>width,0</destpt>
+										<srccolor>0,0,0,255</srccolor>
+										<destcolor>255,255,255,255</destcolor>
+									</attr>
+									<eventlist>
+										<event name="OnLButtonDown" file="Menu.lua" func="OnAlphaLButtonDown" />
+									</eventlist>
+								</obj>
+								
+							</children>
+						</obj>
+					</children>
+					<eventlist>
+						
+					</eventlist>
+				</obj>
+			</children>
+		</obj>	
+	</objtreetemplate>
+
+	<hostwndtemplate id="Wizard.Menu" class="MenuHostWnd">
+		<attr>
+		</attr>
+		<eventlist>
+			<event name="OnPopupMenu" file="Menu.lua" func="OnPopupMenu" />
+		</eventlist>
+	</hostwndtemplate>
+	
+</xlue>

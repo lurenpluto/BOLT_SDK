@@ -1,0 +1,8 @@
+<xlue>
+	<resource>
+		<pen id="pen.solid" width="1" penstyle="solid" />
+		<pen id="pen.dot" width="1" penstyle="dot" />
+		<brush id="brush.solid" brushstyle="solid" />
+		<brush id="brush.null" brushstyle="null" />
+	</resource>
+</xlue>

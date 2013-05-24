@@ -1,0 +1,130 @@
+<xlue>
+	<control class="BaseUI.Button">
+		<style_def>
+			<style name="bkg_normal_texture" type="string">
+				<default>general.button.normal</default>
+			</style>
+			<style name="bkg_hover_texture" type="string">
+				<default>general.button.hover</default>
+			</style>
+			<style name="bkg_down_texture" type="string">
+				<default>general.button.down</default>
+			</style>
+			<style name="bkg_disable_texture" type="string">
+				<default>general.button.disable</default>
+			</style>
+			
+			<style name="text_normal_font" type="string">
+				<default>default.font</default>
+			</style>
+			<style name="text_hover_font" type="string">
+				<default>default.font</default>
+			</style>
+			<style name="text_down_font" type="string">
+				<default>default.font</default>
+			</style>
+			<style name="text_disable_font" type="string">
+				<default>default.font</default>
+			</style>
+					
+			<style name="text_normal_color" type="string">
+				<default>system.black</default>
+			</style>
+			<style name="text_hover_color" type="string"/>
+			<style name="text_down_color" type="string"/>
+			<style name="text_disable_color" type="string"/>
+			
+			<style name="text_pos_left" type="int">
+				<default>0</default>
+			</style>
+			<style name="text_pos_top" type="int">
+				<default>0</default>
+			</style>
+			<!-- 可配置动画效果 -->
+			<style name="bkg_animation" type="string" />
+		</style_def>
+		<attr_def>
+			<attr name="Text" type="string">
+				<default></default>
+			</attr>
+		
+			<attr name="IsDefaultButton" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="HasFocusLine" type="bool">
+				<default>true</default>
+			</attr>
+			<!--
+				Status:  normal,  hover,  down,  disable
+			-->
+			<attr name="Status" type="string">
+				<default>normal</default>
+			</attr>
+		</attr_def>
+		<method_def>
+			<SetText file="Button.xml.lua" func="SetText" />
+			<GetText file="Button.xml.lua" func="GetText" />
+			<SetTextPos file="Button.xml.lua" func="SetTextPos" />
+			<UpdateUI file="Button.xml.lua" func="UpdateUI"/>
+			<!-- private method -->
+			<ChangeStatus file="Button.xml.lua" func="ChangeStatus" />
+		</method_def>
+		<event_def>
+			<OnClick/>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="ctrl" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+					<children>
+					    <obj id="button.oldbkg" class="TextureObject">
+							<attr>
+								<width>father.width</width>
+								<height>father.height</height>
+								<alpha>0</alpha>
+							</attr>
+						</obj>
+						 <obj id="text" class="TextObject">
+							<attr>
+								<width>father.width</width>
+								<height>father.height</height>
+								<halign>center</halign>
+								<valign>center</valign>
+								<wordellipsis>1</wordellipsis>
+							</attr>
+						</obj>
+						<obj id="focusrectangle" class="RectangleObject">
+							<attr>
+								<width>father.width</width>
+								<height>father.height</height>
+								<srcpt>4,2</srcpt>
+								<destpt>width-6,height-6</destpt>
+								<pen>pen.dot</pen>
+								<brush>brush.null</brush>
+								<pencolor>system.black</pencolor>
+								<visible>0</visible>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="Button.xml.lua" func="OnInitControl" />
+				<event name="OnUpdateStyle" file="Button.xml.lua" func="OnUpdateStyle" />
+				<event name="OnVisibleChange" file="Button.xml.lua" func="OnVisibleChange"/>
+				<event name="OnEnableChange" file="Button.xml.lua" func="OnEnableChange"/>				
+				<event name="OnFocusChange" file="Button.xml.lua" func="OnFocusChange" />
+				
+				<event name="OnLButtonDown" file="Button.xml.lua" func="OnLButtonDown" />
+				<event name="OnLButtonUp" file="Button.xml.lua" func="OnLButtonUp" />
+				<event name="OnMouseMove" file="Button.xml.lua" func="OnMouseMove" />
+				<event name="OnMouseLeave" file="Button.xml.lua" func="OnMouseLeave" />
+				<event name="OnKeyDown" file="Button.xml.lua" func="OnKeyDown" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

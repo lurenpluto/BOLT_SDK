@@ -1,0 +1,6 @@
+<XLUE>
+<resource>
+	<!--普通的位图资源-->
+	<bitmap id="app.bkg"  path="bitmap\bkg.png" />
+</resource>
+</XLUE>

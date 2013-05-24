@@ -1,0 +1,83 @@
+<xlue>
+	<control class="BoltFox.SearchList.Ctrl">
+	    <attr_def>
+		   
+		</attr_def>
+		<method_def>
+		    <AddString file="SearchList.xml.lua" func="AddString" />
+		    <RemoveString file="SearchList.xml.lua" func="RemoveString" />
+			<UpdateUI file="SearchList.xml.lua" func="UpdateUI" />
+		</method_def>
+		<event_def> 
+			<OnSelectChange>
+				<param>
+					<string />
+				</param>
+			</OnSelectChange>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="container" class="LayoutObject">
+					<attr>
+						<top>3</top>
+						<left>3</left>
+						<width>father.width-6</width>
+						<height>father.height-6</height>
+						<limitchild>1</limitchild>
+					</attr>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="SearchList.xml.lua" func="OnInitControl" />
+			</eventlist>
+		</objtemplate>
+	</control>
+	
+	<control class="BoltFox.SearchListItem.Ctrl">
+		<attr_def>
+			
+		</attr_def>
+		<method_def>
+			<SetText file="SearchList.xml.lua" func="SetText" />
+			<GetText file="SearchList.xml.lua" func="GetText" />
+			<SetIcon file="SearchList.xml.lua" func="SetIcon" />
+			<GetIcon file="SearchList.xml.lua" func="GetIcon" />
+		</method_def>
+		<event_def>
+			<OnClick />
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="bkg" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<!-- <texture>pluginitem.all.down</texture> -->
+					</attr>
+					<children>
+						<obj id="icon" class="ImageObject">
+							<attr>
+								<left>7</left>
+								<width>16</width>
+								<height>father.height</height>
+								<valign>center</valign>
+							</attr>
+						</obj>
+						<obj id="text" class="TextObject">
+							<attr>
+								<left>7+16+3</left>
+								<width>father.width-14</width>
+								<height>father.height</height>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnMouseEnter" file="SearchList.xml.lua" func="OnMouseEnter" />
+				<event name="OnMouseLeave" file="SearchList.xml.lua" func="OnMouseLeave" />
+				<event name="OnLButtonUp" file="SearchList.xml.lua" func="OnLButtonUp" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

@@ -1,0 +1,34 @@
+<xlue>
+	<control class="BoltFox.TextureButton.Ctrl">
+	    <attr_def>
+		   <attr name="NormalBkg" type="string" />
+		   <attr name="HoverBkg" type="string" />
+		   <attr name="DownBkg" type="string" />
+		</attr_def>
+		<method_def>
+		    
+		</method_def>
+		<event_def> 
+			<OnClick />
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="bkg" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<valign>center</valign>
+						<halign>center</halign>
+					</attr>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnLButtonDown" file="TextureButton.xml.lua" func="OnLButtonDown" />
+				<event name="OnLButtonUp" file="TextureButton.xml.lua" func="OnLButtonUp" />
+				<event name="OnMouseEnter" file="TextureButton.xml.lua" func="OnMouseEnter" />
+				<event name="OnMouseLeave" file="TextureButton.xml.lua" func="OnMouseLeave" />
+				<event name="OnInitControl" file="TextureButton.xml.lua" func="OnInitControl" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

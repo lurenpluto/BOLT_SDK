@@ -1,0 +1,24 @@
+<xlue>
+    <resource>
+        <texture id="plugin.list.bkg" type="NineInOne" image="bitmap\plugin.list.bkg.png"/>
+        <texture id="plugin.item.bkg.hover" type="ThreeInOneH" image="bitmap\pluging.item.hover.png"/>
+        <texture id="plugin_mgr_normal" type="ThreeInOneH" image="bitmap\plugin_mgr_normal.png"/>
+        
+        <imagelist id="plugin.item.list" vertical="0" varyblock="1" splitter="1" image="bitmap\mainwnd_share_hover.png"/>
+        <bitmap id="plugin.item.close.normal" imagelist="plugin.item.list" index="3"/>
+        <bitmap id="plugin.item.close.hover" imagelist="plugin.item.list" index="4"/>
+        <bitmap id="plugin.item.close.down" imagelist="plugin.item.list" index="5"/>
+        <texture id="item.bkg.hover" type="ThreeInOneH" imagelist="plugin.item.list" index="1"/>
+        <texture id="item.bkg.down" type="ThreeInOneH" imagelist="plugin.item.list" index="2"/>
+        <bitmap id="plugin.addplugin.btn" imagelist="plugin.item.list" index="13"/>
+        <texture id="addplugin.btn.hover" type="ThreeInOneH" imagelist="plugin.item.list" index="14"/>
+        <texture id="addplugin.btn.down" type="ThreeInOneH" imagelist="plugin.item.list" index="15"/>
+		
+        <imagelist id="imagelist.plugin.status" vertical="0" splitter="1" varyblock="1" image="bitmap\plugin_status.png"/>
+        <texture id="plugin.disable.normal" imagelist="imagelist.plugin.status" index="1"/>
+        <texture id="plugin.enable.normal" imagelist="imagelist.plugin.status" index="2"/>
+        <texture id="plugin.disable.hover" imagelist="imagelist.plugin.status" index="3"/>
+        <texture id="plugin.enable.hover" imagelist="imagelist.plugin.status" index="4"/>
+        <texture id="plugin.item.line" image="bitmap\pluginlistitem.line.png"/>		
+    </resource>
+</xlue>

@@ -1,0 +1,36 @@
+﻿<XLUE>
+	<resource>			
+		<imagelist id="bitmap.sysbtn.image" vertical="0" splitter="1" varyblock="0" blocksize="21" image="bitmap\system_button.png"/>
+		<texture id="texture.sysbtn.normal" imagelist="bitmap.sysbtn.image" index="1"/>
+		<texture id="texture.sysbtn.hover" imagelist="bitmap.sysbtn.image" index="2"/>
+		<texture id="texture.sysbtn.down" imagelist="bitmap.sysbtn.image" index="3"/>
+		<bitmap id="bitmap.sysbtn.icon.menu" imagelist="bitmap.sysbtn.image" index="4"/>
+		<bitmap id="bitmap.sysbtn.icon.min" imagelist="bitmap.sysbtn.image" index="5"/>
+		<bitmap id="bitmap.sysbtn.icon.max" imagelist="bitmap.sysbtn.image" index="6"/>
+		<bitmap id="bitmap.sysbtn.icon.exit" imagelist="bitmap.sysbtn.image" index="7"/>
+		<bitmap id="bitmap.sysbtn.icon.restore" imagelist="bitmap.sysbtn.image" index="8"/>
+		
+		<imagelist id="imagelist.system.button.image" vertical="0" splitter="1" varyblock="1" image="bitmap\imagesecond.system.button.png"/>
+		<bitmap id="bitmap.sysbtn.mini.normal" imagelist="imagelist.system.button.image" index="1"/>
+		<bitmap id="bitmap.sysbtn.mini.hover" imagelist="imagelist.system.button.image" index="3"/>
+		<bitmap id="bitmap.sysbtn.mini.down" imagelist="imagelist.system.button.image" index="4"/>
+		<bitmap id="bitmap.sysbtn.mini.disable" imagelist="imagelist.system.button.image" index="5"/>
+		<bitmap id="bitmap.sysbtn.close.normal" imagelist="imagelist.system.button.image" index="6"/>
+		<bitmap id="bitmap.sysbtn.close.hover" imagelist="imagelist.system.button.image" index="8"/>
+		<bitmap id="bitmap.sysbtn.close.down" imagelist="imagelist.system.button.image" index="9"/>
+		<bitmap id="bitmap.sysbtn.close.disable" imagelist="imagelist.system.button.image" index="10"/>
+		<bitmap id="bitmap.sysbtn.max.normal" imagelist="imagelist.system.button.image" index="11"/>
+		<bitmap id="bitmap.sysbtn.max.hover" imagelist="imagelist.system.button.image" index="12"/>
+		<bitmap id="bitmap.sysbtn.max.down" imagelist="imagelist.system.button.image" index="13"/>
+		<bitmap id="bitmap.sysbtn.max.disable" imagelist="imagelist.system.button.image" index="14"/>
+		<bitmap id="bitmap.sysbtn.restore.normal" imagelist="imagelist.system.button.image" index="15"/>
+		<bitmap id="bitmap.sysbtn.restore.hover" imagelist="imagelist.system.button.image" index="16"/>
+		<bitmap id="bitmap.sysbtn.restore.down" imagelist="imagelist.system.button.image" index="17"/>
+		<bitmap id="bitmap.sysbtn.restore.disable" imagelist="imagelist.system.button.image" index="18"/>
+		
+		<imagelist id="imagelist.system.button" vertical="0" splitter="1" varyblock="1" image="bitmap\system.button.png" />
+		<bitmap id="system.btn.exit.normal"  imagelist="imagelist.system.button" index="1"/>
+		<bitmap id="system.btn.exit.hover"  imagelist="imagelist.system.button" index="2"/>
+		<bitmap id="system.btn.exit.down"  imagelist="imagelist.system.button" index="3"/>
+	</resource>
+</XLUE>

@@ -1,0 +1,122 @@
+<XLUE>
+	<resource>		
+		<imagelist id="bitmap.sysbtn.image" vertical="0" splitter="1" varyblock="0" blocksize="21" image="bitmap\system_button.png"/>
+		<texture id="texture.sysbtn.normal" imagelist="bitmap.sysbtn.image" index="1"/>
+		<texture id="texture.sysbtn.hover" imagelist="bitmap.sysbtn.image" index="2"/>
+		<texture id="texture.sysbtn.down" imagelist="bitmap.sysbtn.image" index="3"/>
+		<bitmap id="bitmap.sysbtn.icon.menu" imagelist="bitmap.sysbtn.image" index="4"/>
+		<bitmap id="bitmap.sysbtn.icon.min" imagelist="bitmap.sysbtn.image" index="5"/>
+		<bitmap id="bitmap.sysbtn.icon.max" imagelist="bitmap.sysbtn.image" index="6"/>
+		<bitmap id="bitmap.sysbtn.icon.exit" imagelist="bitmap.sysbtn.image" index="7"/>
+		<bitmap id="bitmap.sysbtn.icon.restore" imagelist="bitmap.sysbtn.image" index="8"/>
+		
+		<imagelist id="system.skinbtn.imagelist" vertical="0" splitter="1" varyblock="0" blocksize="24" image="bitmap\system.skinbtn.png"/>
+		
+		<bitmap id="bitmap.sysbtn.skin.bkg" imagelist="system.skinbtn.imagelist" index="1"/>
+		<bitmap id="bitmap.sysbtn.skin.icon" imagelist="system.skinbtn.imagelist" index="2"/>
+		<bitmap id="bitmap.sysbtn.skin.light" imagelist="system.skinbtn.imagelist" index="3"/>
+		
+		<bitmap id="bitmap.menu.line" path="bitmap\bitmap.menu.line.png"/>
+
+		<bitmap id="bitmap.addins.kankan" path="bitmap\addins_kankan.png"/>
+		<bitmap id="bitmap.addins.gougou" path="bitmap\addins_gougou.png"/>
+
+		<imagelist id="imagelist.progress" vertical="0" splitter="1" varyblock="0" blocksize="16" image="bitmap\texture.progress.png"/>
+		<texture id="texture.progress.focus.full" type="ThreeInOneH" imagelist="imagelist.progress" index="1"/>
+		<texture id="texture.progress.focus.empty" type="ThreeInOneH" imagelist="imagelist.progress" index="2"/>
+		<texture id="texture.progress.unfocus.full" type="ThreeInOneH" imagelist="imagelist.progress" index="3"/>
+		<texture id="texture.progress.unfocus.empty" type="ThreeInOneH" imagelist="imagelist.progress" index="4"/>
+
+		<texture id="texture.repeatdlg.bkg" type="NineInOne" image="bitmap\activeframe.png"/>
+
+		<texture id="texture.pluginmgrwnd.header"    image="bitmap\headerbkbtn.png" />
+		<texture id="texture.pluginmgrwnd.bkg"  type="ThreeInOneH" image="bitmap\pluginbkg.png" />
+		<bitmap id="bitmap.pluginmgrwnd.view" path="bitmap\view.png" />
+		<bitmap id="bitmap.pluginmgrwnd.mgr" path="bitmap\manager.png" />
+		<texture id="texture.pluginmgrwnd.btn_down"    image="bitmap\btn_down.png" />
+		<texture id="texture.pluginmgrwnd.btn_sel"    image="bitmap\btn_sel.png" />
+		<texture id="texture.pluginlistitem.bkg"    image="bitmap\HeaderItem_Down.png" />
+        
+		<imagelist id="TaskInfo.Title.Icon" vertical="0" splitter="1" varyblock="0" blocksize="17" image="bitmap\basic info.icon.png"/>
+        <bitmap id="TaskInfo.Title.BasicManipulateIcon" imagelist="TaskInfo.Title.Icon" index="1" />
+		<bitmap id="TaskInfo.Title.AttributeInfoIcon" imagelist="TaskInfo.Title.Icon" index="2" />
+		<texture id="taskinfopanel.bkg" type="NineInOne" image="bitmap\taskinfopanel.bkg.png" /> 
+		<texture id="taskinfopanel.tab.normal" type="ThreeInOneH" image="bitmap\taskinfopanel.tab.normal.png"/>
+		<texture id="taskinfopanel.tab.select" type="ThreeInOneH" image="bitmap\taskinfopanel.tab.select.png"/>
+		<texture id="taskinfo.tab.bkg"    image="bitmap\basic info.tab.bkg.png" />
+		<bitmap id="taskinfo.line.bkg"  path="bitmap\line.png" />
+        <bitmap id="taskinfo.border.bkg"  path="bitmap\basic info.border.png"/>
+		<bitmap id="taskinfo.attr.bkg" path="bitmap\taskinfo_attr_bkg.png"/>
+		<bitmap id="taskinfo.attr.savepath.underline" path="bitmap\Underline.png" />
+		<imagelist id="TaskInfo.Manipulatebtn" vertical="0" splitter="1" varyblock="0" blocksize="21" image="bitmap\basic info.button.png"/>
+        
+		
+		<texture id="TaskInfo.Manipulatebtn.Normal" type="ThreeInOneH" image="bitmap\taskinfo.manipulatebtn.normal.png"/>
+		<texture id="TaskInfo.Manipulatebtn.Hover" type = "ThreeInOneH" image="bitmap\taskinfo.manipulatebtn.hover.png"/>
+		<texture id="TaskInfo.Manipulatebtn.Down" type = "ThreeInOneH" image="bitmap\taskinfo.manipulatebtn.down.png"/>
+	
+		
+		<texture id="texture.taskinfo.border.left"   image="bitmap\taskinfo_border_left.png"/>
+		
+		<imagelist id="BTTaskInfo.Icon" vertical="0" splitter="1" varyblock="0" blocksize="17" image="bitmap\bt.icon.png"/>
+		<bitmap id="BTTaskInfo.Icon.AddVideoToPlayList" imagelist="BTTaskInfo.Icon" index="1" />
+		<bitmap id="BTTaskInfo.Icon.Help" imagelist="BTTaskInfo.Icon" index="2" />
+		<imagelist id="BTTaskInfo.imagelist.progress" vertical="0" splitter="1" varyblock="0" blocksize="2" image="bitmap\bt.progress.png"/>
+		<texture id="texture.bt.progress.full" imagelist="BTTaskInfo.imagelist.progress" index="1"/>
+		<texture id="texture.bt.progress.empty" imagelist="BTTaskInfo.imagelist.progress" index="2"/>
+		<texture id="texture.listboxitem.selected.bkg" type="NineInOne" image="bitmap\bt.selected.png"/>
+		<texture id="texture.listboxitem.hover.bkg" type="NineInOne" image="bitmap\bt.hover.png"/>
+		<bitmap id="BTTaskInfo.brokenline"  path="bitmap\bt.brokenline.png" />
+		<bitmap id="BTTaskInfo.line"  path="bitmap\bt.line.png" />
+
+		<texture id="edit.bkg.hover" type="NineInOne" image="bitmap\edit_standard_hover.png"/>
+		<texture id="edit.bkg.normal" type="NineInOne" image="bitmap\edit_standard_normal.png"/>
+		<texture id="edit.bkg.disable" type="NineInOne" image="bitmap\edit_standard_disable.png"/>
+		<texture id="combo.item.bkg.hover" type="ThreeInOneH" image="bitmap\combo.item.hover.png"/>
+         
+		<imagelist id="imagelist.general.button.bkg" vertical="0" splitter="1" varyblock="1" image="bitmap\general.button.bkg.png"/>
+		<texture id="general.button.normal" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="1"/>
+		<texture id="general.button.down" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="3"/>
+		<texture id="general.button.hover" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="2"/>
+		<texture id="general.button.disable" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="4"/>
+		<bitmap id="general.button.light" path="bitmap\general.button.light.png"/>
+
+		<imagelist id="TaskBasicInfo.Detection.Icons" vertical="0" splitter="1" varyblock="1" image="bitmap\TaskBasicInfo.Detection.Icons.png"/>
+		<bitmap id="TaskBasicInfo.detection.King" imagelist="TaskBasicInfo.Detection.Icons" index="1"/>
+		<bitmap id="TaskBasicInfo.detection.Rising" imagelist="TaskBasicInfo.Detection.Icons" index="2"/>
+		<bitmap id="TaskBasicInfo.detection.JiangMin" imagelist="TaskBasicInfo.Detection.Icons" index="3"/>
+		<bitmap id="TaskBasicInfo.detection.Kaspersky" imagelist="TaskBasicInfo.Detection.Icons" index="4"/>
+		
+		<imagelist id="TaskBasicInfo.Detection.Arrows" vertical="0" splitter="1" varyblock="1" image="bitmap\TaskBasicInfo.Arrow.png"/>
+		<bitmap id="TaskBasicInfo.detection.Arrows.Down" imagelist="TaskBasicInfo.Detection.Arrows" index="1"/>
+		<bitmap id="TaskBasicInfo.detection.Arrows.Up" imagelist="TaskBasicInfo.Detection.Arrows" index="2"/>
+		
+		<bitmap id="bkg.light.left" path="bitmap\bkg.light.left.png"/>
+		<bitmap id="bkg.light.top" path="bitmap\bkg.light.top.png"/>
+		<bitmap id="bkg.light.bottomleft" path="bitmap\bkg.light.bottomleft.png"/>
+		
+		<texture id="bkg.sliderbar"   image="bitmap\sliderbar.bkg.png"/>
+		<imagelist id="sliderbar.btn" vertical="0" splitter="1" varyblock="1" image="bitmap\sliderbar.btn.png"/>
+		<texture id="sliderbar.btn.normal" imagelist="sliderbar.btn" index="8"/>
+		<texture id="sliderbar.btn.hover" imagelist="sliderbar.btn" index="7"/>
+		<texture id="sliderbar.btn.down" imagelist="sliderbar.btn" index="9"/>
+		
+		<texture id="progress.empty" type="ThreeInOneH" image="bitmap\progress.empty.png"/>
+		<texture id="progress.full" type="ThreeInOneH" image="bitmap\progress.full.png"/>
+		
+		<imagelist id="imagelist.notify.bkg" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.notify.bkg.png"/>
+		<texture id="texture.notify.bkg.red" type="ThreeInOneH" imagelist="imagelist.notify.bkg" index="1" />
+		<texture id="texture.notify.bkg.green" type="ThreeInOneH" imagelist="imagelist.notify.bkg" index="2" />
+		
+		<imagelist id="imagelist.notify.btn.bkg.red" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.notify.close.btn.red.png"/>
+		<texture id="texture.notify.btn.red.normal" imagelist="imagelist.notify.btn.bkg.red" index="1" />
+		<texture id="texture.notify.btn.red.hover" imagelist="imagelist.notify.btn.bkg.red" index="2" />
+		<texture id="texture.notify.btn.red.down" imagelist="imagelist.notify.btn.bkg.red" index="3" />
+		
+		<imagelist id="imagelist.notify.btn.bkg.green" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.notify.close.btn.green.png"/>
+		<texture id="texture.notify.btn.green.normal" imagelist="imagelist.notify.btn.bkg.green" index="1" />
+		<texture id="texture.notify.btn.green.hover" imagelist="imagelist.notify.btn.bkg.green" index="2" />
+		<texture id="texture.notify.btn.green.down" imagelist="imagelist.notify.btn.bkg.green" index="3" />
+		<texture id="notify.underline"   image="bitmap\notify.underline.png"/>
+	</resource>
+</XLUE>

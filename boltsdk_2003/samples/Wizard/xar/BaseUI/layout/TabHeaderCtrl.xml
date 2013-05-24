@@ -1,0 +1,58 @@
+<xlue>	
+	<control class="BaseUI.TabHeaderCtrl">
+		<attr_def>
+			<attr name="BkgTextureID" type="string"><default></default></attr>
+
+			<attr name="BtnBkgNormal" type="string"><default></default></attr>
+			<attr name="BtnBkgHover" type="string"><default></default></attr>
+			<attr name="BtnBkgDown" type="string"><default></default></attr>
+			<attr name="BtnBkgDisable" type="string"><default></default></attr>
+
+			<attr name="ActiveBtnBkgNormal" type="string"><default></default></attr>
+			<attr name="ActiveBtnBkgHover" type="string"><default></default></attr>
+			<attr name="ActiveBtnBkgDown" type="string"><default></default></attr>
+			<attr name="ActiveBtnBkgDisable" type="string"><default></default></attr>
+			
+			<attr name="IconLeftPos" type="int"><default>0</default></attr>
+			<attr name="IconTopPos" type="int"><default>0</default></attr>
+			<attr name="TextLeftPos" type="int"><default>0</default></attr>
+			<attr name="TextTopPos" type="int"><default>0</default></attr>
+			<attr name="IconSize" type="int"><default>0</default></attr>
+			
+			<attr name="TextFontID" type="string"><default></default></attr>
+			<attr name="TextColorID" type="string"><default></default></attr>
+
+			<attr name="ButtonWidth" type="int"><default>120</default></attr>
+			<attr name="ButtonHeight" type="int"><default>25</default></attr>
+			<attr name="ButtonInternalSpace" type="int"><default>1</default></attr>		<!--	按钮间距 -->
+		</attr_def>
+		<method_def>
+			<AddTabItem file="TabHeaderCtrl.xml.lua" func="AddTabItem" />
+			<RemoveTabItem file="TabHeaderCtrl.xml.lua" func="RemoveTabItem" />
+			<SetActiveTab file="TabHeaderCtrl.xml.lua" func="SetActiveTab" />
+		</method_def>
+		<event_def>
+			<OnActiveTabChanged>
+				<param>
+					<string/>		<!--		激活的item id		-->
+					<string/>		<!--		上一个激活的item id -->
+				</param>
+			</OnActiveTabChanged>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="bkg" class="TextureObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnBind" file="TabHeaderCtrl.xml.lua" func="OnBind" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>	

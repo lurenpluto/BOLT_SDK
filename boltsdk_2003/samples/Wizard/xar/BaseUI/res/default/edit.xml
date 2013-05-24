@@ -1,0 +1,10 @@
+<XLUE>
+<resource>
+    <imagelist id="imagelist.edit" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.edit.png"/>
+	<texture id="texture.edit.bkg.disable" type="NineInOne" imagelist="imagelist.edit" index="10"/>
+    <texture id="texture.edit.bkg.normal" type="NineInOne" imagelist="imagelist.edit" index="11"/>
+    <texture id="texture.edit.bkg.hover" type="NineInOne" imagelist="imagelist.edit" index="12"/>
+    <texture id="texture.edit.light" type="NineInOne" imagelist="imagelist.edit" index="13"/>
+</resource>		
+
+</XLUE>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xlue>
+    <control class="Wizard.AnimationPanel">
+        <objtemplate>
+            <children>
+                <obj id="simple_image" class="ImageObject">
+                    <attr>
+                        <left>200</left>
+                        <top>50</top>
+                        <width>214</width>
+                        <height>322</height>
+                        <image>animation.simple.image</image>
+                    </attr>
+                </obj>
+                <obj id="alphaAnimBtn" class="BaseUI.Button">
+                    <attr>
+                        <left>20</left>
+                        <top>50</top>
+                        <width>150</width>
+                        <height>50</height>
+                        <Text>AlphaAnimation</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="AnimationPanel.xml.lua" func="OnAlphaAnimBtnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="PosAnimation" class="BaseUI.Button">
+                    <attr>
+                        <left>20</left>
+                        <top>120</top>
+                        <width>150</width>
+                        <height>50</height>
+                        <Text>PosAnimation</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="AnimationPanel.xml.lua" func="OnPosAnimBtnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="SeqAnimation" class="BaseUI.Button">
+                    <attr>
+                        <left>20</left>
+                        <top>190</top>
+                        <width>150</width>
+                        <height>50</height>
+                        <Text>SeqAnimation</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="AnimationPanel.xml.lua" func="OnSeqAnimBtnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="AngleAnimation" class="BaseUI.Button">
+                    <attr>
+                        <left>20</left>
+                        <top>260</top>
+                        <width>150</width>
+                        <height>50</height>
+                        <Text>AngleAnimation</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="AnimationPanel.xml.lua" func="OnAngleAnimBtnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="TurnAnimation" class="BaseUI.Button">
+                    <attr>
+                        <left>20</left>
+                        <top>330</top>
+                        <width>150</width>
+                        <height>50</height>
+                        <Text>TurnAnimation</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="AnimationPanel.xml.lua" func="OnTurnAnimBtnClick" />
+                    </eventlist>
+                </obj>
+            </children>
+        </objtemplate>
+    </control>
+</xlue>

@@ -1,0 +1,43 @@
+<xlue>
+	<control class="MineObject">
+		<attr_def>
+		</attr_def>
+		<method_def>
+			<SetResID file="Mine.xml.lua" func="SetResID" />
+		</method_def>
+		<event_def>
+			<OnClick>
+				<param>
+					<int/> <!-- x -->
+					<int/> <!-- y -->
+					<string/> <!-- type -->
+				</param>
+			</OnClick>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="image" class="ImageObject">
+					<attr>
+						<width>16</width>
+						<height>16</height>
+						<image>bitmap.mine.normal</image>
+						<zorder>10</zorder>
+					</attr>
+				</obj>
+				<obj id="imageAni" class="ImageObject">
+					<attr>
+						<width>16</width>
+						<height>16</height>
+						<image>bitmap.mine.normal</image>
+					</attr>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnLButtonDown" file="Mine.xml.lua" func="OnLButtonDown" />
+				<event name="OnLButtonUp" file="Mine.xml.lua" func="OnLButtonUp" />
+				<event name="OnRButtonDown" file="Mine.xml.lua" func="OnRButtonDown" />
+				<event name="OnRButtonUp" file="Mine.xml.lua" func="OnRButtonUp" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

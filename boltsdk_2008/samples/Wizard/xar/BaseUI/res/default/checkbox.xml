@@ -1,0 +1,20 @@
+<XLUE>
+<resource>
+	<imagelist id="imagelist.checkbox" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.checkbox.png" />
+	<bitmap id="bitmap.tick.max" imagelist="imagelist.checkbox" index="1" />
+	<bitmap id="bitmap.tick.normal" imagelist="imagelist.checkbox" index="3" />
+	<bitmap id="bitmap.tick.disable" imagelist="imagelist.checkbox" index="4" />
+	<bitmap id="bitmap.box.normal" imagelist="imagelist.checkbox" index="2" />
+	<bitmap id="bitmap.box.disable" imagelist="imagelist.checkbox" index="5" />
+	<bitmap id="bitmap.box.hover" imagelist="imagelist.checkbox" index="6" />
+	
+	<curve id="checkbox.show" type="bspline">
+		<controlpoint  tp="0.000000" sp="0.000000"/>
+		<controlpoint  tp="0.516484" sp="0.176656"/>
+		<controlpoint  tp="0.744505" sp="1.343849"/>
+		<controlpoint  tp="0.936813" sp="1.318612"/>
+		<controlpoint  tp="0.997253" sp="1.000000"/>
+	</curve>
+		
+</resource>
+</XLUE>

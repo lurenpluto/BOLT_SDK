@@ -1,0 +1,14 @@
+<xlue>
+	<resource>
+	<color id="system.white" red="255" green="255" blue="255" alpha="255" />
+	<color id="system.black" red="0" green="0" blue="0" alpha="255" />	
+	
+	<color id="color.text.normal" value="#000000" alpha="255"/>
+	<color id="color.text.hint" value="#6eaa00" alpha="255" />
+	<color id="color.text.link" value="#0084ff" alpha="255" />
+	<color id="color.telecom.text.description" value="#0846a3" alpha="255" />
+	<color id="color.text.description" value="#535353" alpha="255" />
+	<color id="color.text.disable" value="#bac4cb" alpha="255" />
+	<color id="color.text.warning" value="#e60012" alpha="255" />
+	</resource>
+</xlue>

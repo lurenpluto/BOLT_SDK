@@ -1,0 +1,299 @@
+<xlue>
+	<control class="BaseUI.ListBox">
+		<style_def>
+		</style_def>
+		<attr_def>
+		    <!--ListBox背景资源定义:-->
+			<attr name="BkgNormalTextureID" type="string" >
+			    <default>texture.listbox.bkg.hover</default>
+			</attr>
+			<attr name="BkgHoverTextureID" type="string" >
+			    <default>texture.listbox.bkg.hover</default>
+			</attr>
+			<attr name="BkgDownTextureID" type="string" >
+			    <default>texture.listbox.bkg.normal</default>
+			</attr>
+			<attr name="BkgDisableTextureID" type="string" >
+			    <default>texture.listbox.bkg.normal</default>
+			</attr>
+			<!--是否采用ListBoxItem的默认资源：-->
+			<attr name="IsItemResDefault" type="bool" >
+			    <default>true</default>
+			</attr>
+			<!--ListBoxItem 资源定义， 若采用默认资源以下属性不需要配置:-->
+			<!--ListBoxItem 背景资源定义：-->
+			<attr name="ItemBkgNormalTextureID" type="string" />
+			<attr name="ItemBkgHoverTextureID" type="string" />
+			<attr name="ItemBkgDownTextureID" type="string" />
+			<attr name="ItemBkgDisableTextureID" type="string" />
+			<!--ListBoxItem的text字体资源定义：-->	
+			<attr name="ItemTextNormalFontID" type="string" />     
+			<attr name="ItemTextHoverFontID" type="string" />
+			<attr name="ItemTextDownFontID" type="string" />
+			<attr name="ItemTextDisableFontID" type="string" />
+			<!--ListBoxItem的text字体颜色定义：-->	
+			<attr name="ItemTextNormalColorID" type="string" />     
+			<attr name="ItemTextHoverColorID" type="string" />
+			<attr name="ItemTextDownColorID" type="string" />
+			<attr name="ItemTextDisableColorID" type="string" />
+			<!-- -->
+			<!--ScrollBar 资源定义， 若采用默认资源以下属性不需要配置:-->
+			<attr name="ScrollBarV.BkgNormalBitmapID" type="string" />
+			<attr name="ScrollBarV.BkgHoverBitmapID" type="string" />
+			<attr name="ScrollBarV.BkgDownBitmapID" type="string" />
+			<attr name="ScrollBarV.BkgDisableBitmapID" type="string" />
+			<attr name="ScrollBarV.PreBtnNormalBitmapID" type="string" />
+			<attr name="ScrollBarV.PreBtnHoverBitmapID" type="string" />
+			<attr name="ScrollBarV.PreBtnDownBitmapID" type="string" />
+			<attr name="ScrollBarV.PreBtnDisableBitmapID" type="string" />
+			<attr name="ScrollBarV.NextBtnNormalBitmapID" type="string" />
+			<attr name="ScrollBarV.NextBtnHoverBitmapID" type="string" />
+			<attr name="ScrollBarV.NextBtnDownBitmapID" type="string" />
+			<attr name="ScrollBarV.NextBtnDisableBitmapID" type="string" />
+			<attr name="ScrollBarV.ThumbBtnNormalBitmapID" type="string" />
+			<attr name="ScrollBarV.ThumbBtnHoverBitmapID" type="string" />
+			<attr name="ScrollBarV.ThumbBtnDownBitmapID" type="string" />
+			<attr name="ScrollBarV.ThumbBtnDisableBitmapID" type="string" />
+			
+			<attr name="ScrollBarH.BkgNormalBitmapID" type="string" />
+			<attr name="ScrollBarH.BkgHoverBitmapID" type="string" />
+			<attr name="ScrollBarH.BkgDownBitmapID" type="string" />
+			<attr name="ScrollBarH.BkgDisableBitmapID" type="string" />
+			<attr name="ScrollBarH.PreBtnNormalBitmapID" type="string" />
+			<attr name="ScrollBarH.PreBtnHoverBitmapID" type="string" />
+			<attr name="ScrollBarH.PreBtnDownBitmapID" type="string" />
+			<attr name="ScrollBarH.PreBtnDisableBitmapID" type="string" />
+			<attr name="ScrollBarH.NextBtnNormalBitmapID" type="string" />
+			<attr name="ScrollBarH.NextBtnHoverBitmapID" type="string" />
+			<attr name="ScrollBarH.NextBtnDownBitmapID" type="string" />
+			<attr name="ScrollBarH.NextBtnDisableBitmapID" type="string" />
+			<attr name="ScrollBarH.ThumbBtnNormalBitmapID" type="string" />
+			<attr name="ScrollBarH.ThumbBtnHoverBitmapID" type="string" />
+			<attr name="ScrollBarH.ThumbBtnDownBitmapID" type="string" />
+			<attr name="ScrollBarH.ThumbBtnDisableBitmapID" type="string" />
+			
+			<!--ScrollBarV的宽度信息:-->
+			<attr name="VerticalScrollBarWidth" type="int" >
+			    <default>12</default>
+			</attr>
+			
+			<!--ScrollBarV的高度信息:-->
+			<attr name="HorizontalScrollBarHeight" type="int" >
+			    <default>12</default>
+			</attr>
+			<!--滚动条相对于控件Left的偏移量，不同的背景图片有所不同-->
+			<attr name="ScrollBarLeftOffset" type="int" >
+			    <default>0</default>
+			</attr>
+			<!--滚动条相对于控件Top的偏移量，不同的背景图片有所不同-->
+			<attr name="ScrollBarTopOffset" type="int" >
+			    <default>0</default>
+			</attr>
+			<!--ListBox的一些属性信息-->
+			<attr name="IsMultiSelect" type="bool" >
+			    <default>false</default>
+			</attr>
+			<!--ListBoxItem的高度-->
+			<attr name="ItemHeight" type="int" >
+			    <default>16</default>
+			</attr>
+		</attr_def>
+		<method_def>
+			 <!--string operations : -->
+			<AddString/>   <!--参数： para1:string -->
+            <DeleteString/> 	
+            <FindString/>
+            <InsertString/>
+			<SetCurSel/>
+			<GetCurSel/>
+			<GetStringByIndex/>
+			<ResetContent/>	
+            <UpdateUI/>			
+		</method_def>
+		<event_def>
+			<OnSelectChanged>
+				<param>
+					<int />
+				</param>
+			</OnSelectChanged>
+		</event_def>
+		<objtemplate>
+			<children>
+			    <obj id="ctrl" class="LayoutObject">
+			    	<attr>
+			    		<width>father.width</width>
+			    		<height>father.height</height>
+						<limitchild>1</limitchild>
+			    	</attr>
+			    	<children>
+			    		<obj id="bkg" class="TextureObject">
+			    			<attr>
+			    				<width>father.width</width>
+			    				<height>father.height</height>
+								
+			    			</attr>
+			    			<children>
+			    			    <obj id="bkgWnd" class="LayoutObject">
+			    			    	<attr>			    			    		
+			    			    		<width>father.width</width>
+			    			    		<height>father.height</height>
+			    			    	</attr>
+			    			    </obj>
+								<obj id="scrollbar.v" class="BaseUI.ScrollBar" templateid="BaseUI.VScrollBar">
+									<attr>
+										<left>father.width - 12</left>
+										<top>0</top>
+										<width>12</width>
+										<height>father.height</height>
+										<Type>v</Type>
+										<visible>0</visible>
+										<PageSize>0</PageSize>
+										<zorder>1000</zorder>
+									</attr>
+									<eventlist>
+										<event name="OnScrollPosChange" file="ListBox.xml.lua" func="ListBox_VScrollPosChange" />
+									</eventlist>
+								</obj>
+								<obj id="scrollbar.h" class="BaseUI.ScrollBar" templateid="BaseUI.HScrollBar">
+									<attr>
+										<left>0</left>
+										<top>father.height - 12</top>
+										<width>father.width</width>
+										<height>12</height>
+										<Type>h</Type>
+										<visible>0</visible>
+										<PageSize>0</PageSize>
+										<zorder>1000</zorder>
+									</attr>
+									<eventlist>
+										<event name="OnScrollPosChange" file="ListBox.xml.lua" func="ListBox_HScrollPosChange" />
+									</eventlist>
+								</obj>
+			    			</children>
+			    		</obj>
+						
+			    	</children>
+			    </obj>
+			</children>
+			<eventlist>
+			    <event name="OnInitControl" file="ListBox.xml.lua" func="ListBox_OnInitControl" />
+				<event name="OnLButtonDown" file="ListBox.xml.lua" func="ListBox_OnLButtonDown" />
+				<event name="OnLButtonUp" file="ListBox.xml.lua" func="ListBox_OnLButtonUp" />
+				<event name="OnMouseMove" file="ListBox.xml.lua" func="ListBox_OnMouseMove" />
+				<event name="OnMouseLeave" file="ListBox.xml.lua" func="ListBox_OnMouseLeave" />
+				<event name="OnVisibleChange" file="ListBox.xml.lua" func="ListBox_OnVisibleChange" />
+				<event name="OnEnableChange" file="ListBox.xml.lua" func="ListBox_OnEnableChange" />
+			</eventlist>
+		</objtemplate>
+	</control>
+	<control class="BaseUI.ListBox.Item">
+		<attr_def>
+		    <!--ListBoxItem 背景图片定义:-->
+			<attr name="BkgNormalTextureID" type="string" >
+			    <default>texture.listbox.item.normal</default>
+			</attr>
+			<attr name="BkgHoverTextureID" type="string" >
+			    <default>texture.listbox.item.hover</default>
+			</attr>
+			<attr name="BkgDownTextureID" type="string" >
+			    <default>texture.listbox.item.down</default>
+			</attr>
+			<attr name="BkgDisableTextureID" type="string" >
+			    <default>texture.listbox.item.disable</default>
+			</attr>
+			<!--ListBoxItem的text字体资源定义：-->	
+			<attr name="TextNormalFontID" type="string">     
+			    <default></default>
+			</attr>
+			<attr name="TextHoverFontID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TextDownFontID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TextDisableFontID" type="string">
+			    <default></default>
+			</attr>
+			
+			<!--ListBoxItem的text字体颜色定义：-->	
+			<attr name="TextNormalColorID" type="string">     
+			    <default></default>
+			</attr>
+			<attr name="TextHoverColorID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TextDownColorID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TextDisableColorID" type="string">
+			    <default></default>
+			</attr>
+			<!--ListBoxItem的字体内容:-->
+			<attr name="Text" type="string" >
+			    <default></default>
+			</attr>
+			<attr name="Index" type="int" />
+			
+		</attr_def>
+		<method_def>
+		<!--public function:-->
+			<SetSelect file="ListBox.xml.lua" func="ListBoxItem_SetSelect"/>
+			<GetSelect file="ListBox.xml.lua" func="ListBoxItem_GetSelect"/>
+		<!---->	
+		</method_def>
+		<event_def>
+			<OnSelect>
+			    <param>
+				    <int></int>
+				</param>
+			</OnSelect>
+            <OnWidthExtend>
+			    <param>
+				    <int></int>
+				</param>
+			</OnWidthExtend>			
+		</event_def>
+		<objtemplate>
+		    <children>
+				<obj id="ctrl" class="LayoutObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						
+					</attr>
+					<children>
+						<obj id="bkg" class="TextureObject">
+							<attr>
+							    <left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+							</attr>
+							<children>
+								<obj id="text" class="TextObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>father.height</height>
+										<text></text>
+									</attr>
+								</obj>
+							</children>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+			    <event name="OnInitControl" file="ListBox.xml.lua" func="ListBoxItem_OnInitControl" />
+			    <event name="OnLButtonDown" file="ListBox.xml.lua" func="ListBoxItem_OnLButtonDown" />
+				<event name="OnMouseMove" file="ListBox.xml.lua" func="ListBoxItem_OnMouseMove" />
+				<event name="OnLButtonUp" file="ListBox.xml.lua" func="ListBoxItem_OnLButtonUp" />
+				<event name="OnMouseLeave" file="ListBox.xml.lua" func="ListBoxItem_OnMouseLeave" />
+				<event name="OnVisibleChange" file="ListBox.xml.lua" func="ListBoxItem_OnVisibleChange" />
+				<event name="OnEnableChange" file="ListBox.xml.lua" func="ListBoxItem_OnEnableChange" />
+				<event name="OnPosChange" file="ListBox.xml.lua" func="ListBoxItem_OnPosChange" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

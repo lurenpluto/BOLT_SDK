@@ -1,0 +1,166 @@
+<xlue>
+	<control class="Thunder.BkgCtrl">
+		<attr_def>
+			<attr name="Type" type="int">
+				<default>-1</default>
+			</attr>
+			
+			<attr name="BkgTemplate" type="string">
+				<default></default>
+			</attr>
+
+			<attr name="WhiteShadow" type="string">
+				<default></default>
+			</attr>
+			
+			<attr name="UseLight" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="Mask" type="string">
+				<default></default>
+			</attr>
+		</attr_def>
+		
+		<method_def>
+			<AdjustFillObjPos file="BkgCtrl.xml.lua" func="AdjustFillObjPos"/>
+			<SetBkgType file="BkgCtrl.xml.lua" func="SetBkgType"/>
+			<SetBkgImage file="BkgCtrl.xml.lua" func="SetBkgImage"/>
+			<LoadSkin file="BkgCtrl.xml.lua" func="LoadSkin"/>
+			<InitShadingBkg file="BkgCtrl.xml.lua" func="InitShadingBkg"/>
+		</method_def>
+		
+		<objtemplate>
+			<children>
+				<!-- <obj id="mask" class="MaskObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<maskorgx>0</maskorgx>
+						<maskorgy>0</maskorgy>
+						<masksizex>width</masksizex>
+						<masksizey>height</masksizey>
+					</attr>
+					<children> -->
+						<obj id="fillbkg" class="LayoutObject">
+							<attr>
+								<width>father.width</width>
+								<height>father.height</height>
+								<limitchild>1</limitchild>
+							</attr>
+						</obj>
+						
+						<obj id="imagebkg" class="LayoutObject">
+							<attr>
+								<width>father.width</width>
+								<height>father.height</height>
+								<limitchild>1</limitchild>
+							</attr>
+							<children>
+								<obj id="colorfill" class="FillObject">
+									<attr>
+										<filltype>Monochrome</filltype>
+										<blendtype>Source</blendtype>
+										<srcpt>0,0</srcpt>
+										<destpt>0,height</destpt>
+										<alpha>230</alpha>
+										<width>father.width</width>
+										<height>father.height</height>
+										<maskleft>0</maskleft>
+										<masktop>0</masktop>
+										<maskwidth>width</maskwidth>
+										<maskheight>height</maskheight>
+										<maskblendtype>attenunate</maskblendtype>
+									</attr>
+								</obj>
+								
+								<obj id="image" class="ImageObject">
+									<attr>
+										<zorder>1</zorder>
+										<width>father.width</width>
+										<height>father.height</height>
+										<maskleft>0</maskleft>
+										<masktop>0</masktop>
+										<maskwidth>width</maskwidth>
+										<maskheight>height</maskheight>
+										<maskblendtype>attenunate</maskblendtype>
+									</attr>
+								</obj>
+								
+								<obj id="image2" class="ImageObject">
+									<attr>
+										<zorder>2</zorder>
+										<width>father.width</width>
+										<height>father.height</height>
+										<alpha>0</alpha>
+										<maskleft>0</maskleft>
+										<masktop>0</masktop>
+										<maskwidth>width</maskwidth>
+										<maskheight>height</maskheight>
+										<maskblendtype>attenunate</maskblendtype>
+									</attr>
+								</obj>
+								
+								<obj id="whiteshadow" class="TextureObject">
+									<attr>
+										<zorder>3</zorder>
+										<width>father.width</width>
+										<height>father.height</height>
+										<maskleft>0</maskleft>
+										<masktop>0</masktop>
+										<maskwidth>width</maskwidth>
+										<maskheight>height</maskheight>
+										<maskblendtype>attenunate</maskblendtype>
+									</attr>
+								</obj>
+							</children>
+						</obj>
+					<!-- </children>
+				</obj> -->
+			</children>
+			
+			<eventlist>
+				<event name="OnInitControl" file="BkgCtrl.xml.lua" func="OnInitControl"/>
+				<event name="OnDestroy" file="BkgCtrl.xml.lua" func="OnDestroy"/>
+				<event name="OnAbsPosChange" file="BkgCtrl.xml.lua" func="OnAbsPosChange"/>
+			</eventlist>
+		</objtemplate>
+		
+	</control>
+	
+	<objtemplate id="Thunder.Bkg.Light" class="LayoutObject">
+		<attr>
+			<zorder>10</zorder>
+		</attr>
+		<children>
+			<!-- <obj id="light.top" class="ImageObject">
+				<attr>
+					<height>85</height>
+					<width>1010</width>
+					<image>bkg.light.top</image>
+					<zorder>1</zorder>
+				</attr>
+			</obj> -->
+			
+			<obj id="light.left" class="ImageObject">
+				<attr>
+					<height>727</height>
+					<width>184</width>
+					<image>bkg.light.left</image>
+					<zorder>2</zorder>
+				</attr>
+			</obj>
+			
+			<obj id="light.bottomleft" class="ImageObject">
+				<attr>
+					<height>727</height>
+					<width>184</width>
+					<drawmode>1</drawmode>
+					<image>bkg.light.bottomleft</image>
+					<zorder>3</zorder>
+				</attr>
+			</obj>
+		</children>
+	</objtemplate>
+	
+</xlue>

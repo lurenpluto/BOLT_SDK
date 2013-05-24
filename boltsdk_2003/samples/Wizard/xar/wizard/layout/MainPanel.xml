@@ -1,0 +1,218 @@
+<xlue>
+	<control class="Demo.MainPanel">
+		<objtemplate>
+			<children>
+				<obj id="PanelBkg" class="LayoutObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+					<children>
+						<obj id="DemoButton" class="BaseUI.Button">
+							<attr>
+								<left>24</left>
+								<top>20</top>
+								<width>120</width>
+								<height>25</height>
+								<Text>按钮</Text>
+							</attr>
+							<eventlist>
+								<event name="OnClick" file="MainPanel.xml.lua" func="OnDemoButton_Click" />
+							</eventlist>
+						</obj>
+						<obj id="DisableButton" class="BaseUI.Button">
+							<attr>
+								<left>24</left>
+								<top>20+4+25</top>
+								<width>120</width>
+								<height>25</height>
+								<Text>无效按钮</Text>
+								<enable>0</enable>
+							</attr>
+						</obj>
+						<obj id="DemoCheckBox" class="BaseUI.CheckBox">
+							<attr>
+								<left>24</left>
+								<top>20+25+4+25+4</top>
+								<width>120</width>
+								<height>25</height>
+								<Text>CheckBox</Text>
+								<Check>true</Check>
+							</attr>
+						</obj>
+						
+						<obj id="DisableBox" class="BaseUI.CheckBox">
+							<attr>
+								<left>24</left>
+								<top>20+25+4+25+4+25+4</top>
+								<width>140</width>
+								<height>25</height>
+								<Text>DisableCheckbox</Text>
+								<Check>false</Check>
+								<enable>0</enable>
+							</attr>
+						</obj>
+						
+						<obj id="Tips.Show" class="TextObject">
+							<attr>
+								<left>24</left>
+								<top>140</top>
+								<width>140</width>
+								<height>25</height>
+								<text>查看tips示例</text>
+							</attr>
+							<eventlist>
+								<event name="OnInitControl" file="MainPanel.xml.lua" func="OnTipsInitControl" />
+								<event name="OnDestroy" file="MainPanel.xml.lua" func="OnTipsDestroy" />
+								<event name="OnMouseEnter" file="MainPanel.xml.lua" func="OnTipsMouseEnter" />
+								<event name="OnMouseLeave" file="MainPanel.xml.lua" func="OnTipsMouseLeave" />
+							</eventlist>
+						</obj>
+						
+						<obj id="ModalDialog.Show" class="TextObject">
+							<attr>
+								<left>24</left>
+								<top>180</top>
+								<width>140</width>
+								<height>25</height>
+								<text>查看modalhostwnd示例</text>
+							</attr>
+							<eventlist>
+								<event name="OnLButtonUp" file="MainPanel.xml.lua" func="OnModalLButtonUp" />
+							</eventlist>
+						</obj>
+						
+						<obj id="CrashButton" class="BaseUI.Button">
+							<attr>
+								<left>24</left>
+								<top>210</top>
+								<width>120</width>
+								<height>25</height>
+								<Text>测试崩溃</Text>
+							</attr>
+							<eventlist>
+								<event name="OnClick" file="MainPanel.xml.lua" func="OnCrashButton_Click" />
+							</eventlist>
+						</obj>
+						
+						<obj id="fillcolor" class="FillObject">
+							<attr>
+								<left>350</left>
+								<top>240</top>
+								<width>100</width>
+								<height>100</height>
+								<filltype>Monochrome</filltype>
+								<srccolor>test.color</srccolor>
+							</attr>
+						</obj>
+						
+						<obj id="dragdrop.frame" class="StaticFrame">
+							<attr>
+								<left>15</left>
+								<top>240</top>
+								<width>270</width>
+								<height>200</height>
+								<Text>DragDrop区域</Text>
+							</attr>
+							<children>
+								<obj id="dragtext" class="TextObject">
+									<attr>
+										<left>10</left>
+										<top>70</top>
+										<width>100</width>
+										<height>50</height>
+										<text>此处可拖出CF_UNICODETEXT</text>
+										<multiline>1</multiline>
+									</attr>
+									<eventlist>
+										<event name="OnLButtonUp" file="MainPanel.xml.lua" func="OnDragTextUp" />
+										<event name="OnLButtonDown" file="MainPanel.xml.lua" func="OnDragTextDown" />
+										<event name="OnMouseMove" file="MainPanel.xml.lua" func="OnDragTextMove" />
+									</eventlist>
+								</obj>
+								<obj id="dragdrop.frame" class="StaticFrame">
+									<attr>
+										<left>130</left>
+										<top>5</top>
+										<width>120</width>
+										<height>200</height>
+										<Text>Drop区域</Text>
+										<enabledrop>1</enabledrop>
+									</attr>
+									<children>
+										<obj id="droptext" class="TextObject">
+											<attr>
+												<left>3</left>
+												<top>3</top>
+												<width>father.width - 6</width>
+												<height>father.height - 6</height>
+												<multiline>1</multiline>
+											</attr>
+										</obj>
+									</children>
+									<eventlist>
+										<event name="OnDragQuery" file="MainPanel.xml.lua" func="OnDragQuery" />
+										<event name="OnDragEnter" file="MainPanel.xml.lua" func="OnDragEnter" />
+										<event name="OnDragOver" file="MainPanel.xml.lua" func="OnDragOver" />
+										<event name="OnDrop" file="MainPanel.xml.lua" func="OnDrop" />
+									</eventlist>
+								</obj>
+							</children>
+						</obj>
+						
+						<!--
+						<obj id="DemoEdit" class="BaseUI.Edit">
+							<attr>
+								<left>24+120+5</left>
+								<top>20</top>
+								<width>120</width>
+								<height>26</height>
+							</attr>
+						</obj>
+						
+						
+						<obj id="DemoEdit2" class="BaseUI.Edit">
+							<attr>
+								<left>24+120+5</left>
+								<top>20+25+4</top>
+								<width>120</width>
+								<height>26</height>
+							</attr>
+						</obj>
+						-->
+						<obj id="DemoVscrollBar" class="BaseUI.ScrollBar" templateid="BaseUI.VScrollBar">
+							<attr>
+								<left>300</left>
+								<top>20</top>
+								<height>father.height-80</height>
+								<width>10</width>
+							</attr>
+						</obj>
+						
+						<obj id="DemoHscrollBar" class="BaseUI.ScrollBar" templateid="BaseUI.HScrollBar">
+							<attr>
+								<left>300</left>
+								<top>400</top>
+								<width>200</width>
+								<height>10</height>
+							</attr>
+						</obj>
+						<obj id="DemoListBox" class="BaseUI.ListBox">
+							<attr>
+								<left>320</left>
+								<top>20</top>
+								<width>100</width>
+								<height>200</height>
+							</attr>
+							<eventlist>
+								<event name="OnInitControl" file="MainPanel.xml.lua" func="DemoListBox_OnInitControl" />
+							</eventlist>
+						</obj>
+					</children>
+				</obj>
+			</children>
+		</objtemplate>
+	</control>
+</xlue>

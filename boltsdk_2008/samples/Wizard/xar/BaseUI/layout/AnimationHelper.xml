@@ -1,0 +1,88 @@
+<xlue>
+	<animation_def class="Animation.Show.Window">
+	    <attr_def>
+		    <attr name="ChangeX" type="int" >
+				<default>10</default>
+			</attr>
+			<attr name="ChangeY" type="int" >
+				<default>10</default>
+			</attr>
+			<attr name="ZoomType" type="int" > 
+				<default>-1</default>
+			</attr>
+		</attr_def>
+	    
+		<method_def>
+			<Action file="AnimationHelper.xml.lua" func="AnimationShowWindowAction"/>
+			<BindWnd file="AnimationHelper.xml.lua" func="AnimationShowWindowBindObj" />
+		</method_def>
+	</animation_def>
+
+	<animation_def class="Animation.Cycle.Object">
+	    <attr_def>
+		</attr_def>
+	    
+		<method_def>
+			<Action file="AnimationHelper.xml.lua" func="AnimationCycleObjectAction"/>
+			<BindSrcAndDestObj file="AnimationHelper.xml.lua" func="AnimationCycleObjectBindObj" />
+		</method_def>
+	</animation_def>	
+	
+	<animation_def class="Animation.Focus.Light">
+		<method_def>
+			<Action file="AnimationHelper.xml.lua" func="FocusLight_Action"/>
+			<BindObj file="AnimationHelper.xml.lua" func="FocusLight_BindObj"/>
+			<GetBindObj file="AnimationHelper.xml.lua" func="FocusLight_GetBindObj" />
+		</method_def>
+	</animation_def>
+	
+	<control class="Focus.Light">
+	    <attr_def>
+		    <attr name="animationTemplateName" type="string" />
+			<attr name="lightWidth" type="string" />
+		</attr_def>
+		<objtemplate>
+			<children>
+				<obj id="lightmask" class="MaskObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+						<maskorgx>0</maskorgx>
+						<maskorgy>0</maskorgy>
+						<masksizex>width</masksizex>
+						<masksizey>height</masksizey>
+						<type>texture</type>
+						<resid>texture.mask.btn</resid>
+						<chanel>g</chanel>
+						<limitchild>1</limitchild>
+					</attr>
+					<children>			
+						<obj id="light" class="ImageObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+								<image>general.button.light</image>
+								<inheritmask>1</inheritmask>
+								<maskleft>0</maskleft>
+								<masktop>0</masktop>
+								<maskwidth>father.width</maskwidth>
+								<maskheight>father.height</maskheight>
+								<maskblendtype>attenunate</maskblendtype>
+								<drawmode>1</drawmode>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="AnimationHelper.xml.lua" func="FocusLight_OnInitControl"/>
+				<event name="OnDestroy" file="AnimationHelper.xml.lua" func="FocusLight_OnDestroy" />
+			</eventlist>
+		</objtemplate>
+	</control>
+	
+</xlue>

@@ -1,0 +1,18 @@
+<XLUE>
+<resource>
+	<!--普通的位图资源-->
+	<bitmap id="app.bkg"  path="bitmap\bkg.png" />
+	<bitmap id="app.icon"  path="bitmap\icon.png" />
+	
+	<!--纹理贴图资源 -->
+	<!-- 纹理的类型有 
+	：
+	Stretch,Normal,Tile   拉伸，不拉伸，平铺
+	NineInOne,ThreeInOneH,ThreeInOneV,FiveInOneH,FiveInOneV,  迅雷传统用的固定区域映射
+	以及自定义映射   
+
+	通过定义这些类型，可以方便的让位图按预期意图进行拉伸，同时也方便设计师的工作
+	-->
+	<texture id="button.normal" type="NineInOne" image="bitmap\btn_login_nor.png" /> 
+</resource>
+</XLUE>

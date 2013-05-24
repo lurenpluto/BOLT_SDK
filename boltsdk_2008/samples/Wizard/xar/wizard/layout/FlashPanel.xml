@@ -1,0 +1,54 @@
+<xlue>
+	<control class="Wizard.FlashPanel">
+		<attr_def>
+			
+		</attr_def>
+		<method_def>
+			
+		</method_def>
+		<event_def>
+			
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="ctrl" class="LayoutObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+					<children>
+						<obj id="file" class="EditObject">
+							<attr>
+								<width>father.width</width>
+								<height>20</height>
+							</attr>
+							<eventlist>
+								<event name="OnChar" file="FlashPanel.lua" func="OnChar" />
+							</eventlist>
+						</obj>
+						<obj id="flash.top" class="WindowlessFlashObject">
+							<attr>
+								<top>25</top>
+								<width>father.width</width>
+								<height>(father.height - 25) / 2 - 5</height>
+								<transparent>1</transparent>
+								<fixalpha>0</fixalpha>
+							</attr>
+						</obj>
+						<obj id="flash.bottom" class="FlashObject">
+							<attr>
+								<top>(father.height - 25) / 2 + 30</top>
+								<width>father.width</width>
+								<height>(father.height - 25) / 2 - 5</height>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+						
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="FlashPanel.lua" func="OnInitControl"/>
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

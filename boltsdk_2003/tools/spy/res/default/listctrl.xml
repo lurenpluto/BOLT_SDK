@@ -1,0 +1,30 @@
+<XLUE>
+	<resource>
+		<imagelist id="ListCtrl.Header.Image" vertical="0" splitter="1" varyblock="1" image="bitmap\listheader.png"/>
+		<bitmap id="ListCtrl.Header.SortBmp.down" imagelist="ListCtrl.Header.Image" index="3"/>
+		<bitmap id="ListCtrl.Header.SortBmp.up" imagelist="ListCtrl.Header.Image" index="4"/>
+		<bitmap id="bitmap.listctrl.header.bkg"  path="bitmap\list_header_bkg.png"/>
+		<bitmap id="ListCtrl.HeaderItem.Normal" path="bitmap\list_header_item.png"/>  
+		<bitmap id="ListCtrl.HeaderItem.Down" path="bitmap\list_header_item.png"/>
+		<bitmap id="ListCtrl.HeaderItem.Hover" path="bitmap\list_header_item.png"/>
+
+
+		<texture id="texture.listctrl.header.bkg" type="ThreeInOneH" image="bitmap\listctrl_header.png" /> 
+
+		<texture id="texture.listctrl.item.bkg.select" type="Normal" image="bitmap\list_item_bkg_select.png">
+			<part id="texture">
+				<src left="0" top="0" width="1" height="23"/>
+				<dest left="0" top="0" width="width" height="height"/>					
+			</part>
+		</texture>
+
+		<texture id="texture.listctrl.item.bkg.even" type="Normal" image="bitmap\list_item_bkg_event.png">
+			<part id="texture">
+				<src left="0" top="0" width="1" height="23"/>
+				<dest left="0" top="0" width="width" height="height"/>					
+			</part>
+		</texture>
+	</resource>
+</XLUE>
+
+

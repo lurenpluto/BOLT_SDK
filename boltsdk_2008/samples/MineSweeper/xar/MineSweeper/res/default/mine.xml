@@ -1,0 +1,25 @@
+﻿<XLUE>
+	<resource>			
+		<imagelist id="bitmap.mine.image" vertical="0" splitter="1" varyblock="0" blocksize="16" image="bitmap\mine.png"/>
+		<bitmap id="bitmap.mine.normal" imagelist="bitmap.mine.image" index="1"/>
+		<bitmap id="bitmap.mine.flag" imagelist="bitmap.mine.image" index="2"/>
+		<bitmap id="bitmap.mine.unknown" imagelist="bitmap.mine.image" index="3"/>
+		<bitmap id="bitmap.mine.hitmine" imagelist="bitmap.mine.image" index="4"/>
+		<bitmap id="bitmap.mine.wrongmine" imagelist="bitmap.mine.image" index="5"/>
+		<bitmap id="bitmap.mine.mine" imagelist="bitmap.mine.image" index="6"/>
+		<bitmap id="bitmap.mine.unknown1" imagelist="bitmap.mine.image" index="7"/>
+		<bitmap id="bitmap.mine.8" imagelist="bitmap.mine.image" index="8"/>
+		<bitmap id="bitmap.mine.7" imagelist="bitmap.mine.image" index="9"/>
+		<bitmap id="bitmap.mine.6" imagelist="bitmap.mine.image" index="10"/>
+		<bitmap id="bitmap.mine.5" imagelist="bitmap.mine.image" index="11"/>
+		<bitmap id="bitmap.mine.4" imagelist="bitmap.mine.image" index="12"/>
+		<bitmap id="bitmap.mine.3" imagelist="bitmap.mine.image" index="13"/>
+		<bitmap id="bitmap.mine.2" imagelist="bitmap.mine.image" index="14"/>
+		<bitmap id="bitmap.mine.1" imagelist="bitmap.mine.image" index="15"/>
+		<bitmap id="bitmap.mine.0" imagelist="bitmap.mine.image" index="16"/>
+		
+		
+		<bitmap id="bitmap.Canvas.bkg" path="bitmap\bkg.png" />
+		
+	</resource>
+</XLUE>

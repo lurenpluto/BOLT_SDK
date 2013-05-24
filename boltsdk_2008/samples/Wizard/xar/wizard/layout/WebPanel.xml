@@ -1,0 +1,53 @@
+<xlue>
+	<control class="Wizard.WebPanel">
+		<attr_def>
+			
+		</attr_def>
+		<method_def>
+			
+		</method_def>
+		<event_def>
+			
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="ctrl" class="LayoutObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+					<children>
+						<obj id="address" class="EditObject">
+							<attr>
+								<width>father.width</width>
+								<height>20</height>
+							</attr>
+							<eventlist>
+								<event name="OnChar" file="WebPanel.lua" func="OnChar" />
+							</eventlist>
+						</obj>
+						<obj id="web.top" class="WebBrowseObject">
+							<attr>
+								<top>25</top>
+								<width>father.width</width>
+								<height>(father.height - 25) / 2 - 5</height>
+							</attr>
+							<eventlist>
+								<event name="OnNewWindow3" file="WebPanel.lua" func="OnNewWindow3" />
+								<event name="OnInitControl" file="WebPanel.lua" func="OnInitControl" />
+							</eventlist>
+						</obj>
+						<obj id="web.bottom" class="WebBrowseObject">
+							<attr>
+								<top>(father.height - 25) / 2 + 30</top>
+								<width>father.width</width>
+								<height>(father.height - 25) / 2 - 5</height>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+						
+			</children>
+		</objtemplate>
+	</control>
+</xlue>

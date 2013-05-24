@@ -1,0 +1,208 @@
+<xlue>
+	<control class="TreeCtrl">
+        <attr_def></attr_def>
+        <method_def>
+            <InsertItem file="TreeCtrl.xml.lua" func="InsertItem" />
+			<SetItemText file="TreeCtrl.xml.lua" func="SetItemText" />
+            <InsertItemText file="TreeCtrl.xml.lua" func="InsertItemText" />
+            <SetAdjust file="TreeCtrl.xml.lua" func="SetAdjust" />
+            <UpdateVScroll file="TreeCtrl.xml.lua" func="UpdateVScroll" />
+            <SetHScrollAdjust file="TreeCtrl.xml.lua" func="SetHScrollAdjust" />
+            <GetRootItem file="TreeCtrl.xml.lua" func="GetRootItem" />
+			<GetChildrenItemCount file="TreeCtrl.xml.lua" func="GetChildrenItemCount" />
+			<GetChildItemByIndex file="TreeCtrl.xml.lua" func="GetChildItemByIndex" />
+            <GetSelected file="TreeCtrl.xml.lua" func="GetSelected" />
+            <SetSelected file="TreeCtrl.xml.lua" func="SetSelected" />
+            <RemoveItem file="TreeCtrl.xml.lua" func="RemoveItem" />
+			<SetExpand file="TreeCtrl.xml.lua" func="SetExpand" />
+			<EnsureVisible file="TreeCtrl.xml.lua" func="EnsureVisible" />		
+			<MouseWheel file="TreeCtrl.xml.lua" func="MouseWheel" />		
+        </method_def>
+		<event_def>
+		    <OnSelectChanged>
+				<param>
+					<layoutobj/>
+				</param>
+			</OnSelectChanged>
+		</event_def>
+        <objtemplate>
+            <children>
+                <obj id="tree.bkg" class="TextureObject">
+                    <attr>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>father.width</width>
+                        <height>father.height</height>
+                        <texture>texture.edit.bkg.normal</texture>
+                    </attr>
+                    <children>
+                        <obj id="Tree.Content" class="LayoutObject">
+                            <attr>
+                                <left>10</left>
+                                <top>5</top>
+                                <width>father.width - 15</width>
+                                <height>father.height - 5</height>
+                                <limitchild>1</limitchild>
+                            </attr>
+                            <children>
+                                <obj id="Item.Cotent" class="LayoutObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width + 3</width>
+										<height>father.height - 4</height>
+										<limitchild>1</limitchild>
+										<enableinput>true</enableinput>
+									</attr>
+								</obj>
+								<obj id="ItemTestText" class="TextObject">
+									<attr>
+										<halign>left</halign>
+										<valign>center</valign>
+										<font>font.category.item</font>
+										<left>0</left>
+										<top>0</top>
+										<texttype>gdi</texttype>
+										<zorder>100</zorder>
+										<width>0</width>
+										<height>0</height>
+									</attr>		
+								</obj>
+								<obj id="treectrl.vscroll" class="Thunder.ScrollBar">
+									<attr>
+										<Type>1</Type>
+										<ThumbBtn_normal>texture.vsb.small.thumb.normal</ThumbBtn_normal>
+										<ThumbBtn_hover>texture.vsb.small.thumb.hover</ThumbBtn_hover>
+										<ThumbBtn_down>texture.vsb.small.thumb.down</ThumbBtn_down>
+										<SideBtnLength>0</SideBtnLength>
+										<PageSize>20</PageSize>
+										<RangeBegin>0</RangeBegin>
+										<RangeEnd>100</RangeEnd>
+										<ScrollPos>0</ScrollPos>
+										<left>father.width-18</left>
+										<top>0</top>
+										<width>23</width>
+										<height>father.height - 4</height>
+										<zorder>600</zorder>
+									</attr>
+									<eventlist>
+										<event name="OnVScroll" file="treectrl.xml.lua" func="TreeCtrl_OnVScroll" />
+										<event name="OnScrollBarMouseWheel" file="treectrl.xml.lua" func="OnScrollBarMouseWheel" />		
+									</eventlist>
+								</obj>
+								<!-- <obj id="treectrl.hscroll" class="Thunder.ScrollBar">
+									<attr>
+										<Type>0</Type>
+										<ThumbBtn_normal>texture.hsb.small.thumb.normal</ThumbBtn_normal>
+										<ThumbBtn_hover>texture.hsb.small.thumb.hover</ThumbBtn_hover>
+										<ThumbBtn_down>texture.hsb.small.thumb.down</ThumbBtn_down>
+										<SideBtnLength>0</SideBtnLength>
+										<PageSize>20</PageSize>
+										<RangeBegin>0</RangeBegin>
+										<RangeEnd>100</RangeEnd>
+										<ScrollPos>0</ScrollPos>
+										<Visible>false</Visible>
+										<left>0</left>
+										<top>father.height-10</top>
+										<width>father.width-12</width>
+										<height>10</height>
+										<zorder>600</zorder>
+									</attr>
+									<eventlist>
+										<event name="OnHScroll" file="treectrl.xml.lua" func="TreeCtrl_OnHScroll" />
+									</eventlist>
+								</obj> -->
+                            </children>
+                        </obj>  						
+                    </children>
+                </obj>
+				
+			</children>
+            <eventlist>
+                <event name="OnBind" file="TreeCtrl.xml.lua" func="OnBind" />
+                <event name="OnInitControl" file="TreeCtrl.xml.lua" func="OnInitControl" />	
+				<event name="OnPosChange" file="TreeCtrl.xml.lua" func="OnPosChange" />	
+				<event name="OnMouseWheel" file="TreeCtrl.xml.lua" func="Tree_OnMouseWheel"/>
+            </eventlist>
+        </objtemplate>
+    </control>
+	
+	<control class="TreeItem">
+        <attr_def>
+            <attr name="Text" type="string" />
+        </attr_def>
+        <method_def>
+			<SetText file="TreeCtrl.xml.lua" func="SetText" />
+			<BindAttr file="TreeCtrl.xml.lua" func="BindAttr" />
+        </method_def>
+        <objtemplate>
+            <children>
+				<obj id="content" class="TextureObject">
+					<attr>
+						<limitchild>1</limitchild>
+						<alpha>255</alpha>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>22</height>
+					</attr>
+					<children>
+						<obj id="Expand" class="ImageObject">
+							<attr>
+								<left>5</left>
+								<top>3</top>
+								<width>8</width>
+								<height>father.height</height>
+								<drawmode>0</drawmode>
+								<visible>false</visible>
+								<image>bitmap.categorytree.collapse</image>
+							</attr>
+						</obj>                        
+						<obj id="ItemText" class="TextObject">
+							<attr>
+								<halign>left</halign>
+								<valign>center</valign>
+								<font>font.category.item</font>
+								<left>15</left>
+								<top>0</top>
+								<texttype>gdi</texttype>
+								<zorder>100</zorder>
+								<width>father.width - 12</width>
+								<height>father.height</height>
+							</attr>		
+						</obj>
+						<obj id="ItemSelect" class="TextureObject">
+							<attr>
+								<limitchild>1</limitchild>
+								<alpha>255</alpha>
+								<left>15</left>
+								<top>0</top>
+								<width>father.width - 12</width>
+								<height>father.height</height>
+								<texture>texture.category.item.hover</texture>
+							</attr>
+						</obj>
+						<!-- <obj id="ItemSelect" class="TextureObject">
+							<attr>
+								<texture>texture.category.item.select</texture>
+								<limitchild>0</limitchild>
+								<alpha>255</alpha>
+								<left>15</left>
+								<top>0</top>
+								<width>father.width - 12</width>
+								<height>father.height</height>
+								<visible>false</visible>
+							</attr>
+						</obj> -->
+					</children>
+                </obj>
+            </children>
+            <eventlist>
+				<event name="OnLButtonDown" file="TreeCtrl.xml.lua" func="Item_OnLButtonDown" />
+				<event name="OnLButtonDbClick" file="TreeCtrl.xml.lua" func="OnLButtonDbClick" />
+				<event name="OnLButtonDbClick" file="TreeCtrl.xml.lua" func="Item_OnLButtonDbClick" />
+				<event name="OnMouseWheel" file="TreeCtrl.xml.lua" func="OnMouseWheel"/>
+            </eventlist>
+        </objtemplate>
+    </control>
+</xlue>

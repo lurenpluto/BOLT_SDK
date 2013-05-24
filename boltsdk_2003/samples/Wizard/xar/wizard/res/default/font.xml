@@ -1,0 +1,23 @@
+﻿<XLUE>
+<resource>
+
+  <font id="edit.font" height="16" facename="微软雅黑"/>
+  <font id="catalog.font" height="12"  facename="微软雅黑"/>
+  <font id="loginpanel.rank.font" height="16" facename="微软雅黑" />
+  <font id="loginpanel.user.font" height="14" facename="微软雅黑" />
+  <font id="default.font" height="14" facename="微软雅黑" />
+  <font id="tasklist.font" height="16" facename="微软雅黑" />
+  <font id="menu.font" height="16" facename="微软雅黑" />
+  <font id="sunti.font" height="12" facename="宋体" />
+  
+  <font id="test.font" height="12" facename="sadasdasadsdsa" underline="0"/>
+  <font id="test.font2" height="12" facename="宋体"/>
+  
+  <font id="default.font.bold" height="12" weight="bold" facename="微软雅黑"/>
+  
+  <font id="default.font.link" height="12" facename="微软雅黑"/>
+  <font id="font.tree.item" height="12" facename="宋体"/>
+  <font id="button.default.font" height="12" facename="defaultfont"/>
+  
+</resource>
+</XLUE>

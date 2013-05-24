@@ -1,0 +1,74 @@
+<XLUE>
+    <resource>
+        <texture id="texture.newtask.btn.bkg" type="ThreeInOneH" image="bitmap\texture.newtask.btn.bkg.png"/>
+        
+        <imagelist id="newtaskdlg.opendir.button" vertical="0" varyblock="1" splitter="1" image="bitmap\newtask.opendir.btn.png"/>
+        <texture id="opendir.btn.normal" imagelist="newtaskdlg.opendir.button" index="1"/>
+        <texture id="opendir.btn.hover" imagelist="newtaskdlg.opendir.button" index="2"/>
+        <texture id="opendir.btn.down" imagelist="newtaskdlg.opendir.button" index="3"/>
+        
+        <imagelist id="imagelist.newtaskdlg.button" vertical="0" varyblock="1" splitter="1" image="bitmap\imagelist.newtaskdlg.button.png"/>
+        <bitmap id="bitmap.download.icon" imagelist="imagelist.newtaskdlg.button" index="1"/>
+        <bitmap id="bitmap.confirm.icon" imagelist="imagelist.newtaskdlg.button" index="3"/>
+        <texture id="texture.btn.bkg.normal" type="NineInOne" imagelist="imagelist.newtaskdlg.button" index="4"/>
+        <texture id="texture.btn.bkg.hover" type="NineInOne" imagelist="imagelist.newtaskdlg.button" index="5"/>
+        <texture id="texture.btn.bkg.down" type="NineInOne" imagelist="imagelist.newtaskdlg.button" index="6"/>
+		
+        <texture id="texture.tip.bkg.left.up" type="NineInOne" image="bitmap\texture.tip.bkg.left.up.png"/>
+        <texture id="texture.tip.bkg.left.down" type="NineInOne" image="bitmap\texture.tip.bkg.left.down.png"/>
+        <texture id="texture.tip.bkg.right.up" type="NineInOne" image="bitmap\texture.tip.bkg.right.up.png"/>
+        <texture id="texture.tip.bkg.right.down" type="NineInOne" image="bitmap\texture.tip.bkg.right.down.png"/>
+        
+        <imagelist id="imagelist.expendbtn" vertical="0" varyblock="1" splitter="1" image="bitmap\imagelist.expendbtn.png"/>
+        <texture id="texture.expendbtn.unexpend.normal"   imagelist="imagelist.expendbtn" index="2"/>
+        <texture id="texture.expendbtn.unexpend.down"   imagelist="imagelist.expendbtn" index="3"/>
+        <texture id="texture.expendbtn.expend.normal"   imagelist="imagelist.expendbtn" index="5"/>
+        <texture id="texture.expendbtn.expend.down"   imagelist="imagelist.expendbtn" index="6"/>
+        
+        <imagelist id="imagelist.newtask.edit" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.newtask.edit.png"/>
+        <bitmap id="bitmap.url.icon" imagelist="imagelist.newtask.edit" index="1"/>
+        <bitmap id="bitmap.filename.icon" imagelist="imagelist.newtask.edit" index="2"/>
+        <bitmap id="bitmap.path.icon" imagelist="imagelist.newtask.edit" index="3"/>
+        <texture id="texture.combobtn.normal" imagelist="imagelist.newtask.edit" index="4"/>
+        <texture id="texture.combobtn.hover" imagelist="imagelist.newtask.edit" index="5"/>
+        <texture id="texture.combobtn.down" imagelist="imagelist.newtask.edit" index="6"/>
+        <texture id="texture.edit.bkg.disable" type="NineInOne" imagelist="imagelist.newtask.edit" index="10"/>
+        <texture id="texture.edit.bkg.normal" type="NineInOne" imagelist="imagelist.newtask.edit" index="11"/>
+        <texture id="texture.edit.bkg.hover" type="NineInOne" imagelist="imagelist.newtask.edit" index="12"/>
+        <texture id="texture.edit.light" type="NineInOne" image="bitmap\edit.light.png"/>
+
+        <imagelist id="imagelist.starttaskbtn" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.startbtn.png" />
+        <texture id="texture.starttask.bkg.normal" imagelist="imagelist.starttaskbtn" index="2" />
+        <texture id="texture.starttask.bkg.main.hover" imagelist="imagelist.starttaskbtn" index="3" />
+        <texture id="texture.starttask.bkg.main.down" imagelist="imagelist.starttaskbtn" index="5" />
+        <texture id="texture.starttask.bkg.mode.hover" imagelist="imagelist.starttaskbtn" index="4" />
+        <texture id="texture.starttask.bkg.mode.down" imagelist="imagelist.starttaskbtn" index="6" />
+
+        <imagelist id="imagelist.checkbox" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.checkbox.png" />
+        <bitmap id="bitmap.uncheck.normal" imagelist="imagelist.checkbox" index="1" />
+        <bitmap id="bitmap.uncheck.hover" imagelist="imagelist.checkbox" index="3" />
+        <bitmap id="bitmap.uncheck.down" imagelist="imagelist.checkbox" index="2" />
+        <bitmap id="bitmap.check.normal" imagelist="imagelist.checkbox" index="4" />
+        <bitmap id="bitmap.check.hover" imagelist="imagelist.checkbox" index="6" />
+        <bitmap id="bitmap.check.down" imagelist="imagelist.checkbox" index="5" />
+        <bitmap id="bitmap.uncheck.disable" imagelist="imagelist.checkbox" index="7" />
+        <bitmap id="bitmap.check.disable" imagelist="imagelist.checkbox" index="8" />
+        
+        <imagelist id="imagelist.newtask.close" vertical="0" splitter="1" varyblock="1" image="bitmap\newtask.close.png" />
+	<texture id="texture.newtask.close.bkg.nor" imagelist="imagelist.newtask.close" index="4" />
+	<texture id="texture.newtask.close.bkg.hover" imagelist="imagelist.newtask.close" index="5" />
+	<texture id="texture.newtask.close.bkg.down" imagelist="imagelist.newtask.close" index="6" />
+        
+        
+        <texture id="texture.batchnewtask.edit.bkg" type="NineInOne" image="bitmap\bttask_dlg_bkg.png"/>
+
+	<color id="color.batcknewtask.title" red="1" green="67" blue="149" alpha="255" />
+        
+        <texture id="texture.combolistbox.bkg" type="NineInOne" image="bitmap\texture.combolistbox.bkg.png" />
+
+
+	<imagelist id="imagelist.newtask.button" splitter="1" vertical="0" varyblock="1" image="bitmap\newtask.button.png"/>
+	<bitmap id="bitmap.ok.logo" imagelist="imagelist.newtask.button" index="4" />
+	<bitmap id="newtask.ani.bkg" path="bitmap/newtask.ani.bkg.png" />	
+    </resource>
+</XLUE>

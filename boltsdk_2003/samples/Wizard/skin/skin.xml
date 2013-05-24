@@ -1,0 +1,12 @@
+<wizard_skin>
+    <default>
+        <bitmap id="animation.simple.image"/>
+        <color id="test.color"/>
+        <texture id="general.button.normal"/>
+        <texture id="general.button.hover"/>
+        <texture id="general.button.down"/>
+        <texture id="texture.edit.light"/>
+        <texture id="texture.edit.bkg.hover"/>
+        <texture id="texture.edit.bkg.normal"/>
+    </default>
+</wizard_skin>

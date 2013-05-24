@@ -1,0 +1,10 @@
+﻿<XLUE>
+	<resource>			
+		<imagelist id="bitmap.face.image" vertical="0" splitter="1" varyblock="0" blocksize="24" image="bitmap\face.png"/>
+		<bitmap id="bitmap.face.push" imagelist="bitmap.face.image" index="1"/>
+		<bitmap id="bitmap.face.winner" imagelist="bitmap.face.image" index="2"/>
+		<bitmap id="bitmap.face.fail" imagelist="bitmap.face.image" index="3"/>
+		<bitmap id="bitmap.face.amazed" imagelist="bitmap.face.image" index="4"/>
+		<bitmap id="bitmap.face.normal" imagelist="bitmap.face.image" index="5"/>
+	</resource>
+</XLUE>

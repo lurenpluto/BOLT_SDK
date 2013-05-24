@@ -1,0 +1,103 @@
+<xlue>
+	<control class="BoltFox.Address.Ctrl">
+	    <attr_def>
+		   
+		</attr_def>
+		<method_def>
+		    <SetAddress file="Address.xml.lua" func="SetAddress"/>
+		    <GetAddress file="Address.xml.lua" func="GetAddress"/>
+		</method_def>
+		<event_def> 
+			<OnEnterAddress>
+				<param>
+					<string />
+				</param>
+			</OnEnterAddress>
+			<OnReload />
+			<OnStop />
+			<OnGo />
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="border" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>26</height>
+						<texture>texture.edit.bkg.normal</texture>
+					</attr>
+					<children>
+						<obj id="icon" class="ImageObject">
+							<attr>
+								<left>3</left>
+								<width>16</width>
+								<height>father.height</height>
+							</attr>
+						</obj>
+						<obj id="edit" class="EditObject">
+							<attr>
+								<left>21</left>
+								<top>3</top>
+								<halign>center</halign>
+								<width>father.width-21-6-41</width>
+								<height>father.height-6</height>
+								<autourldetect>0</autourldetect>
+							</attr>
+							<eventlist>
+								<event name="OnKeyDown" file="Address.xml.lua" func="Edit_OnKeyDown"/>
+								<event name="OnFocusChange" file="Address.xml.lua" func="OnFocusChange" />
+							</eventlist>
+						</obj>
+						<obj id="reload" class="BoltFox.ImageButton.Ctrl">
+							<attr>
+								<left>father.width-45</left>
+								<top>3</top>
+								<width>13</width>
+								<height>father.height-6</height>
+								<halign>center</halign>
+								<NormalBkg>bitmap.address.reload1</NormalBkg>
+								<HoverBkg>bitmap.address.reload2</HoverBkg>
+								<DownBkg>bitmap.address.reload3</DownBkg>
+							</attr>
+							<eventlist>
+								<event name="OnClick" file="Address.xml.lua" func="reload_OnClick" />
+							</eventlist>
+						</obj>
+						<obj id="stop" class="BoltFox.ImageButton.Ctrl">
+							<attr>
+								<left>father.width-45 + 14</left>
+								<top>3</top>
+								<width>13</width>
+								<height>father.height-6</height>
+								<halign>center</halign>
+								<NormalBkg>bitmap.address.stop1</NormalBkg>
+								<HoverBkg>bitmap.address.stop2</HoverBkg>
+								<DownBkg>bitmap.address.stop3</DownBkg>
+							</attr>
+							<eventlist>
+								<event name="OnClick" file="Address.xml.lua" func="stop_OnClick" />
+							</eventlist>
+						</obj>
+						<obj id="go" class="BoltFox.ImageButton.Ctrl">
+							<attr>
+								<left>father.width-45 + 14 + 14</left>
+								<top>3</top>
+								<width>13</width>
+								<height>father.height-6</height>
+								<halign>center</halign>
+								<NormalBkg>bitmap.address.go1</NormalBkg>
+								<HoverBkg>bitmap.address.go2</HoverBkg>
+								<DownBkg>bitmap.address.go3</DownBkg>
+							</attr>
+							<eventlist>
+								<event name="OnClick" file="Address.xml.lua" func="go_OnClick" />
+							</eventlist>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<!-- <event name="OnControlFocusChange" file="Address.xml.lua" func="OnControlFocusChange" /> -->
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

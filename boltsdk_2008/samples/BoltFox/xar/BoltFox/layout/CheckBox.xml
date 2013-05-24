@@ -1,0 +1,140 @@
+<xlue>	
+    <control class="System.CheckBox">
+        <attr_def>
+		<!--public:-->
+		<!--checkbox图标资源定义：-->
+		    <attr name="BoxNormalBitmapID" type="string">   
+			    <default></default>
+			</attr>
+			<attr name="BoxHoverBitmapID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="BoxDownBitmapID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="BoxDisableBitmapID" type="string">
+			    <default></default>
+			</attr>
+		<!--checkbox中text字体类型定义：-->	
+			<attr name="TextNormalFontID" type="string">     
+			    <default></default>
+			</attr>
+			<attr name="TextHoverFontID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TextDownFontID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TextDisableFontID" type="string">
+			    <default></default>
+			</attr>
+		<!--checkbox中text字体颜色定义：-->	
+			<attr name="TextNormalColorID" type="string">     
+			    <default></default>
+			</attr>
+			<attr name="TextHoverColorID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TextDownColorID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TextDisableColorID" type="string">
+			    <default></default>
+			</attr>
+		<!--checkbox的text-->	    
+			<attr name="Text" type="string">
+			</attr>
+		<!--check图标-->	
+			<attr name="TickNormalBitmapID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TickHoverBitmapID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TickDownBitmapID" type="string">
+			    <default></default>
+			</attr>
+			<attr name="TickDisableBitmapID" type="string">
+			    <default></default>
+			</attr>
+        </attr_def>
+        <method_def>
+		<!--public-->	
+            <SetCheck file="CheckBox.xml.lua" func="SetCheck" />
+            <GetCheck file="CheckBox.xml.lua" func="GetCheck" />
+			<SetText file="CheckBox.xml.lua" func="SetText" />
+			<GetText file="CheckBox.xml.lua" func="GetText" />
+			<UpdateUI file="CheckBox.xml.lua" func="UpdateUI" />
+		<!--private-->	
+			
+        </method_def>
+        <event_def>
+            <OnCheck>
+                <param>
+                    <bool/>
+                    <bool/>
+                </param>
+                <return>
+                </return>
+            </OnCheck>
+			<OnBeforeClick>
+				<return>
+					<bool />
+                </return>
+			</OnBeforeClick>
+        </event_def>
+        <objtemplate>
+            <children>
+			    <obj id="ctrl" class="LayoutObject">
+				    <attr>
+					    <left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+					<children>
+					    <obj id="boximage" class="ImageObject">
+							<attr>
+								<left>-2</left>
+								<top>(father.height - 16)/2</top>
+								<width>16</width>
+								<height>16</height>
+							</attr>
+							<children>
+							    <obj id="tickimage" class="ImageObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>21</width>
+										<height>16</height>
+										<visible>0</visible>
+										<drawmode>1</drawmode>
+									</attr>
+								</obj>
+							</children>
+						</obj>
+						<obj id="text" class="TextObject">
+							<attr>
+								<left>17</left>
+								<top>0</top>
+								<width>father.width-17</width>
+								<height>father.height</height>
+								<textcolor>system.black</textcolor>
+								<font>default.font</font>
+								<halign>left</halign>
+								<valign>center</valign>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+            </children>
+            <eventlist>
+				<event name="OnInitControl" file="CheckBox.xml.lua" func="OnInitControl" />
+                <event name="OnLButtonDown" file="CheckBox.xml.lua" func="OnLButtonDown" />
+                <event name="OnLButtonUp" file="CheckBox.xml.lua" func="OnLButtonUp" />
+                <event name="OnMouseMove" file="CheckBox.xml.lua" func="OnMouseMove" />
+                <event name="OnMouseLeave" file="CheckBox.xml.lua" func="OnMouseLeave" />
+            </eventlist>
+        </objtemplate>
+    </control>
+</xlue>

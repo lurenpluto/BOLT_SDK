@@ -1,0 +1,38 @@
+<xlue>
+	<control class="BoltFox.Edit.Ctrl">
+	    <attr_def>
+		</attr_def>
+		<method_def>
+		    <SetText file="Edit.xml.lua" func="SetText" />
+			<GetText file="Edit.xml.lua" func="GetText" />
+		</method_def>
+		<event_def> 
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="border" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>26</height>
+						<texture>texture.edit.bkg.normal</texture>
+					</attr>
+					<children>
+						<obj id="edit" class="EditObject">
+							<attr>
+								<left>9</left>
+								<top>5</top>
+								<width>father.width-23-16</width>
+								<height>16</height>
+								<valign>center</valign>
+								<autourldetect>0</autourldetect>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+				
+			</children>
+			<eventlist>
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

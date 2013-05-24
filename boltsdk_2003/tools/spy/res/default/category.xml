@@ -1,0 +1,34 @@
+﻿<XLUE>
+	<resource>
+		<texture id="texture.category.item.select" type="Stretch" imagelist="plugin.item.list" index="10" />
+		<texture id="texture.category.item.hover" type="ThreeInOneH" imagelist="plugin.item.list" index="12" />
+
+		<color id="color.category.mydownload" red="0" green="54" blue="142" alpha="255" />
+
+		<color id="color.category.itemtext.normal" red="0" green="54" blue="101" alpha="255" />
+		<color id="color.category.itemtext.hover" red="255" green="255" blue="255" alpha="255" />
+		<color id="color.category.itemtext.select" red="255" green="255" blue="255" alpha="255" />
+		<color id="color.category.itemtext.down" red="255" green="255" blue="255" alpha="255" />
+
+		
+		<font id="font.category.mydownload" height="13" facename="微软雅黑"  />
+
+		<font id="font.category.item.normal" height="12" facename="微软雅黑"  />
+		<font id="font.category.item" height="12" facename="微软雅黑"  />
+		<font id="font.category.item.bold" weight="bold" height="12" facename="微软雅黑"  />
+
+		<imagelist id="imagelist.category" splitter="1" vertical="0" varyblock="1" image="bitmap\imagelist.category.png"/>
+		
+		<bitmap id="bitmap.category.item.all"  imagelist="imagelist.category" index="1"/>  
+		<bitmap id="bitmap.category.item.downloading"  imagelist="imagelist.category" index="2"/>  
+		<bitmap id="bitmap.category.item.complete"  imagelist="imagelist.category" index="3"/>  
+		<bitmap id="bitmap.category.item.collection"  imagelist="imagelist.category" index="4"/>  
+		<bitmap id="bitmap.category.item.recycle"  imagelist="imagelist.category" index="5"/>  
+
+		<bitmap id="bitmap.categorytree.expand" imagelist="imagelist.category" index="6"/>  
+		<bitmap id="bitmap.categorytree.collapse" imagelist="imagelist.category" index="7"/>  
+
+		<bitmap id="bitmap.category.mask" path="bitmap\bitmap.category.mask.png" />  
+		<bitmap id="bitmap.category.arrow" path="bitmap\bitmap.category.arrow.png" />  
+	</resource>
+</XLUE>

@@ -1,0 +1,224 @@
+<xlue>
+	<objtreetemplate  id="Wizard.MainObjTree" >
+		<attr>
+			<left>-200</left>
+			<top>-200</top>
+			<width>2000</width>
+			<height>2000</height>
+		</attr>
+		
+		<obj id="app.bkg" class="Wizard.BkgCtrl">
+			<attr>
+				<left>0</left>
+				<top>0</top>
+				<width>400</width>
+				<height>400</height>
+			</attr>
+			<children>
+				<obj id="caption" class="CaptionObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<zorder>-1000</zorder>
+					</attr>
+					<eventlist>
+						<event name="OnRButtonUp" file="MainWnd.lua" func="OnMainWndRButtonUp" />
+					</eventlist>
+				</obj>
+				<obj id="mainwnd.resize.left" class="ResizeObject">
+					<attr>
+						<left>0</left>
+						<top>4</top>
+						<width>4</width>
+						<height>father.height - 8</height>
+						<type>left</type>
+						<zorder>-900</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.resize.right" class="ResizeObject">
+					<attr>
+						<top>4</top>
+						<left>father.width-4</left>
+						<width>4</width>
+						<height>father.height - 14</height>
+						<type>right</type>
+						<zorder>-900</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.resize.top" class="ResizeObject">
+					<attr>
+						<left>4</left>
+						<top>0</top>
+						<width>father.width - 8</width>
+						<height>4</height>
+						<type>top</type>
+						<zorder>-900</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.resize.bottom" class="ResizeObject">
+					<attr>
+						<left>4</left>
+						<top>father.height-4</top>
+						<width>father.width - 14</width>
+						<height>4</height>
+						<type>bottom</type>
+						<zorder>-900</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.resize.topleft" class="ResizeObject">
+					<attr>
+						<width>4</width>
+						<height>4</height>
+						<type>topleft</type>
+						<zorder>-900</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.resize.bottomleft" class="ResizeObject">
+					<attr>
+						<top>father.height-4</top>
+						<width>4</width>
+						<height>4</height>
+						<type>bottomleft</type>
+						<zorder>-900</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.resize.bottomright" class="ResizeObject">
+					<attr>
+						<left>father.width-10</left>
+						<top>father.height-10</top>
+						<width>10</width>
+						<height>10</height>
+						<type>bottomright</type>
+						<zorder>-900</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.body" class="LayoutObject">
+					<attr>
+						<left>8</left>
+						<top>8</top>
+						<width>father.width-16</width>
+						<height>father.height-16</height>
+						<enabledrop>1</enabledrop>
+					</attr>
+					<eventlist>
+						<event name="OnDragQuery" file="MainWnd.lua" func="OnDragQuery" />
+						<event name="OnDragEnter" file="MainWnd.lua" func="OnDragEnter" />
+						<event name="OnDragOver" file="MainWnd.lua" func="OnDragOver" />
+						<event name="OnDrop" file="MainWnd.lua" func="OnDrop" />
+					</eventlist>
+					<children>
+						<obj id="TabHeader" class="BaseUI.TabHeaderCtrl">
+							<attr>
+								<left>12</left>
+								<top>5</top>
+								<width>father.width-24</width>
+								<height>25</height>
+							</attr>
+							<eventlist>
+								<event name="OnInitControl" file="MainWnd.lua" func="TabHeader_OnInitControl" />
+								<event name="OnActiveTabChanged" file="MainWnd.lua" func="OnActiveTabChanged" />
+							</eventlist>
+						</obj>
+					
+						<obj id="MainPanel" class="Demo.MainPanel">
+							<attr>
+								<left>12</left>
+								<top>30</top>
+								<width>father.width-24</width>
+								<height>father.height-40</height>
+							</attr>
+						</obj>
+						
+						<obj id="RichEditPanel" class="Wizard.RichEditPanel">
+							<attr>
+								<left>12</left>
+								<top>30</top>
+								<width>father.width-24</width>
+								<height>father.height-40</height>
+							</attr>
+						</obj>
+						
+						<obj id="WebPanel" class="Wizard.WebPanel">
+							<attr>
+								<left>12</left>
+								<top>30</top>
+								<width>father.width-24</width>
+								<height>father.height-40</height>
+							</attr>
+						</obj>
+						
+						<obj id="FlashPanel" class="Wizard.FlashPanel">
+							<attr>
+								<left>12</left>
+								<top>30</top>
+								<width>father.width-24</width>
+								<height>father.height-40</height>
+							</attr>
+						</obj>
+						
+						<obj id="ResPanel" class="Wizard.ResPanel">
+							<attr>
+								<left>12</left>
+								<top>30</top>
+								<width>father.width-24</width>
+								<height>father.height-40</height>
+							</attr>
+						</obj>
+						
+						<obj id="AnimationPanel" class="Wizard.AnimationPanel">
+							<attr>
+								<left>12</left>
+								<top>30</top>
+								<width>father.width-24</width>
+								<height>father.height-40</height>
+							</attr>
+						</obj>
+						
+						<obj id="mainwnd.sysbtn" class="Thunder.System.ButtonEx.Ctrl" >
+							<attr>
+								<left>father.width - 90</left>
+								<top>-8</top>
+								<width>90</width>
+								<height>20</height>
+								<zorder>330</zorder>		
+								<ItemWidthIsSame>false</ItemWidthIsSame>
+							</attr>
+							<eventlist>
+								<event name="OnClose" file="MainWnd.lua" func="OnClose" />
+								<event name="OnInitControl" file="MainWnd.lua" func="OnSysBtnInitControl" />
+								<event name="OnMinisize" file="MainWnd.lua" func="OnMinisize" />
+
+								<event name="OnMaxSize" file="MainWnd.lua" func="OnMaxBtnClick" />
+								<event name="OnReStore" file="MainWnd.lua" func="OnMaxBtnClick" />
+							</eventlist>
+						</obj>	
+					</children>
+				</obj>
+			</children>			
+		</obj>	
+	</objtreetemplate>
+
+	<hostwndtemplate id="Wizard.MainWnd" class="FrameHostWnd" >
+		<attr> 
+			<title>Wizard</title>
+			<layered>1</layered>
+			<left>200</left> 
+			<top>100</top>
+			<width>900</width>
+			<height>500</height>
+			<visible>1</visible>
+			<enable>1</enable>
+			<maxbox>1</maxbox>
+			<minbox>1</minbox>
+			<sysmenu>1</sysmenu>
+			<minwidth>300</minwidth>
+			<minheight>200</minheight>
+			<appwindow>1</appwindow>
+			<enabledrop>1</enabledrop>
+		</attr>
+		
+		<eventlist>
+			<event name="OnSize" file="MainWnd.lua" func="OnSize"/>
+		</eventlist>		
+	</hostwndtemplate>	
+</xlue>

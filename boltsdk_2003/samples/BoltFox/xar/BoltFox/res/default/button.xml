@@ -1,0 +1,24 @@
+<xlue>
+	<resource>
+		<pen id="pen.solid" width="1" penstyle="solid" />
+		<pen id="pen.dot" width="1" penstyle="dot" />
+		<brush id="brush.solid" brushstyle="solid" />
+		<brush id="brush.null" brushstyle="null" />
+		
+		<bitmap id="general.button.light" path="bitmap\btn.light.png"/>
+		
+		<imagelist id="imagelist.general.button.bkg" vertical="0" splitter="1" varyblock="1" image="bitmap\general.button.bkg.png"/>
+		<texture id="general.button.normal" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="1"/>
+		<texture id="general.button.down" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="3"/>
+		<texture id="general.button.hover" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="2"/>
+		<texture id="general.button.disable" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="4"/>
+		<texture id="siamese.button.left.normal" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="5" />
+		<texture id="siamese.button.left.hover" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="6" />
+		<texture id="siamese.button.left.down" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="7" />
+		<texture id="siamese.button.left.disable" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="8" />
+		<texture id="siamese.button.right.normal" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="9" />
+		<texture id="siamese.button.right.hover" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="10" />
+		<texture id="siamese.button.right.down" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="11" />
+		<texture id="siamese.button.right.disable" type="ThreeInOneH" imagelist="imagelist.general.button.bkg" index="12" />
+	</resource>
+</xlue>

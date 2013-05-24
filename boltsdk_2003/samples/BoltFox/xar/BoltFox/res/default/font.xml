@@ -1,0 +1,64 @@
+﻿<XLUE>
+<resource>
+	<font id="default.font" height="12" facename="defaultfont" />
+	<font id="default.font.bold" height="12" weight="bold" facename="defaultfont" />
+	<font id="default.font.link" height="12" facename="defaultfont" />
+	<font id="default.font.underline" height="12" facename="defaultfont" underline="1"/>
+	<font id="basicinfo.font" height="12" facename="defaultfont" />
+	<font id="msg.font" height="12" facename="defaultfont" />
+	<font id="msg.font.bold" height="40" weight="bold" facename="defaultfont" />
+	
+	<font id="newtask.default.font" height="12" facename="defaultfont"/>
+  	<font id="newtask.default.edit.font" height="12" facename="defaultfont"/>
+	<font id="newtask.edit.font" height="12" facename="defaultfont"/>
+	<font id="newtask.btn.font" height="12" facename="defaultfont"/>
+	<font id="newtask.btn.font.normal" height="12" facename="defaultfont"/>
+	<font id="newtask.btn.font.hover" height="12" facename="defaultfont"/>
+	<font id="newtask.btn.font.down" height="12" facename="defaultfont"/>
+	<font id="newtask.btn.font.disable" height="12" facename="defaultfont"/>
+	<font id="combobox.default.font" height="12" facename="defaultfont"/>
+	<font id="newtask2.filename.font" height="18" weight="bold" facename="defaultfont"/>
+	
+	<font id="singletaskpanel.font.progress" height="12" facename="Arial" />
+	<font id="singletaskpanel.font.default" height="12" facename="defaultfont" />
+
+	<font id="font.subpanel.title" height="12" facename="defaultfont"/>
+	<font id="font.msgbox.default" height="12" facename="defaultfont"/>
+
+	<font id="taskinfo.title" height="12"  facename="defaultfont"/>
+	<font id="taskinfo.title.font"  height="10"  facename="defaultfont"/>
+	<font id="taskinfo.attr.info.font" height="12" facename="defaultfont"/>
+	<font id="taskinfo.security.info.font" height="12" facename="defaultfont"/>
+	<font id="taskinfo.link.font" height="12" facename="defaultfont" underline="1"/>
+	<font id="taskinfo.basicmanipulate.btn.font" height="12" facename="defaultfont"/>
+	<font id="button.default.font" height="12" facename="defaultfont"/>
+	
+	<font id="listheader.font" height="12" facename="defaultfont"/>
+
+	
+	<font id="font.bttaskdlg.tab.button" height="12" facename="defaultfont"/>
+	<font id="font.btfilelist.grid.text" height="12" facename="defaultfont"/>
+	
+	<font id="font.menu" height="12" facename="defaultfont"/>
+	<font id="font.mainmenu" height="12" facename="defaultfont"/>
+
+	<font id="url.filter.sel.font" height="12" underline="1" facename="defaultfont" />
+
+	<font id="config.default.font" height="12" facename="defaultfont"/>
+	<font id="config.tab.sign.font" height="12" facename="defaultfont"/>
+	
+	<font id="font.bttaskdlg.textlink" height="12" facename="defaultfont" underline="1" />
+	<font id="font.tip" height="12" facename="defaultfont"/>
+
+	<font id="floatpanel.default.font" height="10" facename="Arial"/>
+	<font id="floatpanel.taskinfo.default.font" height="10" facename="defaultfont"/>
+	
+	<font id="font.tasklist.progress" height="10" facename="Arial"/>
+	<font id="DownloadPipe.default.font" height="12" facename="defaultfont"/>
+	
+	<font id="down.chanel.active.font" height="10" facename="defaultfont"/>
+	<font id="web.loading.text.font" height="14" facename="defaultfont" />	
+	
+	<font id="taskinfo.tab.font" height="12" facename="defaultfont" />
+</resource>
+</XLUE>

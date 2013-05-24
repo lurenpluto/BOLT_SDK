@@ -1,0 +1,129 @@
+<XLUE>
+	<resource>
+		<color id="color.linktext" value="#0079c5"/>
+	
+		<color id="system.white" red="255" green="255" blue="255" alpha="255" />
+		<color id="system.black" red="0" green="0" blue="0" alpha="255" />
+		<color id="system.orange" red="44" green="151" blue="241" alpha="255" />
+		<color id="system.blue" red="0" green="0" blue="255" alpha="255" />
+        <color id="system.green" red="38" green="139" blue="35" alpha="255"/>
+		<color id="system.red" red="255" green="0" blue="0" alpha="255" />
+		<color id="system.gray" red="204" green="211" blue="214" alpha="255"/>
+		<color id="system.yellow" red="255" green="255" blue="0" alpha="255"/>
+		<color id="system.lightblue" red="51" green="153" blue="255" alpha="255"/>
+		
+		<color id="system.title" value="#000000"/>
+		<color id="system.title.effect" value="#FFFFFFFF"/>
+		
+		<color id="color.newtask.text" red="61" green="64" blue="67" alpha="255"/>
+        <color id="taskinfo.title.font.color" red="124" green="123" blue="121" alpha="255" />
+		<color id="taskinfo.attr.savepath.color" red="67" green="122" blue="242" alpha="255" />
+		<color id="button.disable.color" value="#878787"/>
+		
+		<color id="basic.tab.text.color" red="0" green="0" blue="0" alpha="255" />
+
+		<color id="color.taskinfo.btn" red="67" green="118" blue="159" alpha="255"/>
+		<color id="color.tasklist.text.normal" red="99" green="99" blue="99" alpha="255" />
+		<color id="color.tasklist.text.disable" red="204" green="211" blue="214" alpha="255" />
+		<color id="color.tasklist.text.select" red="0" green="0" blue="0" alpha="255" />
+		<color id="color.tasklist.fileName.mark.bkg" red="255" green="255" blue="150" alpha="255" />
+		<color id="color.statusbar.text" red="0" green="54" blue="102" alpha="255" />
+		
+		<color id="color.tasklist.localsearch.number.bkg" red="255" green="229" blue="229" alpha="255" />
+	
+		<color id="taskinfo.basic.text.font.color" red="81" green="81" blue="81" alpha="255"/>
+		<color id="mainwnd.bkg.top.color"  blue="238" green="157" red="108" alpha="255"/>
+		<color id="mainwnd.bkg.bottom.color"  blue="253" green="233" red="215" alpha="255"/>
+		<color id="mainwnd.bkg.fill.color"  blue="248" green="218" red="195" alpha="255"/>
+		<color id="mainwnd.font.bkg.src" blue="255" green="255" red="255" alpha="190"/>
+		<color id="mainwnd.font.bkg.dst" blue="0" green="0" red="0" alpha="0"/>
+		
+		<color id="menu.color.disable" value="#777777"/>
+		<color id="menu.color.normal" value="#000000"/>
+		
+		<color id="taskstatus.error" blue="0" green="0" red="255" alpha="255"/>
+		<color id="taskstatus.noerror" blue="107" green="107" red="107" alpha="255"/>
+		
+		<color id="bttaskinfo.text.color.selected" red="155" green="98" blue="0" alpha="255" />
+		
+		<color id="config.wnd.top.color" value="#7aa2f1" />
+		<color id="config.wnd.bottom.color" value="#e9f2fa" />
+		<color id="config.menu.item.color" value="#000000" />
+		<color id="config.block.color" value="#000000" />
+		<color id="config.default.color" value="#535353" />
+		<color id="config.tip.color" value="#535353" />
+		<color id="config.edit.text.color" value="#94aec6" />
+		
+		<color id="config.tab.sign.color" value="#71b2f0" />
+
+		<color id="TaskBasicInfo.blue" value="#0079c5"/>
+		<color id="TaskBasicInfo.gray" value="#535353"/>
+		<color id="TaskBasicInfo.green" value="#5fb03b"/>
+		<color id="TaskBasicInfo.red" value="#eb2425"/>
+		
+		<color id="schtask.edit.color" value="#94aec6"/>
+		<color id="schtask.gray" value="#959595"/>
+		
+		<color id="skinpanel.top" value="#FFFFFF"/>
+		<color id="skinpanel.bottom" value="#89a7df"/>
+		
+		<color id="newtask.top" value="#7aa2f1"/>
+		<color id="newtask.bottom" value="#e9f2fa"/>
+
+		<color id="bttaskdialog.file_list.bottom" value="#e3f0ff"/>
+		<color id="bttaskdialog.attr_panel.header" value="#e3f0ff"/>
+		
+		<color id="url.filter.dlg.text" value="#3E98D6" />
+		
+		<color id="msgbox.fill1" value="#bfcfed"/>
+		<color id="msgbox.fill2" value="#fbfbff"/>
+		<color id="msgbox.fill3" value="#b0c3e8"/>
+		
+		<color id="tips.fonts.color" value="#9b6912"/>
+		<color id="white.shadow.color" value="RGBA(255,255,255,255)"/>
+		
+		<color id="notify.text.green" value="#439217" />
+		<color id="notify.text.red" value="#C63449" />
+		<color id="notify.textbtn.color" value="#0079c5"/>
+
+		<color id ="floatpanel.taskinfo.progress"  value="RGBA(162,202,250)"/>
+		<color id ="floatpanel.taskinfo.text" value="RGBA(55,55,55)"/>
+		
+		<color id="plugin.fonts.color" value="#003666"/>
+
+		<color id="DownloadPipe.default.color" red="0" green="0" blue="0" alpha="255" />
+ 		<color id="DownloadPipe.disable.color" value="#535353" /> 
+
+		<color id="downchanel.panel.fill.src.color" value="#9bcbf7" />
+		<color id="downchanel.panel.fill.dest.color" value="#fafbf8" />
+
+		<color id="mydownload.btn.text.color" value="#2c5ba9" />
+		
+		<color id="TaskBasicInformation.Title.Font" value="#000000" />
+		<color id="TaskBasicInformation.Size.Font" value="#6eaa00" />
+		<color id="TaskBasicInformation.CanClick.Font" value="#0084ff" />
+		<color id="TaskBasicInformation.Attribute.Font" value="#535353" />
+		
+		<color id="TaskBasicInformation.ScanUnSafe.Font" value="#e60012" />
+		
+		<color id="color.thunder.text.normal" value="#000000" alpha="255"/>
+		<color id="color.thunder.text.hint" value="#6eaa00" alpha="255" />
+		<color id="color.thunder.text.link" value="#0084ff" alpha="255" />
+		<color id="color.thunder.text.description" value="#535353" alpha="255" />
+		<color id="color.thunder.text.disable" value="#bac4cb" alpha="255" />
+		<color id="color.thunder.text.warning" value="#e60012" alpha="255" />
+		
+		<color id="color.newtask.space.yellow" value="#f39800" alpha="255" />
+		<color id="color.newtask.space.red" value="#e60012" alpha="255" />
+		<color id="color.newtask.space.grey" value="#0084ff" alpha="255" />
+		<color id="color.taskinfo.bkg" value="#ecf4fe" alpha="255" />
+		<color id="color.toolbar.button.normal" value="#010101" alpha="255" />
+		<color id="color.toolbar.button.hover" value="#010101" alpha="255" />
+		<color id="color.toolbar.button.down" value="#010101" alpha="255" />
+		<color id="color.toolbar.button.disable" value="#bac4cb" alpha="255" />
+		<color id="color.web.loading.text" value="#aeb7c4" alpha="255" />
+		<color id="color.taskinfo.tab.text.sel" value="#535353" alpha="255" />
+		<color id="color.taskinfo.tab.text.normal" value="#000000" alpha="255"/>
+		<color id="color.gougousearch.text" value="#bac4cb" alpha="255" />
+	</resource>
+</XLUE>

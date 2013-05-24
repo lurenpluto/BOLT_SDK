@@ -1,0 +1,6 @@
+<XLUE>
+	<resource>		
+		<bitmap id="bkg" path="bitmap\bkg.png"/>
+		<bitmap id="caption" path="bitmap\caption.png"/>
+	</resource>
+</XLUE>

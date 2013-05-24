@@ -1,0 +1,8 @@
+<xlue>
+<resource>
+	<font id="default.font" height="12" facename="defaultfont" />
+	<font id="default.font.bold" height="12" weight="bold" facename="defaultfont" />
+	<font id="default.font.link" height="12" facename="defaultfont" />
+	<font id="default.font.underline" height="12" facename="defaultfont" underline="1"/>
+</resource>
+</xlue>

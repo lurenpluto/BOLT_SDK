@@ -1,0 +1,131 @@
+<xlue>
+	<control class="Wizard.BkgCtrl">
+		<attr_def>
+			<attr name="Bkg" type="string">
+				<default>""</default>
+			</attr>
+		</attr_def>
+		
+		<method_def>
+			<SetBkgAlpha file="BkgCtrl.lua" func="SetBkgAlpha"/>
+		</method_def>
+		
+		<event_def>
+		</event_def>
+		
+		<objtemplate>
+			<children>
+				<obj id="root" class="LayoutObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<limitchild>1</limitchild>
+					</attr>
+					<children>
+						<obj id="blur" class="BlurObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+								<ellipse>5,5</ellipse>
+							</attr>
+						</obj>
+						
+						<obj id="mask" class="MaskObject">
+							<attr>
+								<width>father.width</width>
+								<height>father.height</height>
+								<maskorgx>0</maskorgx>
+								<maskorgy>0</maskorgy>
+								<masksizex>width</masksizex>
+								<masksizey>height</masksizey>
+								<zorder>-100</zorder>
+								<type>texture</type>
+								<resid>bkg.mask</resid>
+								<chanel>r</chanel>
+								<limitchild>1</limitchild>
+							</attr>
+							<children>	
+								<obj id="fillbkg" class="LayoutObject">
+									<attr>
+										<width>father.width</width>
+										<height>father.height</height>
+										<limitchild>1</limitchild>
+										<zorder>-100</zorder>
+									</attr>
+									<children>
+										<obj id="mainwnd.shading" class="FillObject">
+											<attr>
+												<width>father.width</width>
+												<height>father.height </height>
+												<filltype>Line</filltype>
+												<blendtype>Source</blendtype>
+												<srcpt>0,0</srcpt>
+												<destpt>0,height * 78 / 100</destpt>
+												<alpha>230</alpha>
+												<srccolor>mainwnd.bkg.top.color</srccolor>
+												<destcolor>mainwnd.bkg.bottom.color</destcolor>
+												<inheritmask>1</inheritmask>
+												<maskleft>0</maskleft>
+												<masktop>0</masktop>
+												<maskwidth>width</maskwidth>
+												<maskheight>height</maskheight>
+												<maskblendtype>attenunate</maskblendtype>
+												<visible>1</visible>
+											</attr>			
+										</obj>
+									</children>
+								</obj>
+										
+								<obj id="imagebkg" class="LayoutObject">
+									<attr>
+										<width>father.width</width>
+										<height>father.height</height>
+										<limitchild>1</limitchild>
+										<zorder>-100</zorder>
+									</attr>
+									<children>
+										<obj id="colorfill" class="FillObject">
+											<attr>
+												<filltype>Monochrome</filltype>
+												<blendtype>Source</blendtype>
+												<srcpt>0,0</srcpt>
+												<destpt>0,height</destpt>
+												<width>father.width</width>
+												<height>father.height</height>
+												<maskleft>0</maskleft>
+												<masktop>0</masktop>
+												<maskwidth>width</maskwidth>
+												<maskheight>height</maskheight>
+												<maskblendtype>attenunate</maskblendtype>
+												<inheritmask>1</inheritmask>
+											</attr>
+										</obj>
+										<obj id="image" class="ImageObject">
+											<attr>
+												<zorder>1</zorder>
+												<width>father.width</width>
+												<height>father.height</height>
+												<maskleft>0</maskleft>
+												<masktop>0</masktop>
+												<maskwidth>width</maskwidth>
+												<maskheight>height</maskheight>
+												<maskblendtype>attenunate</maskblendtype>
+												<inheritmask>1</inheritmask>
+											</attr>
+										</obj>
+									</children>
+								</obj>
+							</children>	
+						</obj>	
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="BkgCtrl.lua" func="OnInitControl" />
+				<event name="OnDestroy" file="BkgCtrl.lua" func="OnDestroy" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

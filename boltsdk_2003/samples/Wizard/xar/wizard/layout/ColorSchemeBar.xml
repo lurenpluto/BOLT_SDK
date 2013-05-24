@@ -1,0 +1,60 @@
+<xlue>
+	<control class="Thunder.ColorSchemeItem">
+		<attr_def>
+			<attr name="Enable" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="Select" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="Color" type="string" />
+			
+		</attr_def>
+		
+		<method_def>
+			<SetEnable file="ColorSchemeBar.xml.lua" func="SetEnable"/>
+			<GetEnable file="ColorSchemeBar.xml.lua" func="GetEnable"/>
+			
+			<SetSelect file="ColorSchemeBar.xml.lua" func="SetSelect"/>
+			
+		</method_def>
+		
+		<event_def>
+			<OnSelect/>
+		</event_def>
+		
+		<objtemplate>
+			<children>
+			
+				<obj id="color" class="FillObject">
+					<attr>
+						<left>2</left>
+						<top>1</top>
+						<height>father.height-4</height>
+						<width>father.width-4</width>
+						<filltype>Monochrome</filltype>
+						<blendtype>Source</blendtype>
+						<zorder>1</zorder>
+					</attr>
+				</obj>
+				
+				<obj id="mask" class="ImageObject">
+					<attr>
+						<height>father.height</height>
+						<width>father.width</width>
+						<image>skinpanel.colorscheme.mask</image>
+						<zorder>2</zorder>
+					</attr>
+				</obj>
+				
+			</children>
+			
+			<eventlist>
+				<event name="OnLButtonUp" file="ColorSchemeBar.xml.lua" func="OnColorSchemeLButtonUp"/>
+				<event name="OnInitControl" file="ColorSchemeBar.xml.lua" func="OnInitControl" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

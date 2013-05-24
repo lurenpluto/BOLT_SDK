@@ -1,0 +1,25 @@
+<XLUE>
+	<resource>
+		<imagelist id="imagelist.vscrollbar.button" vertical="0" splitter="1" varyblock="1" image="bitmap\scrollbar.vsb.arrow.png"/>
+		<texture id="texture.vsb.prebtn.normal" imagelist="imagelist.vscrollbar.button" index="1" />
+		<texture id="texture.vsb.prebtn.hover" imagelist="imagelist.vscrollbar.button" index="2" />
+		<texture id="texture.vsb.prebtn.down" imagelist="imagelist.vscrollbar.button" index="3" />
+		<texture id="texture.vsb.nextbtn.normal" imagelist="imagelist.vscrollbar.button" index="4" />
+		<texture id="texture.vsb.nextbtn.hover" imagelist="imagelist.vscrollbar.button" index="5" />
+		<texture id="texture.vsb.nextbtn.down" imagelist="imagelist.vscrollbar.button" index="6" />
+		
+		<imagelist id="imagelist.vscrollbar.thumb" vertical="0" splitter="1" varyblock="1" image="bitmap\scrollbar.vsb.thumb.png"/>
+		<texture id="texture.vsb.thumb.normal" type="ThreeInOneV" imagelist="imagelist.vscrollbar.thumb" index="1"/>
+		<texture id="texture.vsb.thumb.hover" type="ThreeInOneV" imagelist="imagelist.vscrollbar.thumb" index="2"/>
+		<texture id="texture.vsb.thumb.down" type="ThreeInOneV" imagelist="imagelist.vscrollbar.thumb" index="3"/>
+		<texture id="texture.vsb.bkg.normal" type="Stretch" image="bitmap\scrollbar.vsb.bkg.hover.png"/>
+		<texture id="texture.vsb.bkg.hover" type="Stretch" image="bitmap\scrollbar.vsb.bkg.hover.png"/>
+		
+		<imagelist id="imagelist.hscrollbar.thumb" vertical="0" splitter="1" varyblock="1" image="bitmap\scrollbar.hsb.thumb.png"/>
+		<texture id="texture.hsb.thumb.normal" type="ThreeInOneH" imagelist="imagelist.hscrollbar.thumb" index="1" />
+		<texture id="texture.hsb.thumb.hover" type="ThreeInOneH" imagelist="imagelist.hscrollbar.thumb" index="2" />
+		<texture id="texture.hsb.thumb.down" type="ThreeInOneH" imagelist="imagelist.hscrollbar.thumb" index="3" />
+		<texture id="texture.hsb.bkg.normal" type="Stretch" image="bitmap\scrollbar.hsb.bkg.hover.png"/>
+		<texture id="texture.hsb.bkg.hover" type="Stretch" image="bitmap\scrollbar.hsb.bkg.hover.png"/>
+	</resource>
+</XLUE>

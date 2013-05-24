@@ -1,0 +1,29 @@
+﻿<XLUE>
+	<resource>			
+		<imagelist id="bitmap.search.imagelist" vertical="0" splitter="1" varyblock="0" blocksize="16" image="bitmap\Search_button.png"/>
+		<bitmap id="bitmap.search.normal" imagelist="bitmap.search.imagelist" index="1"/>
+		<bitmap id="bitmap.search.hover" imagelist="bitmap.search.imagelist" index="2"/>
+		<bitmap id="bitmap.search.down" imagelist="bitmap.search.imagelist" index="3"/>
+		
+		<imagelist id="imagelist.search.edit.imagelist" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.edit.png"/>
+        <texture id="texture.edit.bkg.disable" type="NineInOne" imagelist="imagelist.search.edit.imagelist" index="10"/>
+        <texture id="texture.edit.bkg.normal" type="NineInOne" imagelist="imagelist.search.edit.imagelist" index="11"/>
+        <texture id="texture.edit.bkg.hover" type="NineInOne" imagelist="imagelist.search.edit.imagelist" index="12"/>
+
+		<imagelist id="pluginitem.bkg" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.pluginitem.bkg.png"/>
+		<bitmap id="image.category.item.select" imagelist="pluginitem.bkg" index="2" />
+		<bitmap id="image.category.item.hover" imagelist="pluginitem.bkg" index="1" />
+		<bitmap id="pluginitem.left.hover" imagelist="pluginitem.bkg" index="3"/>
+		<bitmap id="pluginitem.right.hover" imagelist="pluginitem.bkg" index="5"/>
+		<bitmap id="pluginitem.left.down" imagelist="pluginitem.bkg" index="4" />
+		<bitmap id="pluginitem.right.down" imagelist="pluginitem.bkg" index="6"/>
+		<bitmap id="pluginitem.right.normal" imagelist="pluginitem.bkg" index="7"/>
+		<texture id="pluginitem.all.hover" imagelist="pluginitem.bkg" index="8" type="NineInOne"/>
+		<texture id="pluginitem.all.down" imagelist="pluginitem.bkg" index="9" type="NineInOne"/>
+		
+		<bitmap id="bitmap.search.baidu" path="bitmap\baidu.png"/>
+		<bitmap id="bitmap.search.google" path="bitmap\google.png"/>
+		<bitmap id="bitmap.search.soso" path="bitmap\soso.png"/>
+		<bitmap id="bitmap.search.bing" path="bitmap\bing.png"/>
+	</resource>
+</XLUE>

@@ -1,0 +1,118 @@
+<xlue>
+	<objtemplate id="MainWnd.Bkg.Shading" class="FillObject">
+		<attr>
+			<width>father.width</width>
+			<height>father.height </height>
+			<filltype>Line</filltype>
+			<blendtype>Const</blendtype>
+			<srcpt>0,0</srcpt>
+			<destpt>0,height * 78 / 100</destpt>
+			<alpha>230</alpha>
+			<srccolor>mainwnd.bkg.top.color</srccolor>
+			<destcolor>mainwnd.bkg.bottom.color</destcolor>
+		</attr>			
+	</objtemplate>
+	
+	<objtemplate id="SkinPanel.Bkg.Shading" class="FillObject">
+		<attr>
+			<width>father.width</width>
+			<height>father.height</height>
+			<filltype>Line</filltype>
+			<blendtype>Const</blendtype>
+			<srcpt>0,0</srcpt>
+			<destpt>0,height</destpt>
+			<alpha>230</alpha>
+			<srccolor>skinpanel.top</srccolor>
+			<destcolor>skinpanel.bottom</destcolor>
+		</attr>			
+	</objtemplate>
+	
+	<objtemplate id="NewTask.Bkg.Shading" class="FillObject">
+		<attr>
+			<width>father.width</width>
+			<height>father.height</height>
+			<filltype>Line</filltype>
+			<blendtype>Const</blendtype>
+			<srcpt>0,0</srcpt>
+			<destpt>0,height * 52 / 100</destpt>
+			<alpha>230</alpha>
+			<srccolor>newtask.top</srccolor>
+			<destcolor>newtask.bottom</destcolor>
+		</attr>			
+	</objtemplate>
+	
+	<objtemplate id="MsgBox.Bkg.Shading" class="LayoutObject">
+		<attr>
+			<width>father.width</width>
+			<height>father.height</height>
+		</attr>
+		<children>
+			<obj id="fill1" class="FillObject">
+				<attr>
+					<width>father.width</width>
+					<height>father.height * 33 / 100</height>
+					<filltype>Line</filltype>
+					<blendtype>Const</blendtype>
+					<srcpt>0,0</srcpt>
+					<destpt>0,height * 20 / 33</destpt>
+					<alpha>230</alpha>
+					<srccolor>msgbox.fill1</srccolor>
+					<destcolor>msgbox.fill2</destcolor>
+				</attr>			
+			</obj>
+			
+			<obj id="fill2" class="FillObject">
+				<attr>
+					<top>father.height * 33 / 100</top>
+					<width>father.width</width>
+					<height>father.height * 67 / 100</height>
+					<filltype>Line</filltype>
+					<blendtype>Const</blendtype>
+					<srcpt>0,0</srcpt>
+					<destpt>0,height * 48 / 67</destpt>
+					<alpha>230</alpha>
+					<srccolor>msgbox.fill2</srccolor>
+					<destcolor>msgbox.fill3</destcolor>
+				</attr>
+			</obj>
+			
+		</children>
+	</objtemplate>
+	
+	<objtemplate id="DefaultPath.Bkg.Shading" class="LayoutObject">
+		<attr>
+			<width>father.width</width>
+			<height>father.height</height>
+		</attr>
+		<children>
+			<obj id="topfill" class="FillObject">
+				<attr>
+					<width>father.width</width>
+					<height>father.height * 38 / 100</height>
+					<filltype>Line</filltype>
+					<blendtype>Const</blendtype>
+					<srcpt>0,0</srcpt>
+					<destpt>0,height</destpt>
+					<alpha>230</alpha>
+					<srccolor>newtask.top</srccolor>
+					<destcolor>newtask.bottom</destcolor>
+				</attr>			
+			</obj>
+						
+			<obj id="bottomfill" class="FillObject">
+				<attr>
+					<top>father.height * 38 / 100</top>
+					<width>father.width</width>
+					<height>father.height * 62 / 100</height>
+					<filltype>Monochrome</filltype>
+					<blendtype>Source</blendtype>
+					<srcpt>0,0</srcpt>
+					<destpt>0,height</destpt>
+					<alpha>230</alpha>
+					<srccolor>newtask.bottom</srccolor>
+				</attr>
+			</obj>
+		</children>
+	</objtemplate>
+
+</xlue>

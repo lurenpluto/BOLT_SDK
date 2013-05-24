@@ -1,0 +1,23 @@
+HKCR
+{
+	Wizard.WebBrowserDisp.1 = s 'WebBrowserDisp Class'
+	{
+		CLSID = s '{0EB56842-6731-4FBC-B03C-35199395130F}'
+	}
+	Wizard.WebBrowserDisp = s 'WebBrowserDisp Class'
+	{
+		CLSID = s '{0EB56842-6731-4FBC-B03C-35199395130F}'
+		CurVer = s 'Wizard.WebBrowserDisp.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {0EB56842-6731-4FBC-B03C-35199395130F} = s 'WebBrowserDisp Class'
+		{
+			ProgID = s 'Wizard.WebBrowserDisp.1'
+			VersionIndependentProgID = s 'Wizard.WebBrowserDisp'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			'TypeLib' = s '{681EC43B-2D28-4E32-A9DE-7E4D36B7350D}'
+		}
+	}
+}

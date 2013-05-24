@@ -1,0 +1,311 @@
+<xlue>
+<objtreetemplate id="BoltFoxTree" class="ObjectTreeTemplate">
+		<attr>
+			<left>-200</left>
+			<top>-200</top>
+			<width>2000</width>
+			<height>2000</height>
+		</attr>
+		<obj id="mainwnd.bkg" class="LayoutObject">
+			<attr>
+				<width>800</width>
+				<height>600</height>
+			</attr>
+			<children>
+				<!-- <obj id="bkg.border.shadow" class="TextureObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+						<texture>bkg.shadow</texture>
+					</attr>
+				</obj> -->
+				<obj id="bkg.border.shadow" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<texture>bitmap.bkg.shadow1</texture>
+					</attr>
+				</obj>
+				<obj id="mainwnd.bkg1" class="TextureObject">
+					<attr>
+						<left>10</left>
+						<top>10</top>
+						<width>father.width-20</width>
+						<height>father.height-20</height>
+						<texture>texture.mainwnd.border</texture>
+					</attr>
+					<children>						
+						<obj id="mainwnd.bkg.fill" class="FillObject">
+							<attr>
+								<left>1</left>
+								<top>2</top>
+								<width>father.width-2</width>
+								<height>father.height-4</height>
+								<filltype>Monochrome</filltype>
+								<blendtype>Source</blendtype>
+								<destcolor>249,249,249,230</destcolor>
+								<srccolor>233,233,233,230</srccolor>
+								<srcpt>0,0</srcpt>
+								<destpt>0,740</destpt>
+								<zorder>5</zorder>
+							</attr>
+						</obj>
+						<obj id="mainwnd.body" class="LayoutObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+							</attr>
+							<children>
+								<obj id="mainwnd.resize.right" class="ResizeObject">
+									<attr>
+										<left>father.width-4</left>
+										<width>4</width>
+										<height>father.height</height>
+										<type>right</type>
+										<zorder>10000</zorder>
+									</attr>
+								</obj>
+								
+								<obj id="mainwnd.resize.bottom" class="ResizeObject">
+									<attr>
+										<top>father.height-4</top>
+										<width>father.width</width>
+										<height>4</height>
+										<type>bottom</type>
+										<zorder>10000</zorder>
+									</attr>
+								</obj>
+								
+								<obj id="mainwnd.resize.top" class="ResizeObject">
+									<attr>
+										<top>-2</top>
+										<width>father.width</width>
+										<height>4</height>
+										<type>top</type>
+										<zorder>10000</zorder>
+									</attr>
+								</obj>
+								
+								<obj id="mainwnd.resize.left" class="ResizeObject">
+									<attr>
+										<left>-2</left>
+										<width>4</width>
+										<height>father.height</height>
+										<type>left</type>
+										<zorder>10000</zorder>
+									</attr>
+								</obj>
+								
+								<obj id="mainwnd.resize.topleft" class="ResizeObject">
+									<attr>
+										<left>-2</left>
+										<top>-2</top>
+										<width>6</width>
+										<height>6</height>
+										<type>topleft</type>
+										<zorder>1000000</zorder>
+									</attr>
+								</obj>
+								
+								<obj id="mainwnd.resize.bottomleft" class="ResizeObject">
+									<attr>
+										<left>-2</left>
+										<top>father.height-4</top>
+										<width>6</width>
+										<height>6</height>
+										<type>bottomleft</type>
+										<zorder>1000000</zorder>
+									</attr>
+								</obj>
+								
+								<obj id="mainwnd.resize.topright" class="ResizeObject">
+									<attr>
+										<left>father.width-4</left>
+										<top>-2</top>
+										<width>6</width>
+										<height>6</height>
+										<type>topright</type>
+										<zorder>1000000</zorder>
+									</attr>
+								</obj>
+								
+								<obj id="mainwnd.resize.bottomright" class="ResizeObject">
+									<attr>
+										<left>father.width-10</left>
+										<top>father.height-10</top>
+										<width>12</width>
+										<height>12</height>
+										<type>bottomright</type>
+										<zorder>1000000</zorder>
+									</attr>
+								</obj>						
+								<obj id="mainwnd.caption" class="CaptionObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>father.height</height>
+										<zorder>0</zorder>
+									</attr>
+									<children>
+										<obj id="mainwnd.title" class="TextObject">
+											<attr>
+												<left>110</left>
+												<top>7</top>
+												<width>father.width-16-109</width>
+												<height>25</height>
+												<zorder>10000</zorder>
+											</attr>
+										</obj>
+										<obj id="title" class="BoltFox.ImageButton.Ctrl">
+											<attr>
+												<left>5</left>
+												<width>100</width>
+												<height>21</height>
+												<NormalBkg>bitmap.title.normal</NormalBkg>
+												<HoverBkg>bitmap.title.hover</HoverBkg>
+												<DownBkg>bitmap.title.down</DownBkg>
+											</attr>
+											<eventlist>
+												<event name="OnClick" file="MainWnd.xml.lua" func="title_OnClick" />
+											</eventlist>
+										</obj>
+										<obj id="Toolbar" class="BoltFox.Toolbar.Ctrl">
+											<attr>
+												<left>5</left>
+												<top>35</top>
+												<width>48</width>
+												<height>26</height>
+											</attr>
+											<eventlist>
+												<event name="OnBack" file="MainWnd.xml.lua" func="OnBack" />
+												<event name="OnForward" file="MainWnd.xml.lua" func="OnForward" />
+											</eventlist>
+										</obj>
+										<obj id="AddressCtrl" class="BoltFox.Address.Ctrl">
+											<attr>
+												<left>55</left>
+												<top>35</top>
+												<width>father.width-10-200-8-50</width>
+												<height>26</height>
+											</attr>
+											<eventlist>
+												<event name="OnEnterAddress" file="MainWnd.xml.lua" func="OnEnterAddress" />
+												<event name="OnReload" file="MainWnd.xml.lua" func="OnReload" />
+												<event name="OnStop" file="MainWnd.xml.lua" func="OnStop" />
+												<event name="OnGo" file="MainWnd.xml.lua" func="OnGo" />
+											</eventlist>
+										</obj>
+										
+										<obj id="SearchCtrl" class="BoltFox.Search.Ctrl">
+											<attr>
+												<left>father.width-200-8</left>
+												<top>35</top>
+												<width>200-21</width>
+												<height>26</height>
+											</attr>
+											<eventlist>
+												<event name="OnSearch" file="MainWnd.xml.lua" func="OnSearch" />
+											</eventlist>
+										</obj>
+										<obj id="config" class="BoltFox.ImageButton.Ctrl">
+											<attr>
+												<left>father.width-8-16</left>
+												<top>41</top>
+												<width>16</width>
+												<height>16</height>
+												<NormalBkg>bitmap.setting.normal</NormalBkg>
+												<HoverBkg>bitmap.setting.hover</HoverBkg>
+												<DownBkg>bitmap.setting.down</DownBkg>
+											</attr>
+											<eventlist>
+												<event name="OnClick" file="MainWnd.xml.lua" func="config_OnClick" />
+											</eventlist>
+										</obj>
+										<obj id="Web" class="WebBrowseObject">
+											<attr>
+												<left>5</left>
+												<top>65</top>
+												<width>father.width-10</width>
+												<height>father.height-65-5</height>
+												<url>www.xunlei.com</url>
+											</attr>
+											<eventlist>
+												<event name="OnInitControl" file="MainWnd.xml.lua" func="Web_OnInitControl" />
+												<event name="OnNavigateComplete2" file="MainWnd.xml.lua" func="OnNavigateComplete2" />
+												<event name="OnTitleChange" file="MainWnd.xml.lua" func="OnTitleChange" />
+												<event name="OnNewWindow3" file="MainWnd.xml.lua" func="OnNewWindow3" />
+											</eventlist>
+										</obj>
+										
+										<obj id="mainwnd.sysbtn" class="BoltFox.System.ButtonEx.Ctrl" >
+											<attr>
+												<left>father.width - 106</left>
+												<top>-1</top>
+												<width>109</width>
+												<height>22</height>
+												<zorder>330</zorder>		
+												<ItemWidthIsSame>false</ItemWidthIsSame>
+											</attr>
+											<eventlist>
+												<event name="OnClose" file="MainWnd.xml.lua" func="OnClose" />
+												<event name="OnInitControl" file="MainWnd.xml.lua" func="SysBtn_OnInitControl" />
+												<event name="OnMinisize" file="MainWnd.xml.lua" func="OnMinisize" />
+												<event name="OnMaxSize" file="MainWnd.xml.lua" func="OnMaxBtnClick" />
+												<event name="OnReStore" file="MainWnd.xml.lua" func="OnMaxBtnClick" />
+											</eventlist>
+										</obj>
+									</children>
+								</obj>						
+							</children>
+						</obj>
+					</children>
+					<eventlist>
+						<!-- <event name="OnInitControl" file="MainWnd.xml.lua" func="OnInitControl" /> -->
+						<event name="OnRButtonUp" file="MainWnd.xml.lua" func="OnRButtonUp" />
+					</eventlist>
+				</obj>
+			</children>
+			<eventlist>
+				
+			</eventlist>
+		</obj>
+		
+	</objtreetemplate>
+
+	<hostwndtemplate id="BoltFox" class="FrameHostWnd">
+		<attr> 
+			<title>BoltFox</title>
+			<layered>1</layered>
+			<left>200</left> 
+			<top>100</top>
+			<width >800</width>
+			<height>600</height>
+			<cacheleft>0</cacheleft> 
+			<cachetop>0</cachetop>
+			<cachewidth >1180</cachewidth>
+			<cacheheight>768</cacheheight>
+			<center>1</center>
+			<topmost>0</topmost>
+			<visible>1</visible>
+			<enable>1</enable>
+			<maxbox>1</maxbox>
+			<minbox>1</minbox>
+			<sysmenu>1</sysmenu>
+			<minwidth>800</minwidth>
+			<minheight>600</minheight>
+			<appwindow>1</appwindow>
+			<fps>30</fps>
+			<ellipse>5,5</ellipse>
+		</attr>
+		<eventlist>
+			<event name="OnSize" file="MainWnd.xml.lua" func="OnMainWndSize"/>
+			<!-- <event name="OnCreate" file="MainWnd.xml.lua" func="OnCreate" />
+			<event name="OnClose" file="MainWnd.xml.lua" func="OnClose"/> -->
+		</eventlist>
+	</hostwndtemplate>
+</xlue>

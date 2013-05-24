@@ -1,0 +1,11 @@
+<xlue>
+    <resource>
+	    <imagelist id="imagelist.checkbox" vertical="0" splitter="1" varyblock="1" image="bitmap\imagelist.checkbox.png" />
+        <bitmap id="bitmap.tick.max" imagelist="imagelist.checkbox" index="1" />
+        <bitmap id="bitmap.tick.normal" imagelist="imagelist.checkbox" index="3" />
+        <bitmap id="bitmap.tick.disable" imagelist="imagelist.checkbox" index="4" />
+		<bitmap id="bitmap.box.normal" imagelist="imagelist.checkbox" index="2" />
+        <bitmap id="bitmap.box.disable" imagelist="imagelist.checkbox" index="5" />
+        <bitmap id="bitmap.box.hover" imagelist="imagelist.checkbox" index="6" />
+	</resource>
+</xlue>

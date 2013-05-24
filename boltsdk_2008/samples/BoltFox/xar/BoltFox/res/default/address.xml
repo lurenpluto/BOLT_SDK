@@ -1,0 +1,17 @@
+﻿<XLUE>
+	<resource>			
+		<imagelist id="bitmap.address.imagelist" vertical="0" splitter="1" varyblock="0" blocksize="13" image="bitmap\reload_stop_go.png"/>
+		<bitmap id="bitmap.address.reload1" imagelist="bitmap.address.imagelist" index="1"/>
+		<bitmap id="bitmap.address.reload2" imagelist="bitmap.address.imagelist" index="2"/>
+		<bitmap id="bitmap.address.reload3" imagelist="bitmap.address.imagelist" index="3"/>
+		
+		<bitmap id="bitmap.address.stop1" imagelist="bitmap.address.imagelist" index="4"/>
+		<bitmap id="bitmap.address.stop2" imagelist="bitmap.address.imagelist" index="5"/>
+		<bitmap id="bitmap.address.stop3" imagelist="bitmap.address.imagelist" index="6"/>
+		
+		<bitmap id="bitmap.address.go1" imagelist="bitmap.address.imagelist" index="7"/>
+		<bitmap id="bitmap.address.go2" imagelist="bitmap.address.imagelist" index="8"/>
+		<bitmap id="bitmap.address.go3" imagelist="bitmap.address.imagelist" index="9"/>
+
+	</resource>
+</XLUE>

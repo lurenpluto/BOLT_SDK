@@ -1,0 +1,74 @@
+<xlue>
+	<control class="BoltFox.Toolbar.Ctrl">
+	    <attr_def>
+		   
+		</attr_def>
+		<method_def>
+		</method_def>
+		<event_def> 
+			<OnBack />
+			<OnForward />
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="border" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>26</height>
+						<texture>texture.edit.bkg.normal</texture>
+					</attr>
+					<children>
+						<obj id="back" class="BoltFox.TextureButton.Ctrl">
+							<attr>
+								<left>2</left>
+								<top>3</top>
+								<width>father.width/2</width>
+								<height>father.height-3</height>
+								<halign>center</halign>
+								<HoverBkg>texture.toolbar.left</HoverBkg>
+							</attr>
+							<children>
+								<obj id="backimage" class="ImageObject">
+									<attr>
+										<width>father.width</width>
+										<height>father.height</height>
+										<halign>center</halign>
+										<valign>center</valign>
+										<image>imagelist.toolbar.back</image>
+									</attr>
+								</obj>
+							</children>
+							<eventlist>
+								<event name="OnClick" file="Toolbar.xml.lua" func="back_OnClick" />
+							</eventlist>
+						</obj>
+						<obj id="forward" class="BoltFox.TextureButton.Ctrl">
+							<attr>
+								<left>21</left>
+								<top>3</top>
+								<width>father.width/2+1</width>
+								<height>father.height-3</height>
+								<halign>center</halign>
+								<HoverBkg>texture.toolbar.right</HoverBkg>
+							</attr>
+							<children>
+								<obj id="forwardimage" class="ImageObject">
+									<attr>
+										<width>father.width</width>
+										<height>father.height</height>
+										<halign>center</halign>
+										<valign>center</valign>
+										<image>imagelist.toolbar.forward</image>
+									</attr>
+								</obj>
+							</children>
+							<eventlist>
+								<event name="OnClick" file="Toolbar.xml.lua" func="forward_OnClick" />
+							</eventlist>
+						</obj>
+					</children>
+				</obj>
+			</children>
+		</objtemplate>
+	</control>
+</xlue>

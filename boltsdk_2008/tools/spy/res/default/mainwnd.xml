@@ -1,0 +1,140 @@
+<XLUE>
+	<resource>
+        <bitmap id="bitmap.mainwnd.title"   path="bitmap\title.png"/>
+		<bitmap id="bitmap.mainwnd.shading.topleft"   path="bitmap\mainwnd_shading_topleft.png"/>
+		<bitmap id="bitmap.mainwnd.bkg" path="bitmap\mainwnd_bkg1.png"/>
+		<bitmap id="bitmap.mainwnd.blue.bkg" path="bitmap\mainwnd_bkg2.png"/>
+		<bitmap id="bitmap.mainwnd.bkg.highlight.mid" path="bitmap\mainwnd.bkg.highlight.mid.png" />
+		<bitmap id="bitmap.mainwnd.bkg.highlight.top" path="bitmap\mainwnd.bkg.highlight.top.png" />
+
+		<texture id="texture.mainwnd.bkg.bkg.border" type="NineInOne" image="bitmap\mainwnd.bkg.border.png" />
+		
+		<texture id="texture.mainwnd.border" type="NineInOne" image="bitmap\mainwnd_border.png" />
+
+		<texture id="texture.mainwnd.bkg.border" type="Normal" image="bitmap\texture.bkg.border.png">
+			<part id="topleft">
+				<src left="8" top="0" width="7" height="7"/>
+				<dest left="0" top="0" width="7" height="7"/>
+			</part>
+			
+			<part id="topcenter">
+				<src left="40" top="0" width="1" height="7"/>
+				<dest left="7" top="0" width="width-7-7" height="7"/>
+			</part>
+			
+			<part id="topright">
+				<src left="16" top="0" width="7" height="7"/>
+				<dest left="width-7" top="0" width="7" height="7"/>
+			</part>
+			
+			<part id="left">
+				<src left="32" top="0" width="2" height="7"/>
+				<dest left="0" top="7" width="2" height="height-7-7"/>
+			</part>
+
+			<part id="right">
+				<src left="35" top="0" width="2" height="7"/>
+				<dest left="width-2" top="7" width="2" height="height-7-7"/>
+			</part>
+
+			<part id="bottomleft">
+				<src left="0" top="0" width="7" height="7"/>
+				<dest left="0" top="height-7" width="7" height="7"/>
+			</part>
+
+			<part id="bottomcenter">
+				<src left="38" top="0" width="1" height="7"/>
+				<dest left="7" top="height-7" width="width-7-7" height="7"/>
+			</part>
+
+			<part id="bottomright">
+				<src left="24" top="0" width="7" height="7"/>
+				<dest left="width-7" top="height-7" width="7" height="7"/>
+			</part>
+		</texture>
+		
+		<texture id="texture.mainwnd.border2" type="Normal" image="bitmap\mainwnd_border2.png">
+			<part id="topleft">
+				<src left="8" top="0" width="7" height="7"/>
+				<dest left="0" top="0" width="7" height="7"/>
+			</part>
+			
+			<part id="topcenter">
+				<src left="40" top="0" width="1" height="7"/>
+				<dest left="7" top="0" width="width-7-7" height="7"/>
+			</part>
+			
+			<part id="topright">
+				<src left="16" top="0" width="7" height="7"/>
+				<dest left="width-7" top="0" width="7" height="7"/>
+			</part>
+			
+			<part id="left">
+				<src left="32" top="0" width="2" height="7"/>
+				<dest left="0" top="7" width="2" height="height-7-7"/>
+			</part>
+
+			<part id="right">
+				<src left="35" top="0" width="2" height="7"/>
+				<dest left="width-2" top="7" width="2" height="height-7-7"/>
+			</part>
+
+			<part id="bottomleft">
+				<src left="0" top="0" width="7" height="7"/>
+				<dest left="0" top="height-7" width="7" height="7"/>
+			</part>
+
+			<part id="bottomcenter">
+				<src left="38" top="0" width="1" height="7"/>
+				<dest left="7" top="height-7" width="width-7-7" height="7"/>
+			</part>
+
+			<part id="bottomright">
+				<src left="24" top="0" width="7" height="7"/>
+				<dest left="width-7" top="height-7" width="7" height="7"/>
+			</part>
+		</texture>	
+		
+		<texture id="texture.mainwnd.border3" type="Normal" image="bitmap\mainwnd_border3.png">
+			<part id="topleft">
+				<src left="8" top="0" width="7" height="7"/>
+				<dest left="0" top="0" width="7" height="7"/>
+			</part>
+			
+			<part id="topcenter">
+				<src left="40" top="0" width="1" height="7"/>
+				<dest left="7" top="0" width="width-7-7" height="7"/>
+			</part>
+			
+			<part id="topright">
+				<src left="16" top="0" width="7" height="7"/>
+				<dest left="width-7" top="0" width="7" height="7"/>
+			</part>
+			
+			<part id="left">
+				<src left="32" top="0" width="2" height="7"/>
+				<dest left="0" top="7" width="2" height="height-7-7"/>
+			</part>
+
+			<part id="right">
+				<src left="35" top="0" width="2" height="7"/>
+				<dest left="width-2" top="7" width="2" height="height-7-7"/>
+			</part>
+
+			<part id="bottomleft">
+				<src left="0" top="0" width="7" height="7"/>
+				<dest left="0" top="height-7" width="7" height="7"/>
+			</part>
+
+			<part id="bottomcenter">
+				<src left="38" top="0" width="1" height="7"/>
+				<dest left="7" top="height-7" width="width-7-7" height="7"/>
+			</part>
+
+			<part id="bottomright">
+				<src left="24" top="0" width="7" height="7"/>
+				<dest left="width-7" top="height-7" width="7" height="7"/>
+			</part>
+		</texture>	
+	</resource>
+</XLUE>

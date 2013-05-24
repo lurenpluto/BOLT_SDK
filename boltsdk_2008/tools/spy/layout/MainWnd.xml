@@ -1,0 +1,341 @@
+<xlue>
+	<objtreetemplate id="SpyTree" class="ObjectTreeTemplate">
+		<attr>
+			<left>-200</left>
+			<top>-200</top>
+			<width>2000</width>
+			<height>2000</height>
+		</attr>	
+		<obj id="mainwnd.border" class="TextureObject">
+			<attr>
+				<left>0</left>
+				<top>0</top>
+				<width>1024</width>
+				<height>740</height>
+				<texture>texture.mainwnd.border</texture>
+			</attr>
+			<children>
+				<obj id="mainwnd.resize.right" class="ResizeObject">
+					<attr>
+						<left>father.width-11</left>
+						<top>7</top>
+						<width>4</width>
+						<height>father.height-14</height>
+						<type>right</type>
+						<zorder>30000</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.resize.bottom" class="ResizeObject">
+					<attr>
+						<left>7</left>
+						<top>father.height-11</top>
+						<width>father.width-14</width>
+						<height>4</height>
+						<type>bottom</type>
+						<zorder>30000</zorder>
+					</attr>
+				</obj>
+				<!-- <obj id="resize" class="ImageObject">
+					<attr>
+						<left>father.width-15</left>
+						<top>father.height-15</top>
+						<width>12</width>
+						<height>12</height>
+						<zorder>10000</zorder>
+						<image>bitmap.mainwnd.status_bar.resize_object</image>
+					</attr>
+				</obj> -->
+				<obj id="status_bar.resize.bottomright" class="ResizeObject">
+					<attr>
+						<left>father.width-12</left>
+						<top>father.height-12</top>
+						<width>12</width>
+						<height>12</height>
+						<type>bottomright</type>
+						<zorder>1000000</zorder>
+					</attr>
+				</obj>
+				<obj id="mainwnd.bkg" class="Thunder.BkgCtrl">
+					<attr>
+						<BkgTemplate>MainWnd.Bkg.Shading</BkgTemplate>
+						<left>7</left>
+						<top>7</top>
+						<width>father.width-14</width>
+						<height>father.height-13</height>
+						<alpha>230</alpha>
+						<UseLight>true</UseLight>	
+					</attr>
+					<children>
+						<obj id="mainwnd.caption" class="CaptionObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>25</height>
+								<zorder>10000</zorder>
+							</attr>
+							<children>
+								<obj id="mainwnd.title" class="TextObject">
+									<attr>
+										<left>5</left>
+										<top>5</top>
+										<width>70</width>
+										<height>25</height>
+										<text>XLUE Spy</text>
+									</attr>
+								</obj>
+								<obj id="Main.Btn.DoString" class="Thunder.Button">
+									<attr>
+										<left>father.width-290</left>
+										<top>3</top>
+										<width>76</width>
+										<height>25</height>
+										<NormalBkgID>general.button.normal</NormalBkgID>
+										<DownBkgID>general.button.down</DownBkgID>
+										<DisableBkgID>general.button.disable</DisableBkgID>
+										<HoverBkgID>general.button.hover</HoverBkgID>
+										<Enable>true</Enable>
+										<Text>DoString</Text>
+										<TextFont>newtask.btn.font</TextFont>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="MainWnd.xml.lua" func="DoStringBtnOnClick"></event>
+									</eventlist>
+								</obj>
+								<obj id="Main.Btn.Refresh" class="Thunder.Button">
+									<attr>
+										<left>father.width-210</left>
+										<top>3</top>
+										<width>76</width>
+										<height>25</height>
+										<NormalBkgID>general.button.normal</NormalBkgID>
+										<DownBkgID>general.button.down</DownBkgID>
+										<DisableBkgID>general.button.disable</DisableBkgID>
+										<HoverBkgID>general.button.hover</HoverBkgID>
+										<Enable>true</Enable>
+										<Text>刷新</Text>
+										<TextFont>newtask.btn.font</TextFont>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="MainWnd.xml.lua" func="RefreshBtnOnClick"></event>
+									</eventlist>
+								</obj>
+								<obj id="Main.CheckBox.TopMost" class="Thunder.CheckBox">
+									<attr>
+										<left>father.width-130</left>
+										<top>0</top>
+										<width>50</width>
+										<height>15</height>
+										<Text>置顶</Text>
+									</attr>
+									<eventlist>
+										<event name="OnCheck" file="MainWnd.xml.lua" func="OnCheck"></event>
+									</eventlist>
+								</obj>
+								<obj id="Main.CheckBox.Preview" class="Thunder.CheckBox">
+									<attr>
+										<left>father.width-130</left>
+										<top>15</top>
+										<width>50</width>
+										<height>15</height>
+										<Text>预览</Text>
+									</attr>
+									<eventlist>
+										<event name="OnCheck" file="MainWnd.xml.lua" func="PreviewOnCheck"></event>
+									</eventlist>
+								</obj>
+								<obj id="mainwnd.sysbtn.line" class="ImageObject">
+									<attr>
+										<left>father.width - 79</left>
+										<top>2</top>
+										<width>2</width>
+										<height>20</height>
+										<image>bitmap.menu.line</image>
+									</attr>
+								</obj>
+								<obj id="mainwnd.minbtn" class="Thunder.IconTextButton">
+									<attr>
+										<left>father.width - 74</left>
+										<top>4</top>
+										<width>21</width>
+										<height>23</height>
+										<NormalBkgID>texture.sysbtn.normal</NormalBkgID>
+										<DownBkgID>texture.sysbtn.down</DownBkgID>
+										<DisableBkgID>texture.sysbtn.normal</DisableBkgID>
+										<HoverBkgID>texture.sysbtn.hover</HoverBkgID>
+										<IconResID>bitmap.sysbtn.icon.min</IconResID>
+										<IconWidth>21</IconWidth>
+										<Enable>true</Enable>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="MainWnd.xml.lua" func="minBtnOnClick" />								
+									</eventlist>
+								</obj>
+								<obj id="mainwnd.maxbtn" class="Thunder.IconTextButton">
+									<attr>
+										<left>father.width - 53</left>
+										<top>4</top>
+										<width>21</width>
+										<height>23</height>
+										<NormalBkgID>texture.sysbtn.normal</NormalBkgID>
+										<DownBkgID>texture.sysbtn.down</DownBkgID>
+										<DisableBkgID>texture.sysbtn.normal</DisableBkgID>
+										<HoverBkgID>texture.sysbtn.hover</HoverBkgID>
+										<IconResID>bitmap.sysbtn.icon.max</IconResID>
+										<IconWidth>21</IconWidth>
+										<Enable>true</Enable>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="MainWnd.xml.lua" func="maxBtnOnClick" />								
+										<event name="OnInitControl" file="MainWnd.xml.lua" func="maxBtnOnInitControl" />
+									</eventlist>
+								</obj>
+								<obj id="mainwnd.exitbtn" class="Thunder.IconTextButton">
+									<attr>
+										<left>father.width - 32</left>
+										<top>4</top>
+										<width>21</width>
+										<height>23</height>
+										<NormalBkgID>texture.sysbtn.normal</NormalBkgID>
+										<DownBkgID>texture.sysbtn.down</DownBkgID>
+										<DisableBkgID>texture.sysbtn.normal</DisableBkgID>
+										<HoverBkgID>texture.sysbtn.hover</HoverBkgID>
+										<IconResID>bitmap.sysbtn.icon.exit</IconResID>
+										<IconWidth>21</IconWidth>
+										<Enable>true</Enable>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="MainWnd.xml.lua" func="OnClose" />								
+									</eventlist>
+								</obj>
+							</children>
+						</obj>
+						<obj id="mainwnd.Main" class="LayoutObject">
+							<attr>
+								<left>0</left>
+								<top>25</top>
+								<width>father.width</width>
+								<height>father.height - 25</height>
+							</attr>
+							<children>
+								<obj id="bk.border" class="TextureObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>father.height</height>
+										<texture>texture.config.panel.bkg</texture>
+									</attr>
+								</obj>
+								<obj id="tasklist.alphashowmask" class="TextureObject">
+									<attr>
+										<left>2</left>
+										<top>2</top>
+										<width>father.width - 4</width>
+										<height>father.height - 4</height>
+										<zorder>101</zorder>
+										<texture>texture.tasklist.alphashowmask</texture>
+										<visible>1</visible>
+									</attr>
+									<children>
+										<obj id="Main.Edit.path" class="Thunder.Edit">
+											<attr>
+												<left>5</left>
+												<top>115</top>
+												<width>father.width-13</width>
+												<height>25</height>
+												<NormalBkgID>texture.edit.bkg.normal</NormalBkgID>
+												<HoverBkgID>texture.edit.bkg.hover</HoverBkgID>
+												<DisableBkgID>texture.edit.bkg.disable</DisableBkgID>
+												<Multiline>false</Multiline>
+												<Enable>true</Enable>
+												<AllowVSB>true</AllowVSB>
+											</attr>
+											<eventlist>
+												<event name="OnEditKeyDown" file="MainWnd.xml.lua" func="OnEditKeyDown" />
+											</eventlist>
+										</obj>
+										<obj id="Main.Edit.String" class="Thunder.Edit">
+											<attr>
+												<left>5</left>
+												<top>5</top>
+												<width>father.width-13</width>
+												<height>110</height>
+												<NormalBkgID>texture.edit.bkg.normal</NormalBkgID>
+												<HoverBkgID>texture.edit.bkg.hover</HoverBkgID>
+												<DisableBkgID>texture.edit.bkg.disable</DisableBkgID>
+												<Multiline>true</Multiline>
+												<Enable>true</Enable>
+												<AllowVSB>true</AllowVSB>
+											</attr>
+										</obj>
+										
+										<obj id="tree" class="TreeCtrl">
+											<attr>
+												<left>5</left>
+												<top>140</top>
+												<width>father.width - 420</width>
+												<height>father.height-150</height>
+											</attr>
+											<eventlist>
+												<event name="OnSelectChanged" file="MainWnd.xml.lua" func="OnSelectChanged" />
+											</eventlist>
+										</obj>
+										<obj id="list" class="ListCtrl">
+											<attr>
+												<left>father.width - 410</left>
+												<top>140</top>
+												<width>400</width>
+												<height>father.height-150</height>
+											</attr>
+											<eventlist>
+												<event name="OnSelectChanged" file="MainWnd.xml.lua" func="List_OnSelectChanged" />
+											</eventlist>
+										</obj>
+									</children>
+								</obj>
+								
+							</children>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="MainWnd.xml.lua" func="OnInitControl" />
+			</eventlist>
+		</obj>		
+	</objtreetemplate>
+	
+	<hostwndtemplate id="Spy.MainFrame" class="FrameHostWnd">
+		<attr> 
+			<title>XLUE Spy</title>
+			<layered>1</layered>
+			<left>200</left> 
+			<top>100</top>
+			<width >1024</width>
+			<height>740</height>
+			<cacheleft>0</cacheleft> 
+			<cachetop>0</cachetop>
+			<cachewidth >1024</cachewidth>
+			<cacheheight>768</cacheheight>
+			<center>1</center>
+			<topmost>0</topmost>
+			<visible>1</visible>
+			<enable>1</enable>
+			<active>1</active>
+			<maxbox>1</maxbox>
+			<minbox>1</minbox>
+			<sysmenu>1</sysmenu>
+			<minwidth>1024</minwidth>
+			<minheight>740</minheight>
+			<appwindow>1</appwindow>
+			<fps>30</fps>
+			<border>7,7,7,6</border>
+		</attr>
+		<eventlist>
+			<event name="OnClose" file="MainWnd.xml.lua" func="OnClose" />
+			<event name="OnSize" file="MainWnd.xml.lua" func="OnSize" />	
+			<event name="OnCreate" file="MainWnd.xml.lua" func="OnCreate" />			
+		</eventlist>
+	</hostwndtemplate>
+</xlue>

@@ -1,0 +1,182 @@
+<xlue>
+	<objtreetemplate id="ConfigTree" class="ObjectTreeTemplate">
+		<attr>
+			<left>-200</left>
+			<top>-200</top>
+			<width>2000</width>
+			<height>2000</height>
+		</attr>
+		<obj id="bkg" class="TextureObject">
+			<attr>
+				<width>406</width>
+                <height>300</height>
+				<texture>texture.mainwnd.border</texture>
+			</attr>
+			<children>
+				<obj id="mainwnd.bkg.fill" class="FillObject">
+					<attr>
+						<left>1</left>
+						<top>2</top>
+						<width>father.width-2</width>
+						<height>father.height-4</height>
+						<filltype>Monochrome</filltype>
+						<blendtype>Source</blendtype>
+						<destcolor>255,255,255,230</destcolor>
+						<srccolor>255,255,255,230</srccolor>
+						<srcpt>0,0</srcpt>
+						<destpt>0,740</destpt>
+						<zorder>5</zorder>
+					</attr>
+				</obj>
+				<obj id="Config.edit.moveani.bkg" class="TextureObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>0</width>
+						<height>0</height>
+						<visible>1</visible>
+						<alpha>0</alpha>
+						<texture>texture.edit.focus</texture>
+						<zorder>10000</zorder>
+					</attr>
+				</obj>
+				<obj id="Config.body" class="LayoutObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+					<children>
+						<obj id="Config.caption" class="CaptionObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+								<zorder>0</zorder>
+							</attr>
+							<children>
+								<obj id="Config.title" class="TextObject">
+									<attr>
+										<left>8</left>
+										<top>7</top>
+										<width>80</width>
+										<height>25</height>
+										<text>Config</text>
+										<zorder>10000</zorder>
+									</attr>
+								</obj>
+								<obj id="Config.exitbtn" class="BoltFox.System.ButtonEx.Ctrl">
+									<attr>
+										<left>father.width - 49</left>
+										<top>1</top>
+										<width>49</width>
+										<height>22</height>
+										<MaxShow>false</MaxShow>
+										<MiniShow>false</MiniShow>
+										<Close_NormalImageID>system.btn.exit.normal</Close_NormalImageID>
+										<Close_HoverImageID>system.btn.exit.hover</Close_HoverImageID>
+										<Close_DownImageID>system.btn.exit.down</Close_DownImageID>
+										<Close_DisableImageID>system.btn.exit.normal</Close_DisableImageID>
+									</attr>
+									<eventlist>
+										<event name="OnClose" file="ConfigWnd.xml.lua" func="ExitBtn__OnClick" />
+									</eventlist>
+								</obj>
+								<obj id="text.main.page" class="TextObject">
+									<attr>
+										<left>35</left>
+										<top>43</top>
+										<width>30</width>
+										<height>20</height>
+										<text>主页</text>
+									</attr>
+								</obj>
+								<obj id="edit.main.page" class="BoltFox.Edit.Ctrl">
+									<attr>
+										<left>65</left>
+										<top>40</top>
+										<width>280</width>
+										<height>26</height>
+									</attr>
+								</obj>
+								<obj id="checkbox.blur" class="System.CheckBox">
+									<attr>
+										<left>115</left>
+										<top>100</top>
+										<width>150</width>
+										<height>20</height>
+										<Text>是否开启毛玻璃效果</Text>
+										<BoxNormalBitmapID>bitmap.box.normal</BoxNormalBitmapID>
+										<BoxHoverBitmapID>bitmap.box.hover</BoxHoverBitmapID>
+										<BoxDisableBitmapID>bitmap.box.disable</BoxDisableBitmapID>
+										<TickNormalBitmapID>bitmap.tick.normal</TickNormalBitmapID>
+										<TickDisableBitmapID>bitmap.tick.disable</TickDisableBitmapID>
+										<TextNormalFontID>default.font</TextNormalFontID>
+										<TextHoverFontID>default.font.bold</TextHoverFontID>
+										<TextDownFontID>default.font.link</TextDownFontID>
+										<TextDisableFontID>default.font.underline</TextDisableFontID>
+										<TextNormalColorID>system.black</TextNormalColorID>
+									</attr>
+									<eventlist>
+										<event name="OnCheck" file="ConfigWnd.xml.lua" func="systemsymbol_OnCheck" />
+										<event name="OnBeforeClick" file="ConfigWnd.xml.lua" func="systemsymbol_OnBeforeClick" />
+									</eventlist>
+								</obj>
+
+								<obj id="btn.ok" class="System.Button">
+									<attr>
+										<left>90</left>
+										<top>250</top>
+										<width>50</width>
+										<height>26</height>
+										<Text>确定</Text>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="ConfigWnd.xml.lua" func="OK_OnClick" />
+									</eventlist>
+								</obj>
+								<obj id="btn.cancel" class="System.Button">
+									<attr>
+										<left>240</left>
+										<top>250</top>
+										<width>50</width>
+										<height>26</height>
+										<Text>取消</Text>
+									</attr>
+									<eventlist>
+										<event name="OnClick" file="ConfigWnd.xml.lua" func="Cancel_OnClick" />
+									</eventlist>
+								</obj>
+							</children>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="ConfigWnd.xml.lua" func="OnInitControl" />
+			</eventlist>
+		</obj>
+	</objtreetemplate>
+	
+	<hostwndtemplate id="ConfigWnd" class="ModalHostWnd">
+		<attr>
+			<title>Config</title>
+			<layered>1</layered>
+            <left>200</left>
+            <top>100</top>
+            <width>406</width>
+            <height>300</height>
+            <topmost>0</topmost>
+            <visible>1</visible>
+            <enable>1</enable>
+            <maxbox>0</maxbox>
+            <minbox>0</minbox>
+            <fps>30</fps>
+		</attr>
+		<eventlist>
+			<event name="OnCreate" file="ConfigWnd.xml.lua" func="OnCreate" />
+		</eventlist>
+	</hostwndtemplate>
+</xlue>

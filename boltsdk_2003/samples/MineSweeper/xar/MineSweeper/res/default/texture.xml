@@ -1,0 +1,45 @@
+<XLUE>
+	<resource>	
+	<texture id="texture.mainwnd.border" type="Normal" image="bitmap\mainwnd_border.png">
+			<part id="topleft">
+				<src left="8" top="0" width="7" height="7"/>
+				<dest left="0" top="0" width="7" height="7"/>
+			</part>
+			
+			<part id="topcenter">
+				<src left="40" top="0" width="1" height="7"/>
+				<dest left="7" top="0" width="width-7-7" height="7"/>
+			</part>
+			
+			<part id="topright">
+				<src left="16" top="0" width="7" height="7"/>
+				<dest left="width-7" top="0" width="7" height="7"/>
+			</part>
+			
+			<part id="left">
+				<src left="32" top="0" width="2" height="7"/>
+				<dest left="0" top="7" width="2" height="height-7-7"/>
+			</part>
+
+			<part id="right">
+				<src left="35" top="0" width="2" height="7"/>
+				<dest left="width-2" top="7" width="2" height="height-7-7"/>
+			</part>
+
+			<part id="bottomleft">
+				<src left="0" top="0" width="7" height="7"/>
+				<dest left="0" top="height-7" width="7" height="7"/>
+			</part>
+
+			<part id="bottomcenter">
+				<src left="38" top="0" width="1" height="7"/>
+				<dest left="7" top="height-7" width="width-7-7" height="7"/>
+			</part>
+
+			<part id="bottomright">
+				<src left="24" top="0" width="7" height="7"/>
+				<dest left="width-7" top="height-7" width="7" height="7"/>
+			</part>
+		</texture>
+		</resource>
+</XLUE>

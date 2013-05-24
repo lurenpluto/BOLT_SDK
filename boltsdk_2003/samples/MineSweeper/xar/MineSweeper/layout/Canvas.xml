@@ -1,0 +1,70 @@
+<xlue>
+	<control class="Canvas">
+		<attr_def>
+			<attr name="Width" type="int">
+				<default>30</default>
+			</attr>
+			<attr name="Height" type="int">
+				<default>16</default>
+			</attr>
+			<attr name="MineNumber" type="int">
+				<default>99</default>
+			</attr>
+		</attr_def>
+
+		<objtemplate>
+			<children>
+				<obj id="bkg" class="ImageObject">
+					<attr>
+						<width>498</width>
+						<height>318</height>
+						<image>bitmap.Canvas.bkg</image>
+					</attr>
+					<children>
+						<obj id="MineHolder" class="LayoutObject">
+							<attr>
+								<left>9</left>
+								<top>53</top>
+								<width>30*16</width>
+								<height>16*16</height>
+								<limitchild >1</limitchild >
+							</attr>
+						</obj>
+						<obj id="face" class="FaceObject">
+							<attr>
+								<left>238</left>
+								<top>14</top>
+								<width>24</width>
+								<height>24</height>
+							</attr>
+							<eventlist>
+								<event name="OnClick" file="Canvas.xml.lua" func="face_OnClick" />
+							</eventlist>
+						</obj>
+						<obj id="mineNumber" class="NumberObject">
+							<attr>
+								<left>15</left>
+								<top>14</top>
+								<width>39</width>
+								<height>23</height>
+								<limitchild>1</limitchild>
+							</attr>
+						</obj>
+						<obj id="timeNumber" class="NumberObject">
+							<attr>
+								<left>444</left>
+								<top>14</top>
+								<width>39</width>
+								<height>23</height>
+								<limitchild>1</limitchild>
+							</attr>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="Canvas.xml.lua" func="OnInitControl" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

@@ -1,0 +1,31 @@
+<XLUE>
+	<resource>
+		<imagelist id="imagelist.vscrollbar.button" vertical="0" splitter="1" varyblock="1" image="bitmap\scrollbar.vsb.arrow.png"/>
+		
+		<texture id="texture.vsb.leftbtn.normal" imagelist="imagelist.vscrollbar.button" index="1" />
+		<texture id="texture.vsb.leftbtn.hover" imagelist="imagelist.vscrollbar.button" index="2" />
+		<texture id="texture.vsb.leftbtn.down" imagelist="imagelist.vscrollbar.button" index="3" />
+		
+		<texture id="texture.vsb.rightbtn.normal" imagelist="imagelist.vscrollbar.button" index="4" />
+		<texture id="texture.vsb.rightbtn.hover" imagelist="imagelist.vscrollbar.button" index="5" />
+		<texture id="texture.vsb.rightbtn.down" imagelist="imagelist.vscrollbar.button" index="6" />
+		
+		<texture id="texture.vsb.big.thumb.normal" type="ThreeInOneV" image="bitmap\scrollbar.vsb.big.thumb.normal.png"/>
+		<texture id="texture.vsb.big.thumb.hover" type="ThreeInOneV" image="bitmap\scrollbar.vsb.big.thumb.hover.png"/>
+		<texture id="texture.vsb.big.thumb.down" type="ThreeInOneV" image="bitmap\scrollbar.vsb.big.thumb.hover.png"/>
+		<texture id="texture.vsb.big.bkg.normal"   image="bitmap\scrollbar.vsb.big.bkg.normal.png"/>
+		<texture id="texture.vsb.big.bkg.hover"   image="bitmap\scrollbar.vsb.big.bkg.hover.png"/>
+		
+		<texture id="texture.vsb.small.thumb.normal" type="ThreeInOneV" image="bitmap\scrollbar.vsb.small.thumb.normal.png"/>
+		<texture id="texture.vsb.small.thumb.hover" type="ThreeInOneV" image="bitmap\scrollbar.vsb.small.thumb.hover.png"/>
+		<texture id="texture.vsb.small.thumb.down" type="ThreeInOneV" image="bitmap\scrollbar.vsb.small.thumb.hover.png"/>
+		<texture id="texture.vsb.small.bkg.normal"   image="bitmap\scrollbar.vsb.small.bkg.normal.png"/>
+		<texture id="texture.vsb.small.bkg.hover"   image="bitmap\scrollbar.vsb.small.bkg.hover.png"/>
+		
+		<texture id="texture.hsb.small.thumb.normal" type="ThreeInOneH" image="bitmap\scrollbar.hsb.small.thumb.normal.png"/>
+		<texture id="texture.hsb.small.thumb.hover" type="ThreeInOneH" image="bitmap\scrollbar.hsb.small.thumb.hover.png"/>
+		<texture id="texture.hsb.small.thumb.down" type="ThreeInOneH" image="bitmap\scrollbar.hsb.small.thumb.hover.png"/>
+		<texture id="texture.hsb.small.bkg.normal"   image="bitmap\scrollbar.hsb.small.bkg.normal.png"/>
+		<texture id="texture.hsb.small.bkg.hover"   image="bitmap\scrollbar.hsb.small.bkg.hover.png"/>
+	</resource>
+</XLUE>

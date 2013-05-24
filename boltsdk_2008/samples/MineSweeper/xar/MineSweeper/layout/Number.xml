@@ -1,0 +1,61 @@
+<xlue>
+	<control class="NumberObject">
+		<attr_def>
+		</attr_def>
+		<method_def>
+			<SetNumber file="Number.xml.lua" func="SetNumber" />
+		</method_def>
+		<event_def>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="number1" class="ImageObject">
+					<attr>
+						<width>13</width>
+						<height>23</height>
+						<image>bitmap.number.0</image>
+					</attr>
+				</obj>
+				<obj id="number1Ani" class="ImageObject">
+					<attr>
+						<width>13</width>
+						<height>23</height>
+						<image>bitmap.number.0</image>
+					</attr>
+				</obj>
+				<obj id="number2" class="ImageObject">
+					<attr>
+						<left>13</left>
+						<width>13</width>
+						<height>23</height>
+						<image>bitmap.number.9</image>
+					</attr>
+				</obj>
+				<obj id="number2Ani" class="ImageObject">
+					<attr>
+						<left>13</left>
+						<width>13</width>
+						<height>23</height>
+						<image>bitmap.number.9</image>
+					</attr>
+				</obj>
+				<obj id="number3" class="ImageObject">
+					<attr>
+						<left>26</left>
+						<width>13</width>
+						<height>23</height>
+						<image>bitmap.number.9</image>
+					</attr>
+				</obj>
+				<obj id="number3Ani" class="ImageObject">
+					<attr>
+						<left>26</left>
+						<width>13</width>
+						<height>23</height>
+						<image>bitmap.number.null</image>
+					</attr>
+				</obj>
+			</children>
+		</objtemplate>
+	</control>
+</xlue>

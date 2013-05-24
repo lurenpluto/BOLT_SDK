@@ -1,0 +1,27 @@
+<xlue>
+	<control class="FaceObject">
+		<attr_def>
+		</attr_def>
+		<method_def>
+			<SetState file="Face.xml.lua" func="SetState" />
+		</method_def>
+		<event_def>
+			<OnClick />
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="image" class="ImageObject">
+					<attr>
+						<width>24</width>
+						<height>24</height>
+						<image>bitmap.face.normal</image>
+					</attr>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnLButtonDown" file="Face.xml.lua" func="OnLButtonDown" />
+				<event name="OnLButtonUp" file="Face.xml.lua" func="OnLButtonUp" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

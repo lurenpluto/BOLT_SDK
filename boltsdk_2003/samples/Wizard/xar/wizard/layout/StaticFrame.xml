@@ -1,0 +1,63 @@
+<xlue>
+    <control class="StaticFrame">
+        <attr_def>
+            <attr name="Text" type="string" />
+			<attr name="Font" type="string" >
+				<default>default.font</default>
+			</attr>
+			<attr name="TextColor" type="string" >
+				<default>system.black</default>
+			</attr>
+        </attr_def>
+        <method_def>
+            <GetText file="StaticFrame.xml.lua" func="GetText"/>
+            <SetText file="StaticFrame.xml.lua" func="SetText"/>
+			<GetTextColorID file="StaticFrame.xml.lua" func="GetTextColorID"/>
+            <SetTextColorID file="StaticFrame.xml.lua" func="SetTextColorID"/>
+			<GetTextFont file="StaticFrame.xml.lua" func="GetTextFont"/>
+            <SetTextFont file="StaticFrame.xml.lua" func="SetTextFont"/>
+        </method_def>
+        <event_def>
+        </event_def>
+        <objtemplate>
+            <children>
+			    <obj id="frame.bkg" class="TextureObject">
+                    <attr>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>father.width</width>
+                        <height>father.height</height>
+						<texture>static.frame</texture>
+                    </attr>
+                    <children>
+						<obj id="frame.text" class="TextObject">
+							<attr>
+								<left>12</left>
+								<top>-10</top>
+								<width>father.width-22</width>
+								<height>20</height>
+								<textcolor>system.black</textcolor>
+								<font>default.font</font>
+								<valign>center</valign>
+								<halign>left</halign>
+								<texttype>freetype</texttype>
+							</attr>
+							<eventlist>
+								<event name="OnBind" file="StaticFrame.xml.lua" func="OnInitControl" />
+							</eventlist>
+						</obj>
+						<obj id="frame.line" class="TextureObject">
+							<attr>
+								<left>10</left>
+								<top>0</top>
+								<width>father.width-20</width>
+								<height></height>
+								<texture>static.frame.line</texture>
+							</attr>
+						</obj>
+                    </children>
+				</obj>
+            </children>
+        </objtemplate>
+    </control>
+</xlue>

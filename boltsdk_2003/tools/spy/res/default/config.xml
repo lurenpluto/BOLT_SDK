@@ -1,0 +1,96 @@
+<XLUE>
+	<resource>
+		<bitmap id="Config.folder" path="bitmap\floder.png"/>
+		<bitmap id="Config.desktop" path="bitmap\desktop.png"/>
+		<imagelist id="config.imagelist.editbox.bkg" vertical="0" splitter="1" varyblock="1" image="bitmap\general.editbox.bkg.png"/>
+		<texture id="texture.config.edit.normal.bkg" type="NineInOne" imagelist="config.imagelist.editbox.bkg" index="1"/>
+		<texture id="texture.config.edit.hover.bkg" type="NineInOne" imagelist="config.imagelist.editbox.bkg" index="1"/>
+		<texture id="texture.config.edit.disable.bkg" type="NineInOne" imagelist="config.imagelist.editbox.bkg" index="2"/>		
+		<texture id="texture.config.slideredit.box.normal" type="NineInOne" imagelist="config.imagelist.editbox.bkg" index="5"/>
+		<texture id="texture.config.slideredit.box.hover" type="NineInOne" imagelist="config.imagelist.editbox.bkg" index="5"/>
+		<texture id="texture.config.slideredit.box.disable" type="NineInOne" imagelist="config.imagelist.editbox.bkg" index="6"/>
+		
+		<texture id="texture.config.slider.bkg" type="ThreeInOneH" image="bitmap\config.slider.bkg.png" />
+		<texture id="texture.config.slider.bar" type="ThreeInOneH" image="bitmap\config.slider.bar.png" />
+		
+		<imagelist id="bitmap.public.btn.image" vertical="0" splitter="1" varyblock="1" image="bitmap\bitmap.public.btn.png"/>
+		<texture id="bitmap.config.slider.btn.normal"   imagelist="bitmap.public.btn.image" index="8" />
+		<texture id="bitmap.config.slider.btn.hover"   imagelist="bitmap.public.btn.image" index="7" />
+		<texture id="bitmap.config.slider.btn.down"   imagelist="bitmap.public.btn.image" index="7" />
+		
+		<texture id="texture.config.panel.bkg" type="ThreeInOneH" image="bitmap\config.panel.bkg.png"/>
+		
+		
+		<imagelist id="config.imagelist.checkbox" vertical="0" splitter="1" varyblock="1" image="bitmap\config.checkbox.png"/>
+		<texture id="texture.config.slideredit.btn.normal" imagelist="config.imagelist.checkbox" index="3"/>
+		<texture id="texture.config.slideredit.btn.disable" imagelist="config.imagelist.checkbox" index="3"/>
+        <texture id="texture.config.slideredit.btn.hover" imagelist="config.imagelist.checkbox" index="3"/>
+        <texture id="texture.config.slideredit.btn.down" imagelist="config.imagelist.checkbox" index="3"/>
+		
+		<imagelist id="imagelist.sub.wnd.radiobutton" vertical="0" splitter="1" varyblock="1" image="bitmap\public.sub.wnd.radiobutton.png"/>
+		<bitmap id="sub.wnd.radiobutton.unselect.hover" imagelist="imagelist.sub.wnd.radiobutton" index="1" />
+		<bitmap id="sub.wnd.radiobutton.unselect.down" imagelist="imagelist.sub.wnd.radiobutton" index="1" />
+		<bitmap id="sub.wnd.radiobutton.unselect.normal" imagelist="imagelist.sub.wnd.radiobutton" index="1" />
+		<bitmap id="sub.wnd.radiobutton.unselect.diable" imagelist="imagelist.sub.wnd.radiobutton" index="1" />
+		<bitmap id="sub.wnd.radiobutton.select.hover" imagelist="imagelist.sub.wnd.radiobutton" index="2" />
+		<bitmap id="sub.wnd.radiobutton.select.down" imagelist="imagelist.sub.wnd.radiobutton" index="2" />
+		<bitmap id="sub.wnd.radiobutton.select.normal" imagelist="imagelist.sub.wnd.radiobutton" index="2" />
+		<bitmap id="sub.wnd.radiobutton.select.diable" imagelist="imagelist.sub.wnd.radiobutton" index="2" />
+		
+		<bitmap id="proxy.check.ani.normal" imagelist="imagelist.sub.wnd.radiobutton" index="1"  />
+		<bitmap id="proxy.check.ani.on" imagelist="imagelist.sub.wnd.radiobutton" index="2"  />
+		
+		
+		<texture id="texture.config.menu.item.border.down" type="ThreeInOneH" image="bitmap\config.menu.item.down.border.png" />
+		<texture id="texture.config.menu.item.border.hover" type="ThreeInOneH" image="bitmap\config.menu.item.hover.border.png" />
+		<texture id="bitmap.config.menu.item.light.hover"    image="bitmap\config.menu.item.hover.light.png" />
+		<texture id="bitmap.config.menu.item.light.down"    image="bitmap\config.menu.item.down.light.png" />
+		
+		<imagelist id="imagelist.config.line" vertical="0" splitter="1" varyblock="1" image="bitmap\config.line.png"/>
+		<texture id="config.line"   imagelist="imagelist.config.line" index="1" />
+		
+		<texture id="texture.config.proxycheck.bar.bkg" type="ThreeInOneH" image="bitmap\public.schedulebar.bkg.png"/>
+		<texture id="texture.config.proxycheck.bar.light" type="ThreeInOneH" image="bitmap\public.schedulebar.light.png"/>
+		<texture id="texture.config.wnd.border" type="Normal" image="bitmap\public.round.corner.png">
+			<part id="lefttop">
+				<src left="0" top="0" width="9" height="9"/>
+				<dest left="0" top="0" width="9" height="9"/>
+			</part>
+			
+			<part id="righttop">
+				<src left="10" top="0" width="9" height="9"/>
+				<dest left="width-9" top="0" width="9" height="9"/>
+			</part>
+			
+			<part id="leftbottom">
+				<src left="20" top="0" width="9" height="9"/>
+				<dest left="0" top="height-9" width="9" height="9"/>
+			</part>
+			
+			<part id="rightbottom">
+				<src left="30" top="0" width="9" height="9"/>
+				<dest left="width-9" top="height-9" width="9" height="9"/>
+			</part>
+			
+			<part id="topcenter">
+				<src left="40" top="0" width="1" height="9"/>
+				<dest left="9" top="0" width="width-18" height="9"/>
+			</part>
+			
+			<part id="bottomcenter">
+				<src left="42" top="0" width="1" height="9"/>
+				<dest left="9" top="height-9" width="width-18" height="9"/>
+			</part>
+			
+			<part id="leftcenter">
+				<src left="44" top="2" width="9" height="1"/>
+				<dest left="0" top="9" width="9" height="height-18"/>
+			</part>
+			
+			<part id="rightcenter">
+				<src left="54" top="2" width="9" height="1"/>
+				<dest left="width-9" top="9" width="9" height="height-18"/>
+			</part>
+		</texture>	
+	</resource>
+</XLUE>

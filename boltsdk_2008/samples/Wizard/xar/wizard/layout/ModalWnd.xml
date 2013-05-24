@@ -1,0 +1,86 @@
+<xlue>
+	<objtreetemplate  id="Wizard.ModalDlg" >
+		<attr>
+			<left>-200</left>
+			<top>-200</top>
+			<width>2000</width>
+			<height>2000</height>
+		</attr>
+		
+		<obj id="app.bkg" class="Wizard.BkgCtrl">
+			<attr>
+				<left>0</left>
+				<top>0</top>
+				<width>400</width>
+				<height>400</height>
+			</attr>
+			<children>
+				<obj id="bkg.nc" class="NcObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+						<zorder>400</zorder>
+					</attr>
+					<children>
+						<obj id="bkg.flash" class="TextureObject">
+							<attr>
+								<width>father.width</width>
+								<height>father.height</height>
+								<texture>bkg.flash</texture>
+								<visible>0</visible>
+								<zorder>-100</zorder>
+							</attr>
+						</obj>
+					</children>
+					<eventlist>
+						<event name="OnNcActivate" file="ModalWnd.lua" func="OnNcActivate"/>
+					</eventlist>
+				</obj>
+	
+				<obj id="caption" class="CaptionObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<zorder>-1000</zorder>
+					</attr>
+				</obj>
+				<obj id="close" class="BaseUI.Button">
+					<attr>
+						<left>(father.width - 120)/2</left>
+						<top>father.height - 40</top>
+						<width>120</width>
+						<height>25</height>
+						<Text>关闭</Text>
+						<zorder>400</zorder>
+					</attr>
+					<eventlist>
+						<event name="OnClick" file="ModalWnd.lua" func="OnClick" />
+					</eventlist>
+				</obj>
+			</children>
+		</obj>
+	</objtreetemplate>
+	
+	<hostwndtemplate id="Wizard.ModalDlg" class="ModalHostWnd" >
+		<attr> 
+			<title>WizardDlg</title>
+			<layered>1</layered>
+			<left>200</left> 
+			<top>100</top>
+			<width>400</width>
+			<height>400</height>
+			<visible>1</visible>
+			<enable>1</enable>
+			<minwidth>300</minwidth>
+			<minheight>200</minheight>
+			<appwindow>0</appwindow>
+		</attr>
+		
+		<eventlist>
+			<event name="OnCreate" file="ModalWnd.lua" func="OnCreate" />
+			<event name="OnSize" file="ModalWnd.lua" func="OnSize"/>
+		</eventlist>		
+	</hostwndtemplate>	
+</xlue>

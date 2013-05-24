@@ -1,0 +1,80 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "core\core.vcproj", "{ADA3490A-4E19-4F4D-B7D3-F4EB0BFDAFB4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloBolt1", "HelloBolt1\HelloBolt1.vcproj", "{C8705C45-139C-4CEE-A7C5-23F27BE2F799}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloBolt2", "HelloBolt2\HelloBolt2.vcproj", "{F9C930CC-1B04-476B-BA61-D96E8221CB1D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloBolt3", "HelloBolt3\HelloBolt3.vcproj", "{566DA577-704D-4A75-AFF8-D39DB01B1E8A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloBolt4", "HelloBolt4\HelloBolt4.vcproj", "{0FB598BB-02A9-4446-B9D4-3F388D8D635F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloBolt5", "HelloBolt5\HelloBolt5.vcproj", "{EF83E3CC-5EB1-446A-B854-A094FA0954EF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloBolt6", "HelloBolt6\HelloBolt6.vcproj", "{D4AA6552-7ED2-4ACA-B57C-D9AC260E60AA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloBolt7", "HelloBolt7\HelloBolt7.vcproj", "{DBA380EE-2056-4D3F-8C94-0D9556FDE8A5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ADA3490A-4E19-4F4D-B7D3-F4EB0BFDAFB4} = {ADA3490A-4E19-4F4D-B7D3-F4EB0BFDAFB4}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{ADA3490A-4E19-4F4D-B7D3-F4EB0BFDAFB4}.Debug.ActiveCfg = Debug|Win32
+		{ADA3490A-4E19-4F4D-B7D3-F4EB0BFDAFB4}.Debug.Build.0 = Debug|Win32
+		{ADA3490A-4E19-4F4D-B7D3-F4EB0BFDAFB4}.Release.ActiveCfg = Release|Win32
+		{ADA3490A-4E19-4F4D-B7D3-F4EB0BFDAFB4}.Release.Build.0 = Release|Win32
+		{C8705C45-139C-4CEE-A7C5-23F27BE2F799}.Debug.ActiveCfg = Debug|Win32
+		{C8705C45-139C-4CEE-A7C5-23F27BE2F799}.Debug.Build.0 = Debug|Win32
+		{C8705C45-139C-4CEE-A7C5-23F27BE2F799}.Release.ActiveCfg = Release|Win32
+		{C8705C45-139C-4CEE-A7C5-23F27BE2F799}.Release.Build.0 = Release|Win32
+		{F9C930CC-1B04-476B-BA61-D96E8221CB1D}.Debug.ActiveCfg = Debug|Win32
+		{F9C930CC-1B04-476B-BA61-D96E8221CB1D}.Debug.Build.0 = Debug|Win32
+		{F9C930CC-1B04-476B-BA61-D96E8221CB1D}.Release.ActiveCfg = Release|Win32
+		{F9C930CC-1B04-476B-BA61-D96E8221CB1D}.Release.Build.0 = Release|Win32
+		{566DA577-704D-4A75-AFF8-D39DB01B1E8A}.Debug.ActiveCfg = Debug|Win32
+		{566DA577-704D-4A75-AFF8-D39DB01B1E8A}.Debug.Build.0 = Debug|Win32
+		{566DA577-704D-4A75-AFF8-D39DB01B1E8A}.Release.ActiveCfg = Release|Win32
+		{566DA577-704D-4A75-AFF8-D39DB01B1E8A}.Release.Build.0 = Release|Win32
+		{0FB598BB-02A9-4446-B9D4-3F388D8D635F}.Debug.ActiveCfg = Debug|Win32
+		{0FB598BB-02A9-4446-B9D4-3F388D8D635F}.Debug.Build.0 = Debug|Win32
+		{0FB598BB-02A9-4446-B9D4-3F388D8D635F}.Release.ActiveCfg = Release|Win32
+		{0FB598BB-02A9-4446-B9D4-3F388D8D635F}.Release.Build.0 = Release|Win32
+		{EF83E3CC-5EB1-446A-B854-A094FA0954EF}.Debug.ActiveCfg = Debug|Win32
+		{EF83E3CC-5EB1-446A-B854-A094FA0954EF}.Debug.Build.0 = Debug|Win32
+		{EF83E3CC-5EB1-446A-B854-A094FA0954EF}.Release.ActiveCfg = Release|Win32
+		{EF83E3CC-5EB1-446A-B854-A094FA0954EF}.Release.Build.0 = Release|Win32
+		{D4AA6552-7ED2-4ACA-B57C-D9AC260E60AA}.Debug.ActiveCfg = Debug|Win32
+		{D4AA6552-7ED2-4ACA-B57C-D9AC260E60AA}.Debug.Build.0 = Debug|Win32
+		{D4AA6552-7ED2-4ACA-B57C-D9AC260E60AA}.Release.ActiveCfg = Release|Win32
+		{D4AA6552-7ED2-4ACA-B57C-D9AC260E60AA}.Release.Build.0 = Release|Win32
+		{DBA380EE-2056-4D3F-8C94-0D9556FDE8A5}.Debug.ActiveCfg = Debug|Win32
+		{DBA380EE-2056-4D3F-8C94-0D9556FDE8A5}.Debug.Build.0 = Debug|Win32
+		{DBA380EE-2056-4D3F-8C94-0D9556FDE8A5}.Release.ActiveCfg = Release|Win32
+		{DBA380EE-2056-4D3F-8C94-0D9556FDE8A5}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

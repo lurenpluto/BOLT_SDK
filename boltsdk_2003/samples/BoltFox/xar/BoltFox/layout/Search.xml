@@ -1,0 +1,78 @@
+<xlue>
+	<control class="BoltFox.Search.Ctrl">
+	    <attr_def>
+			<attr name="SearchEngine" type="string">
+				<default>baidu</default>
+			</attr>
+		</attr_def>
+		<method_def>
+		    
+		</method_def>
+		<event_def> 
+			<OnSearch>
+				<param>
+					<string />
+				</param>
+			</OnSearch>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="border" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>26</height>
+						<texture>texture.edit.bkg.normal</texture>
+					</attr>
+					<children>
+						<obj id="image.ctrl" class="BoltFox.ImageButton.Ctrl">
+							<attr>
+								<left>father.width-19</left>
+								<top>5</top>
+								<width>16</width>
+								<height>16</height>
+								<NormalBkg>bitmap.search.normal</NormalBkg>
+								<HoverBkg>bitmap.search.hover</HoverBkg>
+								<DownBkg>bitmap.search.down</DownBkg>
+							</attr>
+							<eventlist>
+								<event name="OnClick" file="Search.xml.lua" func="OnClick" />
+							</eventlist>
+						</obj>
+						<obj id="icon" class="ImageObject">
+							<attr>
+								<left>9</left>
+								<width>16</width>
+								<height>father.height</height>
+								<valign>center</valign>
+								<image>bitmap.search.baidu</image>
+							</attr>
+							<eventlist>
+								<event name="OnLButtonUp" file="Search.xml.lua" func="icon_OnLButtonUp" />
+							</eventlist>
+						</obj>
+						<obj id="edit" class="EditObject">
+							<attr>
+								<left>9+16</left>
+								<top>5</top>
+								<width>father.width-23-16</width>
+								<height>16</height>
+								<valign>center</valign>
+							</attr>
+							<eventlist>
+								<event name="OnLButtonDbClick" file="Search.xml.lua" func="OnLButtonDbClick" />
+								<event name="OnKeyDown" file="Search.xml.lua" func="Edit_OnKeyDown"/>
+							</eventlist>
+						</obj>
+					</children>
+					<eventlist>
+						
+					</eventlist>
+				</obj>
+				
+			</children>
+			<eventlist>
+				<event name="OnControlFocusChange" file="Search.xml.lua" func="OnControlFocusChange" />
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

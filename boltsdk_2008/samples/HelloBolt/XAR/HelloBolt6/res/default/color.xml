@@ -1,0 +1,7 @@
+<XLUE>
+	<resource>
+		<color id="system.white" red="255" green="255" blue="255" alpha="255" />
+		<color id="system.black" red="0" green="0" blue="0" alpha="255" />
+		<color id="system.orange" red="44" green="151" blue="241" alpha="255" />
+	</resource>
+</XLUE>

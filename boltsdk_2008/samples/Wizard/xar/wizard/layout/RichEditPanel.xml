@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xlue>
+    <control class="Wizard.RichEditPanel">
+        <objtemplate>
+            <children>
+                <obj id="edit_simple" class="System.RichEdit">
+                    <attr>
+                        <left>20</left>
+                        <top>35</top>
+                        <width>father.width-40</width>
+                        <height>200</height>
+                        <Multiline>true</Multiline>
+                        <AllowVSB>true</AllowVSB>
+                        <AllowHSB>true</AllowHSB>
+                    </attr>
+                    <eventlist>
+                        <event name="OnGetObjectUniqueID" file="RichEditPanel.xml.lua" func="OnGetObjectUniqueID"/>
+                        <event name="OnCreateObjectFromUniqueID" file="RichEditPanel.xml.lua" func="OnCreateObjectFromUniqueID" />
+                        <event name="OnLinkNotify" file="RichEditPanel.xml.lua" func="OnLinkNotify" />
+                        <event name="OnEditChange" file="RichEditPanel.xml.lua" func="OnEditChange" />
+                    </eventlist>
+                </obj>
+                
+                <obj id="color.frame" class="StaticFrame">
+                    <attr>
+                        <left>15</left>
+                        <top>father.height-55</top>
+                        <width>190</width>
+                        <height>50</height>
+                        <Text>字体颜色</Text>
+                        <zorder>1010</zorder>
+                    </attr>
+                </obj>
+                
+                <obj id="ColorRed" class="Thunder.ColorSchemeItem">
+                    <attr>
+                        <left>40</left>
+                        <top>father.height-45</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <Color>system.red</Color>
+                    </attr>
+                    <eventlist>
+                        <event name="OnSelect" file="RichEditPanel.xml.lua" func="RedBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="ColorBlue" class="Thunder.ColorSchemeItem">
+                    <attr>
+                        <left>95</left>
+                        <top>father.height-45</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <Color>system.blue</Color>
+                    </attr>
+                    <eventlist>
+                        <event name="OnSelect" file="RichEditPanel.xml.lua" func="BlueBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="ColorBlack" class="Thunder.ColorSchemeItem">
+                    <attr>
+                        <left>150</left>
+                        <top>father.height-45</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <Color>system.black</Color>
+                    </attr>
+                    <eventlist>
+                        <event name="OnSelect" file="RichEditPanel.xml.lua" func="BlackBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="InsertImageBtn" class="System.Button">
+                    <attr>
+                        <left>father.width-120</left>
+                        <top>father.height-125</top>
+                        <width>100</width>
+                        <height>40</height>
+                        <Text>插入图片</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="RichEditPanel.xml.lua" func="InsertImgBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="InsertObjectBtn" class="System.Button">
+                    <attr>
+                        <left>father.width-120</left>
+                        <top>father.height-185</top>
+                        <width>100</width>
+                        <height>40</height>
+                        <Text>插入网页</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="RichEditPanel.xml.lua" func="InsertObjectBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                
+                <obj id="InsertAniBtn" class="System.Button">
+                    <attr>
+                        <left>father.width-120</left>
+                        <top>father.height-65</top>
+                        <width>100</width>
+                        <height>40</height>
+                        <texttype>gdi</texttype>
+                        <Text>插入动画</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="RichEditPanel.xml.lua" func="InsertAniBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                
+                <obj id="PasswordBtn" class="System.Button">
+                    <attr>
+                        <left>father.width-240</left>
+                        <top>father.height-185</top>
+                        <width>100</width>
+                        <height>40</height>
+                        <Text>密码切换</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="RichEditPanel.xml.lua" func="PasswordBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="SetSelForceLinkBtn" class="System.Button">
+                    <attr>
+                        <left>father.width-300</left>
+                        <top>father.height-65</top>
+                        <width>160</width>
+                        <height>40</height>
+                        <Text>设置选中为强制链接</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="RichEditPanel.xml.lua" func="SetSelForceLinkBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                
+                <obj id="CancelSelForceLinkBtn" class="System.Button">
+                    <attr>
+                        <left>father.width-460</left>
+                        <top>father.height-65</top>
+                        <width>160</width>
+                        <height>40</height>
+                        <Text>取消选中为强制链接</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="RichEditPanel.xml.lua" func="CancelSelForceLinkBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                
+                <obj id="ftBtn" class="System.Button">
+                    <attr>
+                        <left>father.width-580</left>
+                        <top>father.height-185</top>
+                        <width>100</width>
+                        <height>40</height>
+                        <Text>freetype</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="RichEditPanel.xml.lua" func="ftBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                <obj id="fixedgdiBtn" class="System.Button">
+                    <attr>
+                        <left>father.width-580</left>
+                        <top>father.height-65</top>
+                        <width>100</width>
+                        <height>40</height>
+                        <Text>fixedgdi</Text>
+                    </attr>
+                    <eventlist>
+                        <event name="OnClick" file="RichEditPanel.xml.lua" func="fixedgdiBtn_OnClick" />
+                    </eventlist>
+                </obj>
+                
+                <obj id="font.frame" class="StaticFrame">
+                    <attr>
+                        <left>15</left>
+                        <top>father.height-195</top>
+                        <width>90</width>
+                        <height>128</height>
+                        <Text>字体名称</Text>
+                        <zorder>1010</zorder>
+                    </attr>
+                </obj>
+                <obj id="fontList" class="BaseUI.ListBox">
+                    <attr>
+                        <left>20</left>
+                        <top>father.height-185</top>
+                        <width>80</width>
+                        <height>118</height>
+                        <ItemHeight>26</ItemHeight>
+                    </attr>
+                    <eventlist>
+                        <event name="OnSelectChanged" file="RichEditPanel.xml.lua" func="list1_OnSelectChanged" />
+                    </eventlist>
+                </obj>
+                <obj id="fontHeight.frame" class="StaticFrame">
+                    <attr>
+                        <left>115</left>
+                        <top>father.height-195</top>
+                        <width>90</width>
+                        <height>128</height>
+                        <Text>字体大小</Text>
+                        <zorder>1010</zorder>
+                    </attr>
+                </obj>
+                <obj id="HeightList" class="BaseUI.ListBox">
+                    <attr>
+                        <left>120</left>
+                        <top>father.height-185</top>
+                        <width>80</width>
+                        <height>118</height>
+                        <ItemHeight>26</ItemHeight>
+                    </attr>
+                    <eventlist>
+                        <event name="OnSelectChanged" file="RichEditPanel.xml.lua" func="list2_OnSelectChanged" />
+                    </eventlist>
+                </obj>
+            </children>
+            <eventlist>
+                <event name="OnInitControl" file="RichEditPanel.xml.lua" func="OnInitControl"/>
+            </eventlist>
+        </objtemplate>
+    </control>
+    
+    <control class="EmbedWebBrowseObject">
+        <attr_def>
+        </attr_def>
+        <method_def>
+            <OnGetObjectText>
+                local args = {...}
+                local self = args[1]
+                self:GetVisible()
+                return "www.google.com.hk"
+            </OnGetObjectText>
+        </method_def>
+        <event_def>
+        </event_def>
+        <objtemplate>
+            <children>
+                <obj id="web" class="WebBrowseObject">
+                    <attr>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>100</width>
+                        <height>100</height>
+                        <url>www.google.com.hk</url>
+                        <visible>1</visible>
+                    </attr>
+                </obj>
+            </children>
+        </objtemplate>
+    </control>
+    
+    <control class="EmbedImageObject">
+        <attr_def>
+        </attr_def>
+        <method_def>
+            <OnGetObjectText>
+                local args = {...}
+                local self = args[1]
+                self:GetVisible()
+                return "image = tree.bkg"
+            </OnGetObjectText>
+        </method_def>
+        <event_def>
+        </event_def>
+        <objtemplate>
+            <children>
+                <obj id="EmbedImage" class="ImageObject">
+                    <attr>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>48</width>
+                        <height>48</height>
+                        <image>tree.bkg</image>
+                        <visible>1</visible>
+                    </attr>
+                    <eventlist>
+                        <event name="OnLButtonDown">
+                            XLMessageBox("OnLButtonDown")
+                        </event>
+                    </eventlist>
+                </obj>
+            </children>
+        </objtemplate>
+    </control>
+    
+    <control class="EmbedAniObject">
+        <attr_def>
+        </attr_def>
+        <method_def>
+            <OnGetObjectText>
+                local args = {...}
+                local self = args[1]
+                
+            </OnGetObjectText>
+        </method_def>
+        <event_def>
+        </event_def>
+        <objtemplate>
+            <children>
+                <obj id="EmbedImage" class="ImageObject">
+                    <attr>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>40</width>
+                        <height>40</height>
+                        <visible>1</visible>
+                    </attr>
+                    <eventlist>
+                        <event name="OnInitControl" file="RichEditPanel.xml.lua" func="OnAniObjectInitControl"/>
+                    </eventlist>
+                </obj>
+                <obj id="Blur" class="BlurObject">
+                    <attr>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>40</width>
+                        <height>40</height>
+                        <visible>1</visible>
+                        <ellipse>5,5</ellipse>
+                    </attr>
+                    <eventlist>
+                    </eventlist>
+                </obj>
+            </children>
+        </objtemplate>
+    </control>
+</xlue>

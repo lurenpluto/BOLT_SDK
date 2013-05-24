@@ -1,0 +1,12 @@
+<XLUE>
+	<resource>
+		<bitmap id="default.path.folder.icon" path="bitmap\default.path.folder.icon.png" />		
+		<bitmap id="default.path.disk.icon" path="bitmap\default.path.disk.icon.png" />
+		<bitmap id="default.path.spliter" path="bitmap\default.path.spliter.png" />
+		
+		<color id="default.path.color.doc.desktop" value="#535353" />
+		<color id="default.path.color.recommand" value="#5fb03b" />
+		<color id="default.path.color.path" value="#0079c5" />
+		<color id="default.path.title" value="#075fad" />
+	</resource>
+</XLUE>

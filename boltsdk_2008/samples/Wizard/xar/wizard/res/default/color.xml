@@ -1,0 +1,18 @@
+<XLUE>
+	<resource>
+		<color id="mainwnd.bkg.top.color"  blue="238" green="157" red="108" alpha="255"/>
+		<color id="mainwnd.bkg.bottom.color"  blue="253" green="233" red="215" alpha="255"/>
+		<color id="menu.item.text" value="#000000FF"/>
+		<color id="system.white" red="255" green="255" blue="255" alpha="255" />
+		<color id="system.black" red="0" green="0" blue="0" alpha="255" />
+		<color id="system.orange" red="44" green="151" blue="241" alpha="255" />
+		<color id="system.blue" red="0" green="0" blue="255" alpha="255" />
+		<color id="system.green" red="38" green="139" blue="35" alpha="255"/>
+		<color id="system.red" red="255" green="0" blue="0" alpha="255" />
+		<color id="system.gray" red="204" green="211" blue="214" alpha="255"/>
+		<color id="system.yellow" red="255" green="255" blue="0" alpha="255"/>
+		
+		<color id="button.disable.color" value="#878787"/>
+		<color id="test.color" value="00FF00"/>
+	</resource>
+</XLUE>	

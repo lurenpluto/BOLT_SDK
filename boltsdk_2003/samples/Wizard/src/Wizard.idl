@@ -1,0 +1,34 @@
+import "oaidl.idl";
+import "ocidl.idl";
+
+
+[
+	object,
+	uuid(6374BC39-5757-4984-ABEF-88EBF30CAB1C),
+	dual,
+	nonextensible,
+	helpstring("IWebBrowserDisp Interface"),
+	pointer_default(unique)
+]
+interface IWebBrowserDisp : IDispatch
+{
+	[id(1), helpstring("method ShowMessage")] HRESULT ShowMessage([in] BSTR msg);
+};
+
+[
+	uuid(681EC43B-2D28-4E32-A9DE-7E4D36B7350D),
+	version(1.0),
+	helpstring("Wizard 1.0 Type Library")
+]
+library WizardLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(0EB56842-6731-4FBC-B03C-35199395130F),
+		helpstring("WebBrowserDisp Class")
+	]
+	coclass WebBrowserDisp
+	{
+		[default] interface IWebBrowserDisp;
+	};
+};

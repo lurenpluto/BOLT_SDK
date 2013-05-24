@@ -1,0 +1,235 @@
+<xlue>
+	<control class="System.RichEdit">
+		<attr_def>
+			<attr name="BkgNormalTextureID" type="string">
+				<default>texture.edit.bkg.normal</default>
+			</attr>
+			<attr name="BkgHoverTextureID" type="string">
+				<default>texture.edit.bkg.hover</default>
+			</attr>
+			<attr name="BkgDisableTextureID" type="string">
+				<default>texture.edit.bkg.disable</default>
+			</attr>
+			
+			<attr name="ReadOnlyFont" type="string">
+				<default></default>
+			</attr>
+			<attr name="EnableFont" type="string">
+				<default></default>
+			</attr>
+			<attr name="DisableFont" type="string">
+				<default></default>
+			</attr>
+			<attr name="ReadOnlyColor" type="string">
+				<default></default>
+			</attr>
+			<attr name="EnableColor" type="string">
+				<default></default>
+			</attr>
+			<attr name="DisableColor" type="string">
+				<default></default>
+			</attr>
+			
+			<attr name="ReadOnly" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="WordWrap" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="Multiline" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="MaxLength" type="int" />
+			
+			<attr name="AllowVSB" type="bool">
+				<default>false</default>
+			</attr>
+			<attr name="AllowHSB" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="Password" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="DisableIME" type="bool">
+				<default>false</default>
+			</attr>
+			
+			<attr name="Text" type="string" />
+			<!--
+				Status:  normal,  hover,  disable
+			-->
+			<attr name="Status" type="string">
+				<default>normal</default>
+			</attr>
+			<attr name="TabID" type="int">
+				<default>1</default>
+			</attr>
+		</attr_def>
+		<method_def>
+			<SetReadOnly file="RichEdit.xml.lua" func="SetReadOnly" />
+			<GetReadOnly file="RichEdit.xml.lua" func="GetReadOnly" />
+			<SetMultiline file="RichEdit.xml.lua" func="SetMultiline" />
+			<GetMultiline file="RichEdit.xml.lua" func="GetMultiline" />
+			<SetText file="RichEdit.xml.lua" func="SetText" />
+			<GetText file="RichEdit.xml.lua" func="GetText" />
+			<AppendText file="RichEdit.xml.lua" func="AppendText" />
+			<Undo file="RichEdit.xml.lua" func="Undo" />
+			<SetDisableIME file="RichEdit.xml.lua" func="SetDisableIME" />
+			<GetDisableIME file="RichEdit.xml.lua" func="GetDisableIME" />			
+			<UpdateUI file="RichEdit.xml.lua" func="UpdateUI"/>
+			<SetFocus file="RichEdit.xml.lua" func="SetFocus" />
+			<GetEnable file="RichEdit.xml.lua" func="GetEnable" />
+			<AddTip file="RichEdit.xml.lua" func="AddTip"/>
+            <RemoveTip file="RichEdit.xml.lua" func="RemoveTip"/>
+			<!-- private method -->
+			<ChangeStatus file="RichEdit.xml.lua" func="ChangeStatus" />
+		</method_def>
+		<event_def>
+			<OnEditChange>
+                <param>
+                    <string/>
+                </param>
+            </OnEditChange>
+            <OnEditFocusChange>
+                <param>
+                    <bool/>
+                </param>
+            </OnEditFocusChange>
+			<OnEditKeyDown>
+				<param>
+					<int/>
+					<int/>
+					<int/>
+				</param>
+			</OnEditKeyDown>
+			<OnEditKeyUp>
+				<param>
+					<int/>
+					<int/>
+					<int/>
+				</param>
+			</OnEditKeyUp>
+			<OnGetObjectUniqueID>
+				<param>
+					<layoutobj/>
+				</param>
+				<return>
+					<string/>
+					<userdata/>
+					<bool/>
+				</return>
+			</OnGetObjectUniqueID>
+			<OnCreateObjectFromUniqueID>
+				<param>
+					<string/>
+					<userdata/>
+				</param>
+				<return>
+					<layoutobj/>
+					<bool/>
+				</return>
+			</OnCreateObjectFromUniqueID>
+			<OnLinkNotify>
+				<param>
+					<int/>
+					<int/>
+				</param>
+			</OnLinkNotify>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="ctrl" class="TextureObject">
+					<attr>
+						<width>father.width</width>
+						<height>father.height</height>
+						<limitchild>1</limitchild>
+					</attr>
+					<children>
+                        <obj id="edit" class="RichEditObject">
+                            <attr>
+								<top>4</top>
+								<width>father.width-5</width>
+								<height>father.height-8</height>
+								<zorder>1</zorder>
+								<transparent>1</transparent>
+								<wordwrap>1</wordwrap>
+								<multiline>1</multiline>
+								<readonly>0</readonly>
+								<texttype>fixedgdi</texttype>
+                            </attr>
+							<children>
+								<obj id="vsb" class="BaseUI.ScrollBar" templateid="BaseUI.VScrollBar">
+									<attr>
+										<left>father.width-13</left>
+										<top>0</top>
+										<width>13</width>
+										<height>father.height</height>
+										<visible>0</visible>
+										<zorder>500000</zorder>
+										<cursor>IDC_ARROW</cursor>
+									</attr>
+									<eventlist>
+										<event name="OnScrollPosChange" file="RichEdit.xml.lua" func="OnVScrollPosChange" />
+									</eventlist>
+								</obj>
+								<obj id="hsb" class="BaseUI.ScrollBar" templateid="BaseUI.HScrollBar">
+									<attr>
+										<left>0</left>
+										<top>father.height-13</top>
+										<width>father.width</width>
+										<height>13</height>
+										<visible>0</visible>
+										<zorder>500000</zorder>
+										<cursor>IDC_ARROW</cursor>
+									</attr>
+									<eventlist>
+										<event name="OnScrollPosChange" file="RichEdit.xml.lua" func="OnHScrollPosChange" />
+									</eventlist>
+								</obj>
+							</children>
+							<eventlist>
+								<event name="OnMouseMove" file="RichEdit.xml.lua" func="Edit_OnMouseMove" />
+								<event name="OnMouseLeave" file="RichEdit.xml.lua" func="Edit_OnMouseLeave" />
+								<event name="OnChange" file="RichEdit.xml.lua" func="Edit_OnChange"/>
+								<event name="OnKeyDown" file="RichEdit.xml.lua" func="Edit_OnKeyDown"/>
+								<event name="OnKeyUp" file="RichEdit.xml.lua" func="Edit_OnKeyUp"/>
+								<!--event name="OnChar" file="RichEdit.xml.lua" func="Edit_OnChar"/-->
+								<event name="OnFocusChange" file="RichEdit.xml.lua" func="Edit_OnFocusChange"/>
+								<event name="OnGetSBVisible" file="RichEdit.xml.lua" func="OnGetSBVisible"/>
+								<event name="OnSetSBVisible" file="RichEdit.xml.lua" func="OnSetSBVisible"/>
+								<event name="OnGetSBEnable" file="RichEdit.xml.lua" func="OnGetSBEnable"/>
+								<event name="OnSetSBEnable" file="RichEdit.xml.lua" func="OnSetSBEnable"/>
+								<event name="OnGetSBPageSize" file="RichEdit.xml.lua" func="OnGetSBPageSize"/>
+								<event name="OnSetSBPageSize" file="RichEdit.xml.lua" func="OnSetSBPageSize"/>
+								<event name="OnSetSBRange" file="RichEdit.xml.lua" func="OnSetSBRange"/>
+								<event name="OnGetSBRange" file="RichEdit.xml.lua" func="OnGetSBRange"/>
+								<event name="OnSetSBPos" file="RichEdit.xml.lua" func="OnSetSBPos"/>
+								<event name="OnGetSBPos" file="RichEdit.xml.lua" func="OnGetSBPos"/>
+								<event name="OnGetSBIdealSize" file="RichEdit.xml.lua" func="OnGetSBIdealSize"/>
+								<event name="OnSetSBRect" file="RichEdit.xml.lua" func="OnSetSBRect"/>
+								
+								<event name="OnGetObjectUniqueID" file="RichEdit.xml.lua" func="OnGetObjectUniqueID"/>
+								<event name="OnCreateObjectFromUniqueID" file="RichEdit.xml.lua" func="OnCreateObjectFromUniqueID" />
+								<event name="OnLinkNotify" file="RichEdit.xml.lua" func="OnLinkNotify" />
+							</eventlist>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnInitControl" file="RichEdit.xml.lua" func="OnInitControl" />
+				<event name="OnVisibleChange" file="RichEdit.xml.lua" func="OnVisibleChange"/>
+				<event name="OnEnableChange" file="RichEdit.xml.lua" func="OnEnableChange"/>
+				
+				<event name="OnMouseMove" file="RichEdit.xml.lua" func="OnMouseMove" />
+				<event name="OnMouseLeave" file="RichEdit.xml.lua" func="OnMouseLeave" />
+				<event name="OnFocusChange" file="RichEdit.xml.lua" func="OnFocusChange"/>
+			</eventlist>
+		</objtemplate>
+	</control>
+</xlue>

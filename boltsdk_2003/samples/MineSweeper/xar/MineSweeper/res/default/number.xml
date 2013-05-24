@@ -1,0 +1,17 @@
+﻿<XLUE>
+	<resource>			
+		<imagelist id="bitmap.number.image" vertical="0" splitter="1" varyblock="0" blocksize="13" image="bitmap\number.png"/>
+		<bitmap id="bitmap.number.null" imagelist="bitmap.number.image" index="1"/>
+		<bitmap id="bitmap.number.null1" imagelist="bitmap.number.image" index="2"/>
+		<bitmap id="bitmap.number.9" imagelist="bitmap.number.image" index="3"/>
+		<bitmap id="bitmap.number.8" imagelist="bitmap.number.image" index="4"/>
+		<bitmap id="bitmap.number.7" imagelist="bitmap.number.image" index="5"/>
+		<bitmap id="bitmap.number.6" imagelist="bitmap.number.image" index="6"/>
+		<bitmap id="bitmap.number.5" imagelist="bitmap.number.image" index="7"/>
+		<bitmap id="bitmap.number.4" imagelist="bitmap.number.image" index="8"/>
+		<bitmap id="bitmap.number.3" imagelist="bitmap.number.image" index="9"/>
+		<bitmap id="bitmap.number.2" imagelist="bitmap.number.image" index="10"/>
+		<bitmap id="bitmap.number.1" imagelist="bitmap.number.image" index="11"/>
+		<bitmap id="bitmap.number.0" imagelist="bitmap.number.image" index="12"/>
+	</resource>
+</XLUE>

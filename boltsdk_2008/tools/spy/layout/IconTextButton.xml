@@ -1,0 +1,97 @@
+<xlue>
+	<control class="Thunder.IconTextButton">
+		<attr_def>
+			<attr name="NormalBkgID" type="string" />
+			<attr name="DownBkgID" type="string" />
+			<attr name="DisableBkgID" type="string" />
+			<attr name="HoverBkgID" type="string" />
+			<attr name="IconResID" type="string"/>		
+			<attr name="IconWidth" type="int">
+				<default>0</default>
+			</attr>
+			<attr name="IconHeight" type="int">
+				<default>0</default>
+			</attr>
+			<attr name="LeftMagrin" type="int">
+				<default>0</default>
+			</attr>
+			<attr name="OnlyIcon" type="bool"/>
+			<attr name="Enable" type="bool" />
+			<attr name="Text" type="string" />
+			<attr name="NowState" type="int" />
+			<attr name="TextFont" type="string"/>
+			<attr name="TextColor" type="string"/>
+			<attr name="TabID" type="int"/>
+		</attr_def>
+		<method_def>
+			<SetState file="IconTextButton.xml.lua" func="SetState"/>
+			<SetText file="IconTextButton.xml.lua" func="SetText"/>
+			<SetIcon file="IconTextButton.xml.lua" func="SetIcon"/>
+			<SetEnable file="IconTextButton.xml.lua" func="SetEnable" />
+			<GetEnable file="IconTextButton.xml.lua" func="GetEnable" />
+		</method_def>
+		<event_def>
+			<OnClick >
+				<param>
+					<int/>
+					<int/>
+				</param>
+			</OnClick>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="icontextbtn.bkg" class="TextureObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+					<children>
+						<obj id="icontextbtn.oldbkg" class="TextureObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+								<alpha>0</alpha>
+							</attr>
+							<children>
+								<obj id="icontextbtn.icon" class="ImageObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>30</width>
+										<height>father.height</height>
+									</attr>
+								</obj>
+								<obj id="icontextbtn.text" class ="TextObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>70</width>
+										<height>father.height</height>
+										<font>default.font</font>
+										<halign>center</halign>
+										<valign>center</valign>
+										<texttype>gdi</texttype>
+									</attr>
+								</obj>
+							</children>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnLButtonDown" file="IconTextButton.xml.lua" func="OnLButtonDown"/>
+				<event name="OnLButtonUp" file="IconTextButton.xml.lua" func="OnLButtonUp"/>
+				<event name="OnMouseMove" file="IconTextButton.xml.lua" func="OnMouseMove"/>
+				<event name="OnMouseLeave" file="IconTextButton.xml.lua" func="OnMouseLeave"/>
+				<event name="OnBind" file="IconTextButton.xml.lua" func="OnBind"/>
+				<event name="OnPosChange" file="IconTextButton.xml.lua" func="OnPosChange"/>
+				<event name="OnInitControl" file="IconTextButton.xml.lua" func="OnInitControl"/>
+			</eventlist>
+		</objtemplate>
+	</control>
+
+</xlue>

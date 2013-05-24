@@ -1,0 +1,58 @@
+<xlue>
+	<animationtemplate id="webloading.animation" class="SeqFrameAnimation">
+		<attr>
+		   <loop>true</loop>
+		   <resid>web.loading</resid>
+		   <type>equalframe</type>
+		   <frametime>90</frametime>
+		</attr>
+	</animationtemplate>
+	
+	<objtemplate id="Wizard.Tips" class="LayoutObject">
+		<attr>
+			<limitchild>1</limitchild>
+		</attr>
+		<children>
+			<obj id="bkg" class="ImageObject">
+				<attr>
+					<width>111</width>
+					<height>128</height>
+					<image>tree</image>
+				</attr>
+				<children>
+					<obj id="loading" class="ImageObject">
+						<attr>
+							<left>(father.width - 40) / 2</left>
+							<top>(father.height - 40) /2</top>
+							<width>40</width>
+							<height>40</height>
+						</attr>
+						<eventlist>
+							<event name="OnInitControl" file="WizardTips.lua" func="OnLoadingInitControl" />
+						</eventlist>
+					</obj>
+				</children>
+			</obj>
+		</children>
+		<templateeventlist>
+			<event name="OnPreCreateInstance" file="WizardTips.lua" func="OnPreCreateInstance"/>
+			<event name="OnPostCreateInstance" file="WizardTips.lua" func="OnPostCreateInstance"/>
+		</templateeventlist>
+	</objtemplate>
+	
+	<hostwndtemplate id="Wizard.Tips" class="TipsHostWnd" >
+		<attr> 
+			<layered>1</layered>
+			<width>100</width>
+			<height>100</height>
+			<topmost>1</topmost>
+			<visible>1</visible>
+			<template>Wizard.Tips</template>
+			<templatepackage>wizard</templatepackage>
+		</attr>
+		<eventlist>
+			<event name="OnSize" file="WizardTips.lua" func="OnHostWndSize" />
+			<event name="OnDelayPopup" file="WizardTips.lua" func="OnDelayPopup" />
+		</eventlist>
+	</hostwndtemplate>
+</xlue>

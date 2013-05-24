@@ -1,0 +1,112 @@
+<xlue>
+	<control class="Thunder.Button">
+		<attr_def>
+			<attr name="NormalBkgID" type="string" />
+			<attr name="DownBkgID" type="string" />
+			<attr name="DisableBkgID" type="string" />
+			<attr name="HoverBkgID" type="string" />
+			<attr name="Enable" type="bool" />
+			<attr name="Text" type="string" />
+			<attr name="NowState" type="int" />
+			<attr name="TextColor" type="string" ><default>system.black</default></attr>
+			<attr name="TextFont" type="string" />
+			<attr name="BtnLight" type="string"/>
+			<attr name="TabID" type="int"/>
+			<attr name="ValidLeft" type="int"/>
+			<attr name="ValidTop" type="int"/>
+			<attr name="ValidWidth" type="int"/>
+			<attr name="ValidHeight" type="int"/>
+			<attr name="UseValidPos" type="bool">
+				<default>false</default>
+			</attr>
+			<attr name="ChangeStateWhenLeave" type="bool">
+				<default>true</default>
+			</attr>
+			<attr name="Visible" type="bool">
+				<default>true</default>
+			</attr>
+		</attr_def>
+		<method_def>
+			<SetState file="Button.xml.lua" func="SetState" />
+			<SetText file="Button.xml.lua" func="SetText" />
+			<GetText file="Button.xml.lua" func="GetText" />
+			<SetEnable file="Button.xml.lua" func="SetEnable" />
+			<GetEnable file="Button.xml.lua" func="GetEnable" />
+			<SetTextColor file="Button.xml.lua" func="SetTextColor" />
+			<SetTextFont file="Button.xml.lua" func="SetTextFont" />
+			<Show file="Button.xml.lua" func="Show" />
+			<IsShow file="Button.xml.lua" func="IsShow" />
+			<SetBitmap file="Button.xml.lua" func="SetBitmap" />
+		</method_def>
+		<event_def>
+			<OnClick />
+			<OnButtonMouseMove>
+				<param>
+					<int />
+					<int />
+				</param>
+			</OnButtonMouseMove>
+			<OnButtonMouseLeave>
+				<param>
+					<int />
+					<int />
+				</param>
+			</OnButtonMouseLeave>
+		</event_def>
+		<objtemplate>
+			<children>
+				<obj id="button.bkg" class="TextureObject">
+					<attr>
+						<left>0</left>
+						<top>0</top>
+						<width>father.width</width>
+						<height>father.height</height>
+					</attr>
+					<children>
+						<obj id="button.oldbkg" class="TextureObject">
+							<attr>
+								<left>0</left>
+								<top>0</top>
+								<width>father.width</width>
+								<height>father.height</height>
+								<alpha>0</alpha>
+							</attr>
+							<children>
+								<obj id="button.light" class="ImageObject">
+									<attr>
+										<left>0</left>
+										<top>0</top>
+										<width>father.width</width>
+										<height>23</height>
+										<zorder>0</zorder>
+									</attr>
+								</obj>
+								<obj id="button.text" class="TextObject">
+									<attr>
+										<left>0</left>
+										<top>1</top>
+										<width>father.width</width>
+										<height>father.height -1</height>
+										<font>button.default.font</font>
+										<halign>center</halign>
+										<valign>center</valign>
+										<texttype>gdi</texttype>
+										<zorder>50</zorder>
+									</attr>
+								</obj>
+							</children>
+						</obj>
+					</children>
+				</obj>
+			</children>
+			<eventlist>
+				<event name="OnLButtonDown" file="Button.xml.lua" func="OnLButtonDown" />
+				<event name="OnLButtonUp" file="Button.xml.lua" func="OnLButtonUp" />
+				<event name="OnMouseMove" file="Button.xml.lua" func="OnMouseMove" />
+				<event name="OnMouseLeave" file="Button.xml.lua" func="OnMouseLeave" />
+				<event name="OnInitControl" file="Button.xml.lua" func="OnInitControl" />
+			</eventlist>
+		</objtemplate>
+	</control>
+
+</xlue>
