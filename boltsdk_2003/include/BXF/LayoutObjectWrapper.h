@@ -19,7 +19,9 @@
 #define __LAYOUTOBJECTWRAPPER_H__
 
 #include <XLUE.h>
+#include <assert.h>
 #include <BXF/ObjectTreeWrapper.h>
+#include <BXF/HostWndWrapper.h>
 
 namespace Xunlei
 {

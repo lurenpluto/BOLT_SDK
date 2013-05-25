@@ -18,6 +18,8 @@
 #ifndef __EXTOBJCREATORIMPL_H__
 #define __EXTOBJCREATORIMPL_H__
 
+#include <XLUE.h>
+#include <assert.h>
 #include "./ExtObjDefine.h"
 
 namespace Xunlei

@@ -147,6 +147,16 @@ typedef enum __DragEventType
 
 }DragEventType;
 
+// 所有引擎DLL扩展模块都需要实现的两个导出接口，分别用以初始化和反初始化操作
+// 返回TRUE表示初始化成功，FALSE表示失败
+// 导出的函数名称定义应该如下:
+// BOOL XLUE_STDCALL XLUE_InitExtModule();
+// BOOL XLUE_STDCALL XLUE_UninitExtModule();
+typedef BOOL (XLUE_STDCALL *LPFNEXTMODULEINITFUNC)();
+typedef BOOL (XLUE_STDCALL *LPFNEXTMODULEUNINITFUNC)();
+
+// 外部扩展对象需要实现的导出接口或者回调，当真正需要创建该类别对象时候，会调用次接口/回调
+// 外部扩展模块可以在这个函数里面真正注册扩展对象
 typedef BOOL (XLUE_STDCALL *LPFNREGISTEREXTOBJCALLBACK)(const char* lpObjClass);
 
 // 扩展元对象的预注册结构体，用以实现按需加载和初始化指定的扩展元对象

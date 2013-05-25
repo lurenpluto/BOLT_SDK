@@ -18,6 +18,9 @@
 #ifndef __HOSTWNDWRAPPER_H__
 #define __HOSTWNDWRAPPER_H__
 
+#include <XLUE.h>
+#include <assert.h>
+
 namespace Xunlei
 {
 namespace Bolt
@@ -183,17 +186,61 @@ public:
 		return XLUE_GetHostWndWindowHandle(m_hHostWnd);
 	}
 
-	
-	XLUE_API(BOOL) XLUE_SetHostWndTitle(XLUE_HOSTWND_HANDLE hHostWnd, const char* lpTitle);
-	XLUE_API(const char*) XLUE_GetHostWndTitle(XLUE_HOSTWND_HANDLE hHostWnd);
+	BOOL SetHostWndTitle(const char* lpTitle) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
 
-	XLUE_API(BOOL) XLUE_SetHostWndEnable(XLUE_HOSTWND_HANDLE hHostWnd, BOOL bEndable);
-	XLUE_API(BOOL) XLUE_GetHostWndEnable(XLUE_HOSTWND_HANDLE hHostWnd);
+		return XLUE_SetHostWndTitle(m_hHostWnd, lpTitle);
+	}
 
-	XLUE_API(BOOL) XLUE_SetHostWndTopMost(XLUE_HOSTWND_HANDLE hHostWnd, BOOL bTopMost);
-	XLUE_API(BOOL) XLUE_GetHostWndTopMost(XLUE_HOSTWND_HANDLE hHostWnd);
+	const char* GetHostWndTitle() const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
 
-	XLUE_API(XL_BITMAP_HANDLE) XLUE_GetWindowBitmap(XLUE_HOSTWND_HANDLE hHostWnd);
+		return XLUE_GetHostWndTitle(m_hHostWnd);
+	}
+
+	BOOL SetHostWndEnable(BOOL enable) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return XLUE_SetHostWndEnable(m_hHostWnd, enable);
+	}
+
+	BOOL GetHostWndEnable() const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return XLUE_GetHostWndEnable(m_hHostWnd);
+	}
+
+	BOOL SetHostWndTopMost(BOOL topmost) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return XLUE_SetHostWndTopMost(m_hHostWnd, topmost);
+	}
+
+	BOOL GetHostWndTopMost() const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return XLUE_GetHostWndTopMost(m_hHostWnd);
+	}
+
+	XL_BITMAP_HANDLE GetWindowBitmap() const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return XLUE_GetWindowBitmap(m_hHostWnd);
+	}
 };
 
 } // Bolt
