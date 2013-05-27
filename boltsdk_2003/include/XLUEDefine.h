@@ -220,10 +220,13 @@ typedef struct __ExtLayoutObjMethodsVector
 	// 元对象的OnDestroy事件
 	void (XLUE_STDCALL *lpfnOnDestroy)(void* userData, void* objHandle);
 
+	// 对象的命中测试，当对象有区别于默认的命中测试操作时候才需要使用
 	BOOL (XLUE_STDCALL *lpfnOnHitTest)(void* userData, void* objHandle, short x, short y);
 
+	// 对象的ctrl测试事件，一般只有控制类对象才需要
 	BOOL (XLUE_STDCALL *lpfnOnCtrlHitTest)(void* userData, void* objHandle, short x, short y, CtrlTestType& type);
 
+	// 获取当前对象指定位置的cursorid，当对象需要精确区分内部cursor时候才需要使用
 	const char* (XLUE_STDCALL *lpfnGetCursorID)(void* userData, void* objHandle, long x, long y, unsigned long wParam, unsigned long lParam);
 
 	// 获取当前对象对光标的限制区域，基于对象树坐标系
@@ -300,6 +303,9 @@ typedef struct __ExtLayoutObjMethodsVector
 	// type = DragEventType_leave时候，lpDragDataObj、grfKeyState和pt三个参数无效
 	// 返回TRUE表示已经被处理，否则会转默认处理
 	BOOL (XLUE_STDCALL* lpfnOnDragEvent)(void* userData, void* objHandle, DragEventType type, void* lpDragDataObj, unsigned long grfKeyState, POINT pt, unsigned long* lpEffect);
+
+	// 对象是否需要鼠标和键盘输入事件，默认只要lpfnPreInputFilter和lpfnPostInputFilter两个字段不为空就需要
+	BOOL (XLUE_STDCALL* lpfnCanHandleInput)(void* userData, void* objHandle);
 
 	// 前置事件处理器，用以处理鼠标和键盘事件，在事件路由的最开始调用，handled=true会拦截事件路由的后续处理
 	long (XLUE_STDCALL *lpfnPreInputFilter)(void* userData, void* objHandle, unsigned long actionType, unsigned long wParam, unsigned long lParam, BOOL* lpHandled);

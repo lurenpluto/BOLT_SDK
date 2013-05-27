@@ -21,6 +21,7 @@
 #include <XLUE.h>
 #include <assert.h>
 #include "./ExtObjDefine.h"
+#include "./LayoutObjectWrapper.h"
 
 namespace Xunlei
 {
@@ -28,15 +29,17 @@ namespace Bolt
 {
 
 class ExtLayoutObjMethodsImpl
+	: public LayoutObjectBaseWrapper
 {
 public:
 	typedef ExtLayoutObjMethodsImpl this_class;
+	typedef LayoutObjectBaseWrapper base_class;
 
 public:
 
 	ExtLayoutObjMethodsImpl(XLUE_LAYOUTOBJ_HANDLE hObj)
-		:m_hObj(hObj)
 	{
+		m_hObj = hObj;
 		assert(m_hObj);
 	}
 
@@ -131,6 +134,7 @@ public:
 			lpExtMethodsVector->lpfnOnDragEvent = OnDragEventCallBack;
 		}
 
+		AssignIfOverride(this_class, final_class, CanHandleInput, lpExtMethodsVector);
 		AssignIfOverride(this_class, final_class, PreInputFilter, lpExtMethodsVector);
 		AssignIfOverride(this_class, final_class, PostInputFilter, lpExtMethodsVector);
 		AssignIfOverride(this_class, final_class, OnBindHostWnd, lpExtMethodsVector);
@@ -339,6 +343,14 @@ public:
 
 	virtual bool OnDrop(void* /*pDataObj*/, DWORD /*grfKeyState*/, POINT /*pt*/, unsigned long* /*lpEffect*/)
 	{
+		return false;
+	}
+
+	// 对象是否需要鼠标和键盘输入事件，默认只要重写了PreInputFilter和PostInputFilter两个函数就需要
+	// 子类如果重写了该方法，切忌再调用基类的CanHandleInput！！
+	virtual bool CanHandleInput()
+	{
+		assert(false);
 		return false;
 	}
 
@@ -563,6 +575,11 @@ private:
 		return (ret? TRUE : FALSE);
 	}
 
+	static BOOL XLUE_STDCALL CanHandleInputCallBack(void* /*userData*/, void* objHandle)
+	{
+		return ThisFromObjHandle(objHandle)->CanHandleInput();
+	}
+
 	static long XLUE_STDCALL PreInputFilterCallBack(void* /*userData*/, void* objHandle, unsigned long actionType, unsigned long wParam, unsigned long lParam, BOOL* lpHandled)
 	{
 		return ThisFromObjHandle(objHandle)->PreInputFilter(actionType, wParam, lParam, lpHandled);
@@ -583,10 +600,6 @@ private:
 	{
 		return ThisFromObjHandle(objHandle)->OnCreateHostWnd(hTree, hHostWnd, bCreate);
 	}
-
-protected:
-
-	XLUE_LAYOUTOBJ_HANDLE m_hObj;
 };
 
 } // Bolt

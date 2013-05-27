@@ -64,11 +64,13 @@
 //***¾ØÐÎÏà½»
 XLMATH_API(BOOL) XL_SetRect(LPRECT lprc,int xLeft,int yTop,int xRight,int yBottom);
 XLMATH_API(BOOL) XL_OffsetRect(LPRECT lprc,int dx,int dy);
+XLMATH_API(BOOL) XL_InflateRect(LPRECT lprc, int cx, int cy);
 XLMATH_API(BOOL) XL_SetRectEmpty(LPRECT lprc);
 XLMATH_API(BOOL) XL_EqualRect(const RECT* lprc1,const RECT* lprc2);
 XLMATH_API(BOOL) XL_CopyRect(LPRECT lprcDst,const RECT* lprsSrc);
 XLMATH_API(BOOL) XL_IsRectEmpty(const RECT* lprc);
 XLMATH_API(BOOL) XL_PtInRect(const RECT *lprc,POINT pt);
+XLMATH_API(BOOL) XL_SubtractRect(LPRECT lprcDst, const RECT *lprcSrc1, const RECT *lprcSrc2);
 
 XLMATH_API(long) XL_IsRectIntersect(const RECT* pRect1,const RECT* pRect2);
 XLMATH_API(BOOL) XL_IntersectRect(RECT* pResult,const RECT* pSrc1,const RECT* pSrc2);

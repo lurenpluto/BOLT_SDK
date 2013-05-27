@@ -28,46 +28,14 @@ namespace Xunlei
 namespace Bolt
 {
 
-class LayoutObjectWrapper
+class LayoutObjectWrapper;
+
+// 此类不可直接实例化
+class LayoutObjectBaseWrapper
 {
 public:
 
 	XLUE_LAYOUTOBJ_HANDLE m_hObj;
-
-public:
-
-	LayoutObjectWrapper(XLUE_LAYOUTOBJ_HANDLE hObj = NULL):
-	  m_hObj(hObj)
-	{
-	}
-
-	LayoutObjectWrapper& operator=(XLUE_LAYOUTOBJ_HANDLE hObj)
-	{
-		m_hObj = hObj;
-
-		return *this;
-	}
-
-	void Attach(XLUE_LAYOUTOBJ_HANDLE hNewObj)
-	{
-		assert(m_hObj == NULL);
-		assert((hNewObj == NULL) || XLUE_IsObjValid(hNewObj));
-
-		m_hObj = hNewObj;
-	}
-
-	XLUE_LAYOUTOBJ_HANDLE Detach()
-	{
-		XLUE_LAYOUTOBJ_HANDLE hObj = m_hObj;
-		m_hObj = NULL;
-
-		return hObj;
-	}
-
-	operator XLUE_LAYOUTOBJ_HANDLE() const
-	{ 
-		return m_hObj; 
-	}
 
 public:
 
@@ -91,21 +59,21 @@ public:
 
 		return XLUE_GetObjID(m_hObj);
 	}
-	
-	ObjectTreeWrapper GetOwner() const
+
+	XLUE_OBJTREE_HANDLE GetOwner() const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return ObjectTreeWrapper(XLUE_GetObjOwner(m_hObj));
+		return XLUE_GetObjOwner(m_hObj);
 	}
 
-	LayoutObjectWrapper GetFather() const
+	XLUE_LAYOUTOBJ_HANDLE GetFather() const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return LayoutObjectWrapper(XLUE_GetObjFather(m_hObj));
+		return XLUE_GetObjFather(m_hObj);
 	}
 
 	bool IsChild(XLUE_LAYOUTOBJ_HANDLE hObj) const
@@ -148,53 +116,53 @@ public:
 		return XLUE_GetObjChildCount(m_hObj);
 	}
 
-	LayoutObjectWrapper GetChild(size_t index) const
+	XLUE_LAYOUTOBJ_HANDLE GetChild(size_t index) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return LayoutObjectWrapper(XLUE_GetObjChild(m_hObj, index));
+		return XLUE_GetObjChild(m_hObj, index);
 	}
 
-	LayoutObjectWrapper GetChildByID(const char* id) const
+	XLUE_LAYOUTOBJ_HANDLE GetChildByID(const char* id) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return LayoutObjectWrapper(XLUE_GetObjChildByID(m_hObj, id));
+		return XLUE_GetObjChildByID(m_hObj, id);
 	}
 
 	//通过定位指定来获取指定的object
-	LayoutObjectWrapper GetObject(const char* cmd) const
+	XLUE_LAYOUTOBJ_HANDLE GetObject(const char* cmd) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return LayoutObjectWrapper(XLUE_GetObjChildByCmd(m_hObj, cmd));
+		return XLUE_GetObjChildByCmd(m_hObj, cmd);
 	}
 
-	LayoutObjectWrapper GetControlObject(const char* id) const
+	XLUE_LAYOUTOBJ_HANDLE GetControlObject(const char* id) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return LayoutObjectWrapper(XLUE_GetControlObject(m_hObj, id));
+		return XLUE_GetControlObject(m_hObj, id);
 	}
 
-	LayoutObjectWrapper GetControlObjectEx(const char* id) const
+	XLUE_LAYOUTOBJ_HANDLE GetControlObjectEx(const char* id) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return LayoutObjectWrapper(XLUE_GetControlObjectEx(m_hObj, id));
+		return XLUE_GetControlObjectEx(m_hObj, id);
 	}
 
-	LayoutObjectWrapper GetOwnerControl() const
+	XLUE_LAYOUTOBJ_HANDLE GetOwnerControl() const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return LayoutObjectWrapper(XLUE_GetOwnerControl(m_hObj));
+		return XLUE_GetOwnerControl(m_hObj);
 	}
 
 	bool IsControl() const
@@ -457,7 +425,7 @@ public:
 		return XLUE_GetObjAbsZorder(m_hObj);
 	}
 
-	
+
 	// 鼠标和键盘输入事件相关函数
 	void EnableInputTarget(bool enable) const
 	{
@@ -674,8 +642,61 @@ public:
 		return XLUE_ObjGetLayer(m_hObj);
 	}
 
-	//bool SetResProvider(IResProvider *pResProvider);
-	//IResProvider* GetResProvider() const;
+	// 元对象的resprovider相关函数
+	XLUE_RESPROVIDER_HANDLE GetResProvider() const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return XLUE_GetObjResProvider(m_hObj);
+	}
+
+	BOOL SetResProvider(XLUE_RESPROVIDER_HANDLE hResProvider) const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return XLUE_SetObjResProvider(m_hObj, hResProvider);
+	}
+};
+
+class LayoutObjectWrapper
+	: public LayoutObjectBaseWrapper
+{
+public:
+
+	LayoutObjectWrapper(XLUE_LAYOUTOBJ_HANDLE hObj = NULL)
+	{
+		m_hObj = hObj;
+	}
+
+	LayoutObjectWrapper& operator=(XLUE_LAYOUTOBJ_HANDLE hObj)
+	{
+		m_hObj = hObj;
+
+		return *this;
+	}
+
+	void Attach(XLUE_LAYOUTOBJ_HANDLE hNewObj)
+	{
+		assert(m_hObj == NULL);
+		assert((hNewObj == NULL) || XLUE_IsObjValid(hNewObj));
+
+		m_hObj = hNewObj;
+	}
+
+	XLUE_LAYOUTOBJ_HANDLE Detach()
+	{
+		XLUE_LAYOUTOBJ_HANDLE hObj = m_hObj;
+		m_hObj = NULL;
+
+		return hObj;
+	}
+
+	operator XLUE_LAYOUTOBJ_HANDLE() const
+	{ 
+		return m_hObj; 
+	}
 };
 
 } // Bolt

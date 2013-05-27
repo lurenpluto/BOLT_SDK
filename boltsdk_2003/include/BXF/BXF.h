@@ -22,6 +22,8 @@
 	#error BXF requires C++ compilation
 #endif
 
+#include <BXF/RectHelper.h>
+
 #include <BXF/LayoutObjectWrapper.h>
 #include <BXF/HostWndWrapper.h>
 #include <BXF/ObjectTreeWrapper.h>

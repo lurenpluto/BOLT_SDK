@@ -82,6 +82,59 @@ private:
 	}
 };
 
+template<typename OwnerClass>
+class MemberTimerManagerWrapperT
+	: public TimerManagerWrapper
+{
+public:
+
+	typedef OwnerClass owner_class;
+	typedef void (OwnerClass::*LPFNOnTimer)(unsigned int);
+
+public:
+	MemberTimerManagerWrapperT()
+		:m_lpOwner(NULL),
+		m_lpTimerProc(NULL)
+	{
+
+	}
+
+	MemberTimerManagerWrapperT(owner_class* lpOwner, LPFNOnTimer lpTimerProc)
+		:m_lpOwner(lpOwner),
+		m_lpTimerProc(lpTimerProc)
+	{
+
+	}
+
+	virtual ~MemberTimerManagerWrapperT()
+	{
+		m_lpOwner = NULL;
+		m_lpTimerProc = NULL;
+	}
+
+	void SetTimerProc(owner_class* lpOwnerThis, LPFNOnTimer lpTimerProc)
+	{
+		m_lpOwner = lpOwnerThis;
+		m_lpTimerProc = lpTimerProc;
+	}
+
+private:
+
+	virtual void OnTimer(unsigned int timerID)
+	{
+		assert(m_lpOwner);
+		assert(m_lpTimerProc);
+
+		(m_lpOwner->*m_lpTimerProc)(timerID);
+	}
+
+private:
+
+	owner_class* m_lpOwner;
+	LPFNOnTimer m_lpTimerProc;
+};
+
 } // Bolt
 } // Xunlei
+
 #endif // __TIMERMANAGERWRAPPER_H__
