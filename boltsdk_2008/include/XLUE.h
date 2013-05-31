@@ -19,7 +19,6 @@
 #define _XUNLEI_XLUE_API_H_
 
 #include "./XLUEHandle.h"
-#include "./XLUEDefine.h"
 #include <XLGraphic.h>
 
 #ifdef __cplusplus
@@ -69,6 +68,8 @@ extern "C"{
 #if !defined(WIN32) && !defined(XLUE_WIN32)
 #include <XLUESysPreDefine.h>
 #endif // WIN32 && XLUE_WIN32
+
+#include "./XLUEDefine.h"
 
 //Kernel
 

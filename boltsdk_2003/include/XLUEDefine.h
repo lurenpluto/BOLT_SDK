@@ -28,6 +28,45 @@ extern "C"{
 
 typedef void* OS_HOSTWND_HANDLE;
 
+// 鼠标消息定义
+#define XLUE_ACTION_LMOUSE_DOWN      0x10
+#define XLUE_ACTION_LMOUSE_UP        0x11
+#define XLUE_ACTION_LMOUSE_DBCLICK   0x12
+#define XLUE_ACTION_RMOUSE_DOWN      0x13
+#define XLUE_ACTION_RMOUSE_UP        0x14
+#define XLUE_ACTION_RMOUSE_DBCLICK   0x15
+#define XLUE_ACTION_MMOUSE_DOWN      0x16
+#define XLUE_ACTION_MMOUSE_UP        0x17
+#define XLUE_ACTION_MMOUSE_DBCLICK   0x18
+
+#define XLUE_ACTION_MOUSE_MOVE       0x20
+#define XLUE_ACTION_MOUSE_HOVER      0x21
+#define XLUE_ACTION_MOUSE_LEAVE      0x22
+#define XLUE_ACTION_MOUSE_WHEEL      0x23
+#define XLUE_ACTION_MOUSE_ENTER      0x24
+
+#define XLUE_ACTION_MOUSEFIRST       XLUE_ACTION_LMOUSE_DOWN
+#define XLUE_ACTION_MOUSELAST        XLUE_ACTION_MOUSE_ENTER
+
+// 键盘消息定义
+#define XLUE_ACTION_KEY_DOWN         0x30
+#define XLUE_ACTION_KEY_UP           0x31
+#define XLUE_ACTION_CHAR             0x32
+#define XLUE_SYS_INPUTLANGCHANGE		 0x33
+#define XLUE_SYS_INPUTLANGCHANGEREQUEST  0x34
+#define XLUE_ACTION_HOTKEY           0x40
+
+#define XLUE_ACTION_KEYFIRST       XLUE_ACTION_KEY_DOWN
+#define XLUE_ACTION_KEYLAST        XLUE_ACTION_HOTKEY
+
+
+//关于鼠标消息的WPARAM
+#define XLUE_MK_LBUTTON          0x0001
+#define XLUE_MK_RBUTTON          0x0002
+#define XLUE_MK_SHIFT            0x0004
+#define XLUE_MK_CONTROL          0x0008
+#define XLUE_MK_MBUTTON          0x0010
+
 typedef enum __CtrlTestType
 {
 	CtrlTestType_none = 0,
@@ -146,6 +185,13 @@ typedef enum __DragEventType
 	DragEventType_drop = 4
 
 }DragEventType;
+
+// 扩展元对象的属性
+typedef enum __ExtObjAttribute
+{
+	ExtObjAttribute_clipsens = 0x01,
+
+}ExtObjAttribute;
 
 // 所有引擎DLL扩展模块都需要实现的两个导出接口，分别用以初始化和反初始化操作
 // 返回TRUE表示初始化成功，FALSE表示失败
@@ -494,6 +540,9 @@ typedef struct __ExtObjRegisterInfo
 
 	// 扩展元对象的class，不能和内置元对象class重复
 	const char* className;
+
+	// 扩展元对象的属性，可以取ExtObjAttribute值的一个或者多个
+	unsigned long attribute;
 
 	// 扩展元对象的创建/销毁管理器，必须不为空
 	ExtObjCreator* lpExtObjCreator;

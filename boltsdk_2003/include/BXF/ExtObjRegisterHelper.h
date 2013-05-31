@@ -112,13 +112,14 @@ struct MethodsStructFiller<NullClass, type>
 template<ExtObjType type, typename ObjectClass, typename CreatorClass, typename ParserClass = NullClass, typename LuaHostClass = NullClass>
 struct ExtObjRegisterHelper
 {
-	static BOOL Register(const char* className)
+	static BOOL Register(const char* className, unsigned long attribute)
 	{
 		assert(className);
 
 		ExtObjRegisterInfo registerInfo = { sizeof(registerInfo) };
 		registerInfo.type = type;
 		registerInfo.className = className;
+		registerInfo.attribute = attribute;
 
 		MethodsStructFiller<ObjectClass, type> methods;
 		registerInfo.lpExtObjMethods = methods;

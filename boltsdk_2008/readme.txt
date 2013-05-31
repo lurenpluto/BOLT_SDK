@@ -16,7 +16,7 @@ samples\Wizard   各种功能，控件的Demo，代码库。配套文章在编�
 例子的使用方法 找到例子里的.sln文件，编译运行,相关xar的编译在setup.js里已经做了
 
 tools        开发相关工具包目录
-convert_to_dev.bat    切换到开发板
+convert_to_dev.bat    切换到开发版
 convert_to_pr.bat    切换到正式版
 copydevto.js        拷贝开发版到指定目录
 copyprto.js            拷贝正式版到指定目录

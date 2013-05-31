@@ -122,7 +122,7 @@ private:
 
 private:
 
-	BOOL GetLuaFunction(const char* className, XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
+	BOOL GetLuaFunction(const char* /*className*/, XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
 	{
 		assert(lplpLuaFunctions);
 		assert(lpFuncCount);

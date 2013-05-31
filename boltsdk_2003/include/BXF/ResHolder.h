@@ -66,12 +66,12 @@ DECLARE_XLGRAPHIC_RESTRAITS(Brush, XL_BRUSH_HANDLE, ResType_brush);
 struct ColorResTraits
 	: public ResTraits<XL_Color, ResType_color>
 {
-	static unsigned long AddRef(XL_Color cr)
+	static unsigned long AddRef(XL_Color /*cr*/)
 	{
 		return 1;
 	}
 
-	static unsigned long Release(XL_Color cr)
+	static unsigned long Release(XL_Color /*cr*/)
 	{
 		return 1;
 	}

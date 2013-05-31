@@ -20,28 +20,30 @@
 
 #define GetFunctionAddress(T, M, var) __asm\
 	{\
-		__asm mov eax, T::M \
-		__asm mov var, eax \
+	__asm mov eax, T::M \
+	__asm mov var, eax \
 	}
 
 #define IsFunctionOverride(B, D, M, var) \
-	do \
+	for(;;) \
 	{ \
-		void *bm, *dm; \
-		GetFunctionAddress(B, M, bm) \
-		GetFunctionAddress(D, M, dm) \
-		var = (var || (bm == dm)); \
-	} while (0);
+	void *bm, *dm; \
+	GetFunctionAddress(B, M, bm) \
+	GetFunctionAddress(D, M, dm) \
+	var = (var || (bm != dm)); \
+	break; \
+	}
 
 #define AssignIfOverride(B, D, M, dest) \
-	do \
+	for(;;) \
 	{ \
-		bool same = false; \
-		IsFunctionOverride(this_class, FinalClass, M, same); \
-		if (!same) \
+	bool ret = false; \
+	IsFunctionOverride(B, D, M, ret); \
+	if (ret) \
 		{ \
-			dest->lpfn##M = &M##CallBack; \
+		dest->lpfn##M = &M##CallBack; \
 		} \
-	} while (0);
+		break; \
+	}
 
 #endif // __EXTOBJDEFINE_H__

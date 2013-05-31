@@ -542,7 +542,7 @@ private:
 		return ThisFromObjHandle(objHandle)->OnBindLayerChange(hNewLayerObject, hOldLayerObject);
 	}
 
-	static BOOL XLUE_STDCALL OnDragEventCallBack(void* userData, void* objHandle, DragEventType type, void* lpDragDataObj, unsigned long grfKeyState, POINT pt, unsigned long* lpEffect)
+	static BOOL XLUE_STDCALL OnDragEventCallBack(void* /*userData*/, void* objHandle, DragEventType type, void* lpDragDataObj, unsigned long grfKeyState, POINT pt, unsigned long* lpEffect)
 	{
 		this_class* lpThis = ThisFromObjHandle(objHandle);
 		bool ret = false;

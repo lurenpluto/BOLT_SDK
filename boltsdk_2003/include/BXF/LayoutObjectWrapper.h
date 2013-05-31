@@ -174,7 +174,7 @@ public:
 	}
 
 	// 位置相关函数
-	const RECT* GetObjPos() const
+	const RECT* GetPos() const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
@@ -190,7 +190,7 @@ public:
 		return XLUE_GetObjAbsPos(m_hObj);
 	}
 
-	long SetObjPos(const RECT* lpNewPos) const
+	long SetPos(const RECT* lpNewPos) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
@@ -198,7 +198,7 @@ public:
 		return XLUE_SetObjPos(m_hObj, lpNewPos);
 	}
 
-	long SetObjPos(const char* lpLeft, const char* lpTop, const char* lpWidth, const char* lpHeight) const
+	long SetPos(const char* lpLeft, const char* lpTop, const char* lpWidth, const char* lpHeight) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
@@ -206,22 +206,13 @@ public:
 		return XLUE_SetObjPosExp(m_hObj, lpLeft, lpTop, lpWidth, lpHeight);
 	}
 
-	long SetObjPosExp2(XLUE_LAYOUTOBJ_HANDLE hObj, const char* lpLeft, const char* lpTop, const char* lpRight, const char* lpBottom) const
+	long SetPos2(const char* lpLeft, const char* lpTop, const char* lpRight, const char* lpBottom) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
 		return XLUE_SetObjPosExp2(m_hObj, lpLeft, lpTop, lpRight, lpBottom);
 	}
-
-	const RECT* GetObjAbsPos(XLUE_LAYOUTOBJ_HANDLE hObj) const
-	{
-		assert(m_hObj);
-		assert(XLUE_IsObjValid(m_hObj));
-
-		return XLUE_GetObjAbsPos(m_hObj);
-	}
-
 
 	// 光标相关函数
 	const char* GetCursorID(long x, long y) const
