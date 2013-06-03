@@ -1,0 +1,92 @@
+498版本改动列表
+
+1.	LayerObject新增bindmode属性和相应的lua接口
+关于LayerObject的详细使用方法，请参考在线文档里关于LayerObject的相关说明
+
+2.	完善元对象的Ctrl命中测试的默认实现
+不再直接依赖是否有挂接鼠标和键盘事件，而是依赖元对象的CanHandleInput核心方法，把visible和enable属性纳入考虑范围，同时增加对扩展元对象的Ctrl命中测试支持
+
+3.	HostWnd的AddInputFilter挂接的消息过滤事件，支持在xml里面静态配置，进一步方便使用
+使用方法和hostwnd的其它事件完全一致：
+<event name=” OnMsgFilter” function=”xxxxx”/>
+
+4.	XLUEDefine.h头文件增加鼠标和键盘消息相关定义
+可以在BXF框架代码下使用鼠标和键盘消息了
+
+5.	完善BXF框架代码，去除在VS最高级别警告下的warning
+
+6.	修复层对象在非clipsens情况下无法擦除背景的bug
+
+7.	修复扩展元对象的CanHandleInput无法被正确调用的bug
+
+8.	修正扩展元对象的hittest默认实现
+
+9.	完善扩展元对象只在必要时候挂接bindhostwnd和createhostwnd事件
+
+10.	进一步完善hostwnd的焦点策略
+
+11.	日志版增加xmltype自定义方法重复判断
+如果xmlcontrol或者xmlanimation里面定义了重复的method，那么在日志版会弹出错误提示
+
+12.	修复HostWnd的AttachListener导致的lua虚拟机的table机制出错的bug
+
+13.	luaL_unref在日志版增加强制检错机制
+
+---------------------------------------------------------------------------------------------------------------------------
+492版本改动列表
+
+1.	注册扩展元对象增加attribute字段
+该字段主要提供元对象的一些核心属性，并为了以后的内核扩展准备
+
+2.	修正XLUE.h的头文件对XLUEDefine.h的依赖
+该bug在某些环境下会导致编译出错，本版本已经修复
+
+3.	层对象渲染流程采用拓扑序列而非zorder序列
+层对象的渲染流程按照嵌套关系，有父子关系的层对象不再依赖zorder
+
+4.	修复元对象脏矩形某些情况下出错的bug
+该bug主要会导致EditObject和RichEditObject在某些情况下无法正常刷新
+
+5.	完善剪裁敏感层对象的绘制流程，子对象不再受limitrect限制，层对象将创建和对象大小一致的缓存位图
+
+
+---------------------------------------------------------------------------------------------------------------------------
+490版本改动列表
+
+1.	引入BXF的扩展模块统一管理机制
+该机制可以以统一的形式管理各个扩展模块，并提供了高效的预注册机制，可以很方便的对引擎进行二级制模块级别的扩展和增强
+
+2.	引入BXF的元对象扩展子框架
+该机制允许外部扩展元对象，提供功能更丰富、强劲的扩展元对象，并且使用方法和现有内置元对象完全一致
+
+3.	正式提供BXF框架代码
+该框架代码采用C++ wrapper形式，旨在C++层面更方便的操作引擎的接口，并在BXF框架的基础上更方便、优雅的开发自己的扩展类，类似WTL对win32API的封装
+该框架代码在XLUE svn的各版本根目录BXF，以一系列头文件的形式提供
+
+4.	正式开放LayerObject核心元对象，提供层渲染机制为所有用户使用
+层渲染是引擎的一个重大改造，在层渲染的基础上可以实现很多之前不能实现的功能，这个接下来会有详细的邮件说明
+
+5.	LayerObject增加缓存机制
+该机制可以为整个渲染链提供分层的cache，减少绘制时候引起的不必要的开销
+
+6.	LayerObject提供剪裁敏感特性
+这个是层对象的一个核心特征，也是不同于传统渲染流程的一大特色，为不支持剪裁绘制的元对象提供了一个发挥作用的平台，尤其是对于即将大量扩展的后置渲染对象，很多时候都要依赖层对象的剪裁敏感特性
+
+7.	XLUE.dll新增多个导出接口，包括
+a)	元对象、对象树和hostwnd的各类接口
+b)	ResProvider的相关接口，并增加XLUE_RESPROVIDER_HANDLE核心句柄类型
+c)	TimerManager的相关接口
+
+8.	XLUE.h头文件调整
+主要增加了XLUEDefine.h头文件，里面有XLUE.h依赖的各个类型的定义，XLUEDefine.h和XLUE.h在svn的相同目录，如果之前有项目是按照文件名拉取而非目录拉取的，那么需要增多该头文件的拉取
+
+9.	优化元对象的xml parser体系，减少重复解析，并支持外部扩展
+修正后的xml解析体系更加完善和优雅，并提供了更为严格的xml属性排错机制，更新后各产品可能会发现多了很多未知xml属性的弹框，请根据弹框提示进行相关的修正
+
+10.	HostWnd新增OnEnterResizeMove和OnExitResizeMove事件
+这两个事件在hostwnd被拖着移动和改变大小时候会触发，分别在开始和结束时候触发，事件原型如下：
+long result, bool handled, bool callnext OnEnterResizeMove(hostwnd self,  int type)
+long result, bool handled, bool callnext OnExitResizeMove(hostwnd self,  int type)
+其中type=0表示是resize事件，1表示是move事件
+
+11.	多处细节改动和优化

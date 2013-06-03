@@ -385,4 +385,6 @@ XL_LRT_API(lua_CFunction) XLLRT_GetFunctionAddress( lua_CFunction lpFun );
 
 XL_LRT_API(long) XLLRT_Stat(long type);
 
+XL_LRT_API(long) XLLRT_DumpTable(XL_LRT_RUNTIME_HANDLE hRuntime, long tableRef);
+
 #endif //_XUNLEI_LUA_RUNTIME_H_
