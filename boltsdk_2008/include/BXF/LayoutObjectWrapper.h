@@ -44,6 +44,7 @@ public:
 		return ((m_hObj !=NULL) && (!!XLUE_IsObjValid(m_hObj)));
 	}
 
+	// LayoutObject Functions
 	const char* GetClass() const
 	{
 		assert(m_hObj);
@@ -66,6 +67,14 @@ public:
 		assert(XLUE_IsObjValid(m_hObj));
 
 		return XLUE_GetObjOwner(m_hObj);
+	}
+
+	XLUE_HOSTWND_HANDLE GetBindHostWnd() const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return XLUE_GetObjTreeBindHostWnd(XLUE_GetObjOwner(m_hObj));
 	}
 
 	XLUE_LAYOUTOBJ_HANDLE GetFather() const
@@ -648,6 +657,64 @@ public:
 		assert(XLUE_IsObjValid(m_hObj));
 
 		return XLUE_SetObjResProvider(m_hObj, hResProvider);
+	}
+
+	// ImageObject Functions
+	bool SetImageResID(const char* id) const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return !!XLUE_SetImageObjResID(m_hObj, id);
+	}
+
+	const char* GetImageResID() const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return XLUE_GetImageObjResID(m_hObj);
+	}
+
+	bool SetImageBitmap(XL_BITMAP_HANDLE hBitmap) const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return !!XLUE_SetImageObjBitmap(m_hObj, hBitmap);
+	}
+
+	XL_BITMAP_HANDLE GetImageBitmap() const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return XLUE_GetImageObjBitmap(m_hObj);
+	}
+
+	// RealObject Functions
+	OS_HOSTWND_HANDLE SetRealWindow(OS_HOSTWND_HANDLE hWnd) const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return XLUE_SetRealObjWindow(m_hObj, hWnd);
+	}
+
+	OS_HOSTWND_HANDLE GetRealWindow() const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return XLUE_GetRealObjWindow(m_hObj);
+	}
+
+	OS_HOSTWND_HANDLE GetRealHostWindow() const
+	{
+		assert(m_hObj);
+		assert(XLUE_IsObjValid(m_hObj));
+
+		return XLUE_GetRealObjHostWindow(m_hObj);
 	}
 };
 

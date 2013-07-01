@@ -289,9 +289,9 @@ XLUE_API(BOOL) XLUE_ObjBindLayer(XLUE_LAYOUTOBJ_HANDLE hObj, XLUE_LAYOUTOBJ_HAND
 XLUE_API(XLUE_LAYOUTOBJ_HANDLE) XLUE_ObjGetLayer(XLUE_LAYOUTOBJ_HANDLE hObj);
 
 // ImageObject的相关接口
-XLUE_API(BOOL) XLUE_SetImageObjID(XLUE_LAYOUTOBJ_HANDLE hObj, const char* id);
-XLUE_API(const char*) XLUE_GetImageObjID(XLUE_LAYOUTOBJ_HANDLE hObj);
-XLUE_API(BOOL) XLUE_SetImageObjBitmap(XLUE_LAYOUTOBJ_HANDLE hObj, XLUE_LAYOUTOBJ_HANDLE hBitmap);
+XLUE_API(BOOL) XLUE_SetImageObjResID(XLUE_LAYOUTOBJ_HANDLE hObj, const char* id);
+XLUE_API(const char*) XLUE_GetImageObjResID(XLUE_LAYOUTOBJ_HANDLE hObj);
+XLUE_API(BOOL) XLUE_SetImageObjBitmap(XLUE_LAYOUTOBJ_HANDLE hObj, XL_BITMAP_HANDLE hBitmap);
 XLUE_API(XL_BITMAP_HANDLE) XLUE_GetImageObjBitmap(XLUE_LAYOUTOBJ_HANDLE hObj);
 
 // RealObject的相关接口
@@ -320,7 +320,7 @@ XLUE_API(BOOL) XLUE_RegisterExtObj(const ExtObjRegisterInfo* lpRegisterInfo);
 
 // 其中paramCount便是参数个数n，retCount是返回值个数m(事件定义的真正的返回值个数是m+3!)
 // firee事件之前，需要把n个参数push到lua栈顶；调用完成后，栈顶是m个返回值，handled标志该事件是否被处理，由事件管理器根据默认返回值来确定
-XLUE_API(long) XLUE_FireExtObjEvent(XLUE_LAYOUTOBJ_HANDLE hObj, const char* eventName, lua_State* luaState, int paramCount, int retCount, BOOL& handled);
+XLUE_API(long) XLUE_FireExtObjEvent(XLUE_LAYOUTOBJ_HANDLE hObj, const char* eventName, lua_State* luaState, int paramCount, int retCount, BOOL* lpHandled);
 
 // 如果hObj是一个扩展对象，那么尝试获取其对应的自定义handle
 XLUE_API(void*) XLUE_GetExtHandle(XLUE_LAYOUTOBJ_HANDLE hObj);
@@ -440,6 +440,16 @@ XLUE_API(BOOL) XLUE_GetHostWndEnable(XLUE_HOSTWND_HANDLE hHostWnd);
 XLUE_API(BOOL) XLUE_SetHostWndTopMost(XLUE_HOSTWND_HANDLE hHostWnd, BOOL bTopMost);
 XLUE_API(BOOL) XLUE_GetHostWndTopMost(XLUE_HOSTWND_HANDLE hHostWnd);
 
+XLUE_API(BOOL) XLUE_HostWndPtToScreenPt(XLUE_HOSTWND_HANDLE hHostWnd, POINT* lpPT);
+XLUE_API(BOOL) XLUE_ScreenPtToHostWndPt(XLUE_HOSTWND_HANDLE hHostWnd, POINT* lpPT);
+XLUE_API(BOOL) XLUE_HostWndRectToScreenRect(XLUE_HOSTWND_HANDLE hHostWnd, RECT* lpRect);
+XLUE_API(BOOL) XLUE_ScreenRectToHostWndRect(XLUE_HOSTWND_HANDLE hHostWnd, RECT* lpRect);
+
+XLUE_API(BOOL) XLUE_TreePtToHostWndPt(XLUE_HOSTWND_HANDLE hHostWnd, POINT* lpPT);
+XLUE_API(BOOL) XLUE_HostWndPtToTreePt(XLUE_HOSTWND_HANDLE hHostWnd, POINT* lpPT);
+XLUE_API(BOOL) XLUE_TreeRectToHostWndRect(XLUE_HOSTWND_HANDLE hHostWnd, RECT* lpRect);
+XLUE_API(BOOL) XLUE_HostWndRectToTreeRect(XLUE_HOSTWND_HANDLE hHostWnd, RECT* lpRect);
+
 XLUE_API(XL_BITMAP_HANDLE) XLUE_GetWindowBitmap(XLUE_HOSTWND_HANDLE hHostWnd);
 
 XLUE_API(BOOL) XLUE_ShowHostWnd(XLUE_NORMAL_HOSTWND_HANDLE hHostWnd, CMDSHOW cmdShow);
@@ -556,6 +566,14 @@ typedef long (XLUE_STDCALL* LPFNTEXTCHANGEHOOK)(const XLUE_HOOK_DESC* lpHookDesc
 
 XLUE_API(long) XLUE_SetGlobalHook(unsigned long type, void* lpHookProc, void* userData, unsigned long flags, BOOL hookBack);
 XLUE_API(BOOL) XLUE_RemoveGlobalHook(long cookie, void** lplpUserData);
+
+/*--------------------消息循环相关函数-------------------------------------*/
+// 执行一次消息循环，需要控制好调用粒度，在该周期内，每个消息循环listener都会被调用
+XLUE_API(long) XLUE_DoMessageLoopWork(void* reserved);
+
+typedef long (XLUE_STDCALL *LPFNDOMESSAGEWORKPROC)(void* userData);
+XLUE_API(long) XLUE_RegisterMessageLoopListener(LPFNDOMESSAGEWORKPROC lpfnWorkProc, void* userData);
+XLUE_API(BOOL) XLUE_UnregisterMessageLoopListener(long cookie, void** lpUserData);
 
 /*--------------------内置资源类型的lua辅助操作函数----------------------------------------------*/
 

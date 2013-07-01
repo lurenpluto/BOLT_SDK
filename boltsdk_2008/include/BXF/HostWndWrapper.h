@@ -241,6 +241,70 @@ public:
 
 		return XLUE_GetWindowBitmap(m_hHostWnd);
 	}
+
+	bool HostWndPtToScreenPt(POINT& pt) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return !!XLUE_HostWndPtToScreenPt(m_hHostWnd, &pt);
+	}
+
+	bool ScreenPtToHostWndPt(POINT& pt) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return !!XLUE_ScreenPtToHostWndPt(m_hHostWnd, &pt);
+	}
+
+	bool HostWndRectToScreenRect(RECT& rc) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return !!XLUE_HostWndRectToScreenRect(m_hHostWnd, &rc);
+	}
+
+	bool ScreenRectToHostWndRect(RECT& rc) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return !!XLUE_ScreenRectToHostWndRect(m_hHostWnd, &rc);
+	}
+
+	bool TreePtToHostWndPt(POINT& pt) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return !!XLUE_TreePtToHostWndPt(m_hHostWnd, &pt);
+	}
+
+	bool HostWndPtToTreePt(POINT& pt) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return !!XLUE_HostWndPtToTreePt(m_hHostWnd, &pt);
+	}
+
+	bool TreeRectToHostWndRect(RECT& rc) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return !!XLUE_TreeRectToHostWndRect(m_hHostWnd, &rc);
+	}
+
+	bool HostWndRectToTreeRect(RECT& rc) const
+	{
+		assert(m_hHostWnd);
+		assert(XLUE_IsHostWndValid(m_hHostWnd));
+
+		return !!XLUE_HostWndRectToTreeRect(m_hHostWnd, &rc);
+	}
 };
 
 } // Bolt

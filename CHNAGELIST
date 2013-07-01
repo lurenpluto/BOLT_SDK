@@ -1,3 +1,113 @@
+506版本改动列表
+
+
+1.	正式对外开放XLUEIPC模块
+新增XLUEIPC.lib和XLUEIPC.h等文件
+
+2.	tools增加XAR打包工具XLUEPack
+
+3.	BXF开源框架代码增加元对象事件辅助类
+代码在XLUE的bin svn的BXF目录下，外网SDK里面位于include\BXF目录下
+
+4.	核心改动：元对象键盘输入事件区分是否是按键
+同时元对象的OnKeyDown、OnKeyUp、OnChar事件，在当前参数列表下增加isSysKey额外参数，用来表示当前按键是否是系统按键
+
+5.	核心改动：增加内置消息循环机制和相关接口
+该机制可以用以整合外部消息循环和引擎内置的消息循环，引擎内置消息循环可以由某些扩展服务(比如web服务)来注册，并完成相应的工作
+
+新增的接口如下：
+
+XLUE_API(long) XLUE_DoMessageLoopWork(void* reserved);
+XLUE_API(long) XLUE_RegisterMessageLoopListener(LPFNDOMESSAGEWORKPROC lpfnWorkProc, void* userData);
+XLUE_API(BOOL) XLUE_UnregisterMessageLoopListener(long cookie, void** lpUserData);
+
+其中XLUE_RegisterMessageLoopListener和XLUE_UnregisterMessageLoopListener用来注册基于引擎内置消息循环的自定义handler，可以在handler里面完成基于消息循环的工作
+XLUE_DoMessageLoopWork由宿主程序在主消息循环里面驱动，引擎用来模拟内置的消息循环
+
+6.	完善XLUEOPS进程外服务器对web服务的支持
+
+7.	完善hostwnd的鼠标捕获处理
+在hostwnd弹出模态窗口，被disable等情况下，如果当前正在捕获鼠标状态，那么放弃对鼠标的捕获
+
+8.	修正hostwnd在disable状态下对cursor的支持
+修正后的结果为：当一个hostwnd在被disable状态下，不会由于元对象或者hostwnd自身的cursorid配置而改变鼠标形状
+
+9.	修正XLUE_FireExtObjEvent接口签名
+
+10.	修正全局垃圾回收机制，在remove处理器的时候，总是返回flase的bug
+
+
+---------------------------------------------------------------------------------------------------------------------------
+504版本改动列表
+
+1.	改进XLUEOPS进程外服务器，增加支持进程外浏览器服务(即将到来的Webkit内核浏览器)
+改进后的XLUEOPS功能更加强大，支持加载flash服务和浏览器服务，并支持加载第三方进程外服务，是BXF扩展框架的重要组件部分
+
+2.	BOLT外网SDK增加XLUEIPC.lib和XLUEIPC.h，正式对外开放XLUEIPC模块
+
+3.	XLUEIPC跨进程通信支持从低权限进程到高权限进程
+
+4.	WindowlessFlashObject在初始化时候增加锁定保护
+避免在初始化进程外flash服务时候，销毁对象本身可能导致的崩溃
+
+5.	BXF的LayoutObjectWrapper增加ImageObject和RealObject相关方法
+
+6.	修正XLUE.dll的XLUE_SetImageObjID和XLUE_GetImageObjID两个导出接口
+
+7.	XGP库的lua封装不再初始化和反初始化XGP
+移除此冗余操作，避免反初始化时候由于时序错误可能导致的崩溃
+
+8.	XLUE的反初始化逻辑强制清除timermanager所有timer
+也即调用XLUE_UninitLoader进行反初始化后，TimerManager的所有既有timer都会终止
+
+9.	完善HostWndManager的clear接口，避免重入移除hostwnd导致出错
+
+10.	栈锁机制的删除增加重入保护，主要避免hostwnd的重复删除
+
+
+---------------------------------------------------------------------------------------------------------------------------
+502版本改动列表
+
+1.	RichEditObject增加hidesel属性和相关接口
+该属性是EditObject的对等属性，使用方法和EditObject一致，默认值也相同，默认值hidesel=1
+
+2.	XLUEIPC的channel和session分别增加设置/获取心跳超时时间的接口
+新增接口如下：
+XLIPC_SetChannelAliveTimeout
+XLIPC_GetChannelAliveTimeout
+
+XLIPC_SetSessionAliveTimeout
+XLIPC_GetSessionAliveTimeout
+
+需要注意的是默认超时时间都是500ms，使用者可以设置合适的值来满足不同的需求，设置一个超大值可以避免由于心跳通信失败导致的连接被动断开
+
+3.	XLUE.dll新增hostwnd坐标转换相关C接口，主要用以完善BXF框架
+新增接口如下：
+XLUE_HostWndPtToScreenPt
+XLUE_ScreenPtToHostWndPt
+XLUE_HostWndRectToScreenRect
+XLUE_ScreenRectToHostWndRect
+
+XLUE_TreePtToHostWndPt
+XLUE_HostWndPtToTreePt
+XLUE_TreeRectToHostWndRect
+XLUE_HostWndRectToTreeRect
+
+4.	修复win7下带联动窗口的hostwnd，点击任务栏缩略图无法前置或者还原的bug
+该bug由联动窗口hostwnd的整体缩略图功能导致，新版本已经修正
+
+5.	改进顶层hostwnd的焦点策略
+新的策略修正了在某些情况下，窗口被deactive后延迟收到FocusChange事件的bug，并具有更好的一致性
+
+6.	修正hostwnd作为子窗口时候的焦点策略
+当hostwnd做为子窗口时候，focus取决于该窗口是否真正有焦点，而非是否是当前活动窗口
+
+7.	修正窗口的缓存大小策略
+避免在初始化和切换顶层<->子窗口时候可能引发的bug
+
+8.	FlashService异常保护增加模块限定，只捕获发生在Flashxxx.ocx模块里的崩溃
+
+---------------------------------------------------------------------------------------------------------------------------
 500版本改动列表
 
 1.	EditObject增加hidesel属性和相关接口

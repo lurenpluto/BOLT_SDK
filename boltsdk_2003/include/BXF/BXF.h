@@ -37,6 +37,7 @@
 #include <BXF/ExtObjParserImpl.h>
 #include <BXF/ExtObjCreatorImpl.h>
 #include <BXF/ExtObjLuaHostImpl.h>
+#include <BXF/ExtObjEventImpl.h>
 
 #include <BXF/ExtObjRegisterHelper.h>
 
