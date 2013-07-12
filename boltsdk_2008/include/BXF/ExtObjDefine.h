@@ -27,21 +27,21 @@
 #define IsFunctionOverride(B, D, M, var) \
 	for(;;) \
 	{ \
-	void *bm, *dm; \
-	GetFunctionAddress(B, M, bm) \
-	GetFunctionAddress(D, M, dm) \
-	var = (var || (bm != dm)); \
-	break; \
+		void *bm, *dm; \
+		GetFunctionAddress(B, M, bm) \
+		GetFunctionAddress(D, M, dm) \
+		var = (var || (bm != dm)); \
+		break; \
 	}
 
 #define AssignIfOverride(B, D, M, dest) \
 	for(;;) \
 	{ \
-	bool ret = false; \
-	IsFunctionOverride(B, D, M, ret); \
-	if (ret) \
+		bool ret = false; \
+		IsFunctionOverride(B, D, M, ret); \
+		if (ret) \
 		{ \
-		dest->lpfn##M = &M##CallBack; \
+			dest->lpfn##M = &M##CallBack; \
 		} \
 		break; \
 	}

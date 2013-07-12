@@ -25,9 +25,8 @@ namespace Xunlei
 namespace Bolt
 {
 
-
 // T为扩展对象ObjectClass的lua封装类，比如MagicObject的lua封装类LuaMagicObject
-// 子类T需要定义static XLLRTGlobalAPI s_szLuaMemberFuncs[]，并在里面放置相应的lua方法
+// 子类T需要实现GetLuaFunction并在里面返回需要注册的API
 template<typename T, typename ObjectClass>
 class ExtObjLuaHostImpl
 {
@@ -53,12 +52,15 @@ public:
 	template<typename FinalClass>
 	void FillCStruct(ExtObjLuaHost* lpExtLuaHost)
 	{
+		typedef FinalClass final_class;
+
 		assert(lpExtLuaHost);
 
 		lpExtLuaHost->size = sizeof(ExtObjLuaHost);
 		lpExtLuaHost->userData = this;
 
 		lpExtLuaHost->lpfnGetLuaFunctions = GetLuaFunctionsCallBack;
+		AssignIfOverride(this_class, final_class, RegisterAuxClass, lpExtLuaHost);
 	}
 
 public:
@@ -91,6 +93,25 @@ public:
 		return ExtLayoutObjMethodsImpl::ObjectFromExtHandle<obj_class>(lpExtObjHandle);
 	}
 
+	template<typename TargetClass>
+	static TargetClass* CheckExtObjectEx(lua_State* luaState, int index)
+	{
+		XLUE_LAYOUTOBJ_HANDLE hObj = CheckObject(luaState, index);
+		if (hObj == NULL)
+		{
+			return NULL;
+		}
+
+		void* lpExtObjHandle = XLUE_GetExtHandle(hObj);
+		assert(lpExtObjHandle);
+		if (lpExtObjHandle == NULL)
+		{
+			return NULL;
+		}
+
+		return ExtLayoutObjMethodsImpl::ObjectFromExtHandle<TargetClass>(lpExtObjHandle);
+	}
+
 	// Push类似MagicObject*的对象到栈顶，失败的话会放置一个nil到栈顶
 	static bool PushExtObject(lua_State* luaState, obj_class* lpExtObject)
 	{
@@ -112,6 +133,36 @@ public:
 		return !!XLUE_PushObject(luaState, hObj);
 	}
 
+	template<typename TargetClass>
+	static bool PushExtObjectEx(lua_State* luaState, TargetClass* lpExtObject)
+	{
+		assert(luaState);
+		if (lpExtObject == NULL)
+		{
+			lua_pushnil(luaState);
+			return false;
+		}
+
+		XLUE_LAYOUTOBJ_HANDLE hObj = lpExtObject->GetObjectHandle();
+		assert(hObj);
+		if (lpExtObject == NULL)
+		{
+			lua_pushnil(luaState);
+			return false;
+		}
+
+		return !!XLUE_PushObject(luaState, hObj);
+	}
+
+	// 获取该扩展元对象所有的lua扩展api	
+	virtual BOOL GetLuaFunction(const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount) = 0;
+
+	// 注册额外的辅助lua类或者全局对象
+	virtual BOOL RegisterAuxClass(const char* /*className*/, XL_LRT_ENV_HANDLE /*hEnv*/)
+	{
+		return TRUE;
+	}
+
 private:
 
 	static this_class* ThisFromUserData(void* userData)
@@ -122,12 +173,50 @@ private:
 
 private:
 
-	BOOL GetLuaFunction(const char* /*className*/, XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
+	static BOOL XLUE_STDCALL GetLuaFunctionsCallBack(void* userData, const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
+	{
+		return ThisFromUserData(userData)->GetLuaFunction(className, lplpLuaFunctions, lpFuncCount);
+	}
+
+	static BOOL XLUE_STDCALL RegisterAuxClassCallBack(void* userData, const char* className, XL_LRT_ENV_HANDLE hEnv)
+	{
+		return ThisFromUserData(userData)->RegisterAuxClass(className, hEnv);
+	}
+};
+
+// ExtObjLuaHostImpl的扩展实现，可以直接从子类读取API数组
+// 子类T需要定义static XLLRTGlobalAPI s_szLuaMemberFuncs[]，并在里面放置相应的lua方法
+template<typename T, typename ObjectClass>
+class ExtObjLuaHostImplEx
+	: public ExtObjLuaHostImpl<T, ObjectClass>
+{
+public:
+	ExtObjLuaHostImplEx()
+	{
+
+	}
+
+	virtual ~ExtObjLuaHostImplEx()
+	{
+
+	}
+
+public:
+
+	// ExtObjLuaHostImpl
+	virtual BOOL GetLuaFunction(const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
+	{
+		return DefaultGetLuaFunction(className, lplpLuaFunctions, lpFuncCount);
+	}
+
+private:
+
+	BOOL DefaultGetLuaFunction(const char* /*className*/, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
 	{
 		assert(lplpLuaFunctions);
 		assert(lpFuncCount);
 
-		XLLRTGlobalAPI* lpLuaFuncs = T::s_szLuaMemberFuncs;
+		const XLLRTGlobalAPI* lpLuaFuncs = T::s_szLuaMemberFuncs;
 		*lplpLuaFunctions = lpLuaFuncs;
 
 		size_t count = 0;
@@ -140,11 +229,6 @@ private:
 		*lpFuncCount = count;
 
 		return TRUE;
-	}
-
-	static BOOL XLUE_STDCALL GetLuaFunctionsCallBack(void* userData, const char* className, XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
-	{
-		return ThisFromUserData(userData)->GetLuaFunction(className, lplpLuaFunctions, lpFuncCount);
 	}
 };
 

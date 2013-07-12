@@ -104,7 +104,7 @@ struct tagXLLRTObject
     void* userData;
 	const char* ObjName;
 	const char* ClassName;
-	XLLRTGlobalAPI* MemberFunctions;
+	const XLLRTGlobalAPI* MemberFunctions;
     unsigned long Permission;
 };
 typedef struct tagXLLRTObject XLLRTObject;
@@ -113,7 +113,7 @@ struct tagXLLRTClass
 {
 	const char* className;
 	const char* fahterClassName;
-	XLLRTGlobalAPI* MemberFunctions;
+	const XLLRTGlobalAPI* MemberFunctions;
 	unsigned long permission;
 };
 typedef struct tagXLLRTClass XLLRTClass;
@@ -210,7 +210,7 @@ XL_LRT_API(long) XLLRT_RegisterGlobalSetCallback(XL_LRT_ENV_HANDLE hEnv,fnGlobal
 XL_LRT_API(long) XLLRT_IsGlobalObjRegistered(XL_LRT_ENV_HANDLE hEnv,const char* objName);
 
 //Ö§³Öµ¥¼Ì³Ð
-XL_LRT_API(long) XLLRT_RegisterClass(XL_LRT_ENV_HANDLE hEnv,const char* className,XLLRTGlobalAPI* MemberFunctions,const char* fahterClassName,unsigned long permission);
+XL_LRT_API(long) XLLRT_RegisterClass(XL_LRT_ENV_HANDLE hEnv,const char* className,const XLLRTGlobalAPI* MemberFunctions,const char* fahterClassName,unsigned long permission);
 XL_LRT_API(long) XLLRT_UnRegisterClass(XL_LRT_ENV_HANDLE hEnv,const char* className);
 XL_LRT_API(long) XLLRT_DoRegisterClass(const char* className,lua_State* luaState);
 XL_LRT_API(BOOL) XLLRT_IsClassRegistered(XL_LRT_ENV_HANDLE hEnv, const char* className);

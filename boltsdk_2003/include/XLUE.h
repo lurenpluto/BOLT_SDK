@@ -319,7 +319,9 @@ XLUE_API(BOOL) XLUE_PreRegisterExtObj(const ExtObjPreRegisterInfo* lpPreRegister
 XLUE_API(BOOL) XLUE_RegisterExtObj(const ExtObjRegisterInfo* lpRegisterInfo);
 
 // 其中paramCount便是参数个数n，retCount是返回值个数m(事件定义的真正的返回值个数是m+3!)
-// firee事件之前，需要把n个参数push到lua栈顶；调用完成后，栈顶是m个返回值，handled标志该事件是否被处理，由事件管理器根据默认返回值来确定
+// lua函数的返回值序列为result, ret1, ret2,...,retm, handled, callNext，其中ret1-retm是该事件定义的m个返回值
+// result为XLUE_FireExtObjEvent的返回值，lpHandled是handled返回值
+// fire事件之前，需要把n个参数push到lua栈顶；调用完成后，栈顶是m个返回值，lpHandled标志该事件是否被处理，由事件管理器根据默认返回值来确定
 XLUE_API(long) XLUE_FireExtObjEvent(XLUE_LAYOUTOBJ_HANDLE hObj, const char* eventName, lua_State* luaState, int paramCount, int retCount, BOOL* lpHandled);
 
 // 如果hObj是一个扩展对象，那么尝试获取其对应的自定义handle

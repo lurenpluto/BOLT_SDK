@@ -6,10 +6,10 @@
 * =                                                                 =
 * =-----------------------------------------------------------------=
 * 
-*   FileName    :   XLUEExternalObj
+*   FileName    :   XLUEDefine.h
 *   Author      :   xlue group(xlue@xunlei.com)
-*   Create      :   2013-5-16 16:01
-*   LastChange  :   2013-5-16 16:01
+*   Create      :   2013-5-16
+*   LastChange  :   2013-7-4
 *   History     :	
 *
 *   Description :   XLUE主模块的相关数据结构定义
@@ -107,7 +107,7 @@ typedef enum __FocusReason
 	FocusReason_tab = 3			// 用户使用tab和方向键导航导致的焦点改变
 }FocusReason;
 
-//centre mode
+//center mode
 typedef enum tagAngleChangeAniCentreMode
 {	
 	LeftTopCoordinate = 0,//以左上为0,0的绝对坐标
@@ -471,7 +471,10 @@ typedef struct __ExtObjLuaHost
 	void* userData;
 
 	// 获取所有的lua扩展api
-	BOOL (XLUE_STDCALL *lpfnGetLuaFunctions)(void* userData, const char* className, XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount);
+	BOOL (XLUE_STDCALL *lpfnGetLuaFunctions)(void* userData, const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount);
+
+	// 注册额外的辅助lua类或者全局对象
+	BOOL (XLUE_STDCALL *lpfnRegisterAuxClass)(void* userData, const char* className, XL_LRT_ENV_HANDLE hEnv);
 
 }ExtObjLuaHost;
 
@@ -553,7 +556,7 @@ typedef struct __ExtObjRegisterInfo
 	// 扩展元对象的核心方法，具体参数类型取决于扩展元对象类别
 	// ExtObjType_layoutObj/ExtObjType_renderableObj -> ExtObjMethods
 	// ExtObjType_imageObj -> ExtImageObjMethods
-	// ExtObjType_realObj ->ExtRealObjMethods
+	// ExtObjType_realObj -> ExtRealObjMethods
 	void* lpExtObjMethods;
 
 	// 扩展元对象的xml解析器，如果需要从xml里面生成该扩展对象，那么该字段不得为空

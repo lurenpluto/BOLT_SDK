@@ -171,8 +171,32 @@ private:
 	}
 };
 
-#define DECLEAR_EXT_EVENT_VECTOR() static const ExtEventItem s_vtAllEvents[];
-#define BEGIN_EXT_EVENT_VECTOR(classname) const classname::ExtEventItem classname::s_vtAllEvents[] = {
+struct ExtObjEventItem
+{
+	const char* name;	
+};
+
+struct ExtObjEventItems
+{
+	const ExtObjEventItems* m_lpBaseEventItems;
+	const ExtObjEventItem* m_lpEventItems;
+};
+
+#define DECLEAR_EXT_EVENT_VECTOR() \
+	static const Xunlei::Bolt::ExtObjEventItems* s_lpBaseEventItems; \
+	static const Xunlei::Bolt::ExtObjEventItem s_vtEventItems[]; \
+	static const Xunlei::Bolt::ExtObjEventItems s_eventItems;
+
+#define BEGIN_EXT_EVENT_VECTOR(classname) \
+	const Xunlei::Bolt::ExtObjEventItems classname::s_eventItems = {classname::s_lpBaseEventItems,  classname::s_vtEventItems}; \
+	const Xunlei::Bolt::ExtObjEventItems* classname::s_lpBaseEventItems = NULL; \
+	const Xunlei::Bolt::ExtObjEventItem classname::s_vtEventItems[] = {
+	
+#define BEGIN_EXT_EVENT_VECTOR_EX(classname, baseclass) \
+	const Xunlei::Bolt::ExtObjEventItems classname::s_eventItems = {classname::s_lpBaseEventItems,  classname::s_vtEventItems}; \
+	const Xunlei::Bolt::ExtObjEventItems* classname::s_lpBaseEventItems = &baseclass::s_eventItems; \
+	const Xunlei::Bolt::ExtObjEventItem classname::s_vtEventItems[] = {
+
 #define EXT_EVENT_ITEM(eventname) { s_##eventname },
 #define END_EXT_EVENT_VECTOR() { NULL } };
 
@@ -185,16 +209,40 @@ class ExtObjEventImplEx
 {
 public:
 
-	struct ExtEventItem
-	{
-		const char* name;	
-	};
-
 	// ExtObjEventImpl method
 	virtual bool EventExists(const char* eventName)
 	{
-		const ExtEventItem* lpItrator = T::s_vtAllEvents;
-		while(lpItrator->name != NULL && strcmp(lpItrator->name, eventName) != 0)
+		return EventExistsImpl(eventName, &T::s_eventItems);
+	}
+
+private:
+
+	bool EventExistsImpl(const char* eventName, const ExtObjEventItems* lpEventItems) const
+	{
+		assert(eventName);
+		assert(lpEventItems);
+
+		bool ret = false;
+		if (lpEventItems->m_lpBaseEventItems != NULL)
+		{
+			ret = EventExistsImpl(eventName, lpEventItems->m_lpBaseEventItems);
+		}
+
+		if (ret)
+		{
+			return true;
+		}
+
+		return EventExistsFromItems(eventName, lpEventItems->m_lpEventItems);
+	}
+
+	bool EventExistsFromItems(const char* eventName, const ExtObjEventItem* lpEventVector) const
+	{
+		assert(eventName);
+		assert(lpEventVector);
+		
+		const ExtObjEventItem* lpItrator = lpEventVector;
+		while(lpItrator->name != NULL && ::strcmp(lpItrator->name, eventName) != 0)
 		{
 			++lpItrator;
 		}

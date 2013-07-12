@@ -12,9 +12,9 @@
 #include <stddef.h>
 #include <assert.h>
 
-#ifdef __XLUE_LUA_IMPL__
+#ifdef XLUE_LUA_IMPL
 #include "../luaext/luaassert.h"
-#endif // __XLUE_LUA_IMPL__
+#endif // XLUE_LUA_IMPL
 
 #include "lua.h"
 
