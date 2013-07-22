@@ -62,6 +62,13 @@ typedef void* OS_HOSTWND_HANDLE;
 #define XLUE_ACTION_KEYFIRST       XLUE_ACTION_KEY_DOWN
 #define XLUE_ACTION_KEYLAST        XLUE_ACTION_HOTKEY
 
+#define XLUE_IME_STARTCOMPOSITION	0x50
+#define XLUE_IME_ENDCOMPOSITION		0x51
+#define XLUE_IME_COMPOSITION		0x52
+
+#define XLUE_IME_KEYFIRST			XLUE_IME_STARTCOMPOSITION
+#define XLUE_IME_KEYLAST			0x5F
+
 
 //关于鼠标消息的WPARAM
 #define XLUE_MK_LBUTTON          0x0001
@@ -570,23 +577,20 @@ typedef struct __ExtObjRegisterInfo
 
 }ExtObjRegisterInfo;
 
-// 内置资源类型
-typedef enum __ResType
-{
-	ResType_unknown = 0,
-	ResType_bitmap  = 1,
-	ResType_texture = 2,
-	ResType_font    = 3,   
-	ResType_color   = 4,
-	ResType_curve   = 5,
-	ResType_imagelist = 6,
-	ResType_imageseq = 7,
-	ResType_pen = 8,
-	ResType_brush = 9,
-	ResType_gif	= 10,
-	ResType_cursor = 11,
+// 内置资源类型定义
+#define XLUE_RESTYPE_UNKNOWN	"unknown"
 
-}ResType;
+#define XLUE_RESTYPE_BITMAP		"bitmap"
+#define XLUE_RESTYPE_TEXTURE	"texture"
+#define XLUE_RESTYPE_FONT		"font"
+#define XLUE_RESTYPE_COLOR		"color"
+#define XLUE_RESTYPE_CURVE		"curve"
+#define XLUE_RESTYPE_IMAGELIST	"imagelist"
+#define XLUE_RESTYPE_IMAGESEQ	"imageseq"
+#define XLUE_RESTYPE_PEN		"pen"
+#define XLUE_RESTYPE_BRUSH		"brush"
+#define XLUE_RESTYPE_GIF		"gif"
+#define XLUE_RESTYPE_CURSOR		"cursor"
 
 // 资源事件的flag定义
 typedef enum __ResEventFlag

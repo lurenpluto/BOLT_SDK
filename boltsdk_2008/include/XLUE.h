@@ -536,8 +536,8 @@ XLUE_API(long) XLUE_GetBrushFromProvider(XLUE_RESPROVIDER_HANDLE hResProvider, c
 // ResProvider的资源事件，在指定id资源加载和更新时候触发
 typedef BOOL (XLUE_STDCALL* LPFNRESPROVIDERONRESEVENT)(void* userData, const char* id, ResEventFlag flag);
 
-XLUE_API(unsigned long) XLUE_ResProviderAttachResEvent(XLUE_RESPROVIDER_HANDLE hResProvider, const char* resId, ResType resType, LPFNRESPROVIDERONRESEVENT handler, void* userData);
-XLUE_API(BOOL) XLUE_ResProviderDetachResEvent(XLUE_RESPROVIDER_HANDLE hResProvider, const char* resId, ResType resType, unsigned long eventCookie);
+XLUE_API(unsigned long) XLUE_ResProviderAttachResEvent(XLUE_RESPROVIDER_HANDLE hResProvider, const char* resId, const char* resType, LPFNRESPROVIDERONRESEVENT handler, void* userData);
+XLUE_API(BOOL) XLUE_ResProviderDetachResEvent(XLUE_RESPROVIDER_HANDLE hResProvider, const char* resId, const char* resType, unsigned long eventCookie);
 
 // XLUE_GC flags
 #define XLUE_GC_RES	0x01
