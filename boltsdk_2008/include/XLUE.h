@@ -312,10 +312,12 @@ XLUE_API(XLUE_LAYOUTOBJ_HANDLE) XLUE_CheckObject(lua_State* luaState, int index)
 // 从当前lua栈的index位置取出类别为class的元对象，并做lua类型检查
 XLUE_API(XLUE_LAYOUTOBJ_HANDLE) XLUE_CheckObjectEx(lua_State* luaState, int index, const char* className);
 
+// 预注册扩展类型
+XLUE_API(BOOL) XLUE_PreRegisterExtType(const ExtPreRegisterInfo* lpPreRegisterInfo);
+
 /*------------------------扩展元对象的相关定义-------------------------------*/
 
-// 预注册和注册外部扩展元对象
-XLUE_API(BOOL) XLUE_PreRegisterExtObj(const ExtObjPreRegisterInfo* lpPreRegisterInfo);
+// 注册外部扩展元对象
 XLUE_API(BOOL) XLUE_RegisterExtObj(const ExtObjRegisterInfo* lpRegisterInfo);
 
 // 其中paramCount便是参数个数n，retCount是返回值个数m(事件定义的真正的返回值个数是m+3!)
@@ -506,6 +508,7 @@ XLUE_API(long) XLUE_LoadXLUEApp(const wchar_t* xlueAppXMLPath);
 XLUE_API(long) XLUE_SelectResPackage(const char *resPackageName);
 
 // 从当前所有加载的xar里面(按照xar的先后加载次序)查找指定id的资源，返回0表示成功，非0表示失败
+// 返回的句柄如果不为空，使用完毕后需要调用相应的Release方法释放
 XLUE_API(long) XLUE_GetBitmap(const char *id, XL_BITMAP_HANDLE *phBitmap);
 XLUE_API(long) XLUE_GetFont(const char *id, XL_FONT_HANDLE *phFont);
 XLUE_API(long) XLUE_GetTexture(const char *id, XL_TEXTURE_HANDLE *phTexture);
@@ -515,6 +518,7 @@ XLUE_API(long) XLUE_GetCurve(const char* id, XL_CURVE_HANDLE* phCurve);
 XLUE_API(long) XLUE_GetImageSeq(const char* id, XL_IMAGESEQ_HANDLE* lpImageSeq);
 XLUE_API(long) XLUE_GetPen(const char *id, XL_PEN_HANDLE *phPen);
 XLUE_API(long) XLUE_GetBrush(const char *id, XL_BRUSH_HANDLE *phBrush);
+XLUE_API(long) XLUE_GetRes(const char* resType, const char *id, XLUE_RESOURCE_HANDLE *lphResHandle);
 
 /*------------------------------ResProvider的相关函数--------------------------------*/
 
@@ -532,12 +536,30 @@ XLUE_API(long) XLUE_GetCurveFromProvider(XLUE_RESPROVIDER_HANDLE hResProvider, c
 XLUE_API(long) XLUE_GetImageSeqFromProvider(XLUE_RESPROVIDER_HANDLE hResProvider, const char* id, XL_IMAGESEQ_HANDLE* llpImageSeq, XLUE_RESPROVIDER_HANDLE *lphFromResProvider);
 XLUE_API(long) XLUE_GetPenFromProvider(XLUE_RESPROVIDER_HANDLE hResProvider, const char *id, XL_PEN_HANDLE *lphPen, XLUE_RESPROVIDER_HANDLE *lphFromResProvider);
 XLUE_API(long) XLUE_GetBrushFromProvider(XLUE_RESPROVIDER_HANDLE hResProvider, const char *id, XL_BRUSH_HANDLE *lphBrush, XLUE_RESPROVIDER_HANDLE *lphFromResProvider);
+XLUE_API(long) XLUE_GetResFromProvider(XLUE_RESPROVIDER_HANDLE hResProvider, const char* resType, const char* id, XLUE_RESOURCE_HANDLE* lphResHandle, XLUE_RESPROVIDER_HANDLE *lphFromResProvider);
 
 // ResProvider的资源事件，在指定id资源加载和更新时候触发
 typedef BOOL (XLUE_STDCALL* LPFNRESPROVIDERONRESEVENT)(void* userData, const char* id, ResEventFlag flag);
 
 XLUE_API(unsigned long) XLUE_ResProviderAttachResEvent(XLUE_RESPROVIDER_HANDLE hResProvider, const char* resId, const char* resType, LPFNRESPROVIDERONRESEVENT handler, void* userData);
 XLUE_API(BOOL) XLUE_ResProviderDetachResEvent(XLUE_RESPROVIDER_HANDLE hResProvider, const char* resId, const char* resType, unsigned long eventCookie);
+
+/*-----------------------------扩展资源的相关函数------------------------------------*/
+
+// 注册扩展资源类型
+XLUE_API(BOOL) XLUE_RegisterExtRes(const ExtResourceRegisterInfo* lpRegisterInfo);
+
+// 以下函数暂只针对扩展资源类型，内置资源类型不可使用XLUE_RESOURCE_HANDLE来表述，也不可通过下述方法来操作
+
+XLUE_API(long) XLUE_AddRefResource(XLUE_RESOURCE_HANDLE hResHandle);
+XLUE_API(long) XLUE_ReleaseResource(XLUE_RESOURCE_HANDLE hResHandle);
+
+XLUE_API(const char*) XLUE_GetResType(XLUE_RESOURCE_HANDLE hResHandle);
+XLUE_API(const char*) XLUE_GetResID(XLUE_RESOURCE_HANDLE hResHandle);
+XLUE_API(void*) XLUE_GetResExtHandle(XLUE_RESOURCE_HANDLE hResHandle);
+
+
+/*------------------------------全局辅助API--------------------------------------------*/
 
 // XLUE_GC flags
 #define XLUE_GC_RES	0x01
@@ -577,6 +599,25 @@ typedef long (XLUE_STDCALL *LPFNDOMESSAGEWORKPROC)(void* userData);
 XLUE_API(long) XLUE_RegisterMessageLoopListener(LPFNDOMESSAGEWORKPROC lpfnWorkProc, void* userData);
 XLUE_API(BOOL) XLUE_UnregisterMessageLoopListener(long cookie, void** lpUserData);
 
+/*---------------------内置xml简单访问相关函数-----------------------------*/
+
+// 需要注意，XLUE_XML_HANDLE外部不可持有，只可在引擎的回调函数里面使用
+
+// 获取元素的名称和值
+XLUE_API(const char*) XLUE_XML_GetName(XLUE_XML_HANDLE hXML);
+XLUE_API(const char*) XLUE_XML_GetValue(XLUE_XML_HANDLE hXML);
+
+// 枚举元素的属性列表
+XLUE_API(BOOL) XLUE_XML_BeginGetAttribute(XLUE_XML_HANDLE hXML);
+XLUE_API(BOOL) XLUE_XML_GetNextAttribute(XLUE_XML_HANDLE hXML, const char** lplpName, const char** lplpValue);
+
+// 枚举子元素，返回的子元素句柄用完需要调用XLUE_XML_Free释放
+XLUE_API(size_t) XLUE_XML_GetChildCount(XLUE_XML_HANDLE hXML);
+XLUE_API(XLUE_XML_HANDLE) XLUE_XML_GetChildByIndex(XLUE_XML_HANDLE hXML, size_t index);
+
+XLUE_API(BOOL) XLUE_XML_Free(XLUE_XML_HANDLE hXML);
+
+
 /*--------------------内置资源类型的lua辅助操作函数----------------------------------------------*/
 
 // 在句柄为null或者push失败的情况下，会push一个nil到栈顶
@@ -592,6 +633,7 @@ XLUE_API(BOOL) XLUE_PushBrush(lua_State* luaState, XL_BRUSH_HANDLE hBrush);
 XLUE_API(BOOL) XLUE_PushImageList(lua_State* luaState, XL_IMAGELIST_HANDLE hImageList);
 XLUE_API(BOOL) XLUE_PushImageSeq(lua_State* luaState, XL_IMAGESEQ_HANDLE hImageSeq);
 XLUE_API(BOOL) XLUE_PushCurve(lua_State* luaState, XL_CURVE_HANDLE hCurve);
+XLUE_API(BOOL) XLUE_PushRes(lua_State* luaState, XLUE_RESOURCE_HANDLE hResHandle);
 
 // 下面几个check函数，如果句柄不为空，那么在用完之后，需要对句柄调用相应的Release(color除外)
 XLUE_API(BOOL) XLUE_CheckBitmap(lua_State* luaState, int index, XL_BITMAP_HANDLE *lpBitmap);
@@ -605,5 +647,7 @@ XLUE_API(BOOL) XLUE_CheckBrush(lua_State* luaState, int index, XL_BRUSH_HANDLE* 
 XLUE_API(BOOL) XLUE_CheckImageList(lua_State* luaState, int index, XL_IMAGELIST_HANDLE* lpImageList);
 XLUE_API(BOOL) XLUE_CheckImageSeq(lua_State* luaState, int index, XL_IMAGESEQ_HANDLE* lpImageSeq);
 XLUE_API(BOOL) XLUE_CheckCurve(lua_State* luaState, int index, XL_CURVE_HANDLE* lpCurve);
+XLUE_API(BOOL) XLUE_CheckRes(lua_State* luaState, int index, XLUE_RESOURCE_HANDLE *lphResHandle);
+XLUE_API(BOOL) XLUE_CheckResEx(lua_State* luaState, int index, const char* lpResType, XLUE_RESOURCE_HANDLE *lphResHandle);
 
 #endif //_XUNLEI_XLUE_API_H_

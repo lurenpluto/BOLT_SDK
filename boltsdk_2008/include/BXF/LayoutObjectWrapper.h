@@ -651,12 +651,12 @@ public:
 		return XLUE_GetObjResProvider(m_hObj);
 	}
 
-	BOOL SetResProvider(XLUE_RESPROVIDER_HANDLE hResProvider) const
+	bool SetResProvider(XLUE_RESPROVIDER_HANDLE hResProvider) const
 	{
 		assert(m_hObj);
 		assert(XLUE_IsObjValid(m_hObj));
 
-		return XLUE_SetObjResProvider(m_hObj, hResProvider);
+		return !!XLUE_SetObjResProvider(m_hObj, hResProvider);
 	}
 
 	// ImageObject Functions

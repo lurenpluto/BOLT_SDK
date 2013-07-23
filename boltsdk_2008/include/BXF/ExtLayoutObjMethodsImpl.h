@@ -144,9 +144,9 @@ public:
 public:
 
 	// 元对象是否可渲染
-	virtual BOOL IsRenderable()
+	virtual bool IsRenderable()
 	{
-		return FALSE;
+		return false;
 	}
 
 	// 元对象绑定到对象树上的事件，不推荐使用
@@ -169,15 +169,15 @@ public:
 
 	// 元对象的命中测试事件，用来确定一个点是否落在对象区域内
 	// 默认实现只考虑visible，alpha，pos和limitrect四个因素，重写此方法可以覆盖掉默认实现
-	virtual BOOL OnHitTest(short x, short y)
+	virtual bool OnHitTest(short x, short y)
 	{
-		return XLUE_ObjHitTest(m_hObj, x, y);
+		return !!XLUE_ObjHitTest(m_hObj, x, y);
 	}
 
 	// 元对象的control命中测试，一般只有控制对象需要响应该方法
-	virtual BOOL OnCtrlHitTest(short /*x*/, short /*y*/, CtrlTestType& /*type*/)
+	virtual bool OnCtrlHitTest(short /*x*/, short /*y*/, CtrlTestType& /*type*/)
 	{
-		return FALSE;
+		return false;
 	}
 
 
@@ -398,7 +398,7 @@ private:
 	// 在此封装体系下，使用实例相关的objHandle来代替userData
 	static BOOL XLUE_STDCALL IsRenderableCallBack(void* /*userData*/, void* objHandle)
 	{
-		return ThisFromObjHandle(objHandle)->IsRenderable();
+		return ThisFromObjHandle(objHandle)->IsRenderable()? TRUE : FALSE;
 	}
 
 	static void XLUE_STDCALL OnBindCallBack(void* /*userData*/, void* objHandle)
@@ -418,12 +418,12 @@ private:
 
 	static BOOL XLUE_STDCALL OnHitTestCallBack(void* /*userData*/, void* objHandle, short x, short y)
 	{
-		return ThisFromObjHandle(objHandle)->OnHitTest(x, y);
+		return ThisFromObjHandle(objHandle)->OnHitTest(x, y)? TRUE : FALSE;
 	}
 
 	static BOOL XLUE_STDCALL OnCtrlHitTestCallBack(void* /*userData*/, void* objHandle, short x, short y, CtrlTestType& type)
 	{
-		return ThisFromObjHandle(objHandle)->OnCtrlHitTest(x, y, type);
+		return ThisFromObjHandle(objHandle)->OnCtrlHitTest(x, y, type)? TRUE : FALSE;
 	}
 
 	static const char* XLUE_STDCALL GetCursorIDCallBack(void* /*userData*/, void* objHandle, long x, long y, unsigned long wParam, unsigned long lParam)
@@ -577,7 +577,7 @@ private:
 
 	static BOOL XLUE_STDCALL CanHandleInputCallBack(void* /*userData*/, void* objHandle)
 	{
-		return ThisFromObjHandle(objHandle)->CanHandleInput();
+		return ThisFromObjHandle(objHandle)->CanHandleInput()? TRUE : FALSE;
 	}
 
 	static long XLUE_STDCALL PreInputFilterCallBack(void* /*userData*/, void* objHandle, unsigned long actionType, unsigned long wParam, unsigned long lParam, BOOL* lpHandled)

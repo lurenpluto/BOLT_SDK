@@ -62,16 +62,16 @@ public:
 public:
 
 	// 元对象的xml属性列表解析事件
-	virtual BOOL ParserAttribute(obj_class* /*lpObj*/, const char* /*key*/, const char* /*value*/)
+	virtual bool ParserAttribute(obj_class* /*lpObj*/, const char* /*key*/, const char* /*value*/)
 	{
-		return TRUE;
+		return true;
 	}
 
 	// 元对象的xml事件列表解析事件，不响应该事件表示使用引擎内部的默认事件解析策略，扩展对象绝大多数情况下不需要响应该事件！
 	// 如果扩展对象需要定制的事件解析方式，那么需要响应该事件并自己管理解析结果
-	virtual BOOL ParserEvent(obj_class* /*lpObj*/, const char* /*eventName*/, XL_LRT_CHUNK_HANDLE /*hCodeChunk*/, XL_LRT_RUNTIME_HANDLE /*hRunTime*/)
+	virtual bool ParserEvent(obj_class* /*lpObj*/, const char* /*eventName*/, XL_LRT_CHUNK_HANDLE /*hCodeChunk*/, XL_LRT_RUNTIME_HANDLE /*hRunTime*/)
 	{
-		return TRUE;
+		return true;
 	}
 
 private:
@@ -89,7 +89,7 @@ private:
 		obj_class* lpObj = ExtLayoutObjMethodsImpl::ObjectFromExtHandle<obj_class>(objHandle);
 		assert(lpObj);
 
-		return ThisFromUserData(userData)->ParserAttribute(lpObj, key, value);
+		return ThisFromUserData(userData)->ParserAttribute(lpObj, key, value)? TRUE : FALSE;
 	}
 
 	static BOOL XLUE_STDCALL ParserEventCallBack(void* userData, void* objHandle, const char* eventName, XL_LRT_CHUNK_HANDLE hCodeChunk, XL_LRT_RUNTIME_HANDLE hRunTime)
@@ -97,7 +97,7 @@ private:
 		obj_class* lpObj = ExtLayoutObjMethodsImpl::ObjectFromExtHandle<obj_class>(objHandle);
 		assert(lpObj);
 
-		return ThisFromUserData(userData)->ParserEvent(lpObj, eventName, hCodeChunk, hRunTime);
+		return ThisFromUserData(userData)->ParserEvent(lpObj, eventName, hCodeChunk, hRunTime)? TRUE : FALSE;
 	}
 };
 

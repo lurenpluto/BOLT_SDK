@@ -131,7 +131,7 @@ private:
 		this_class* lpThis = ThisFromObjHandle(objHandle);
 		assert(lpThis);
 
-		return lpThis->EventExists(eventName);
+		return lpThis->EventExists(eventName)? TRUE : FALSE;
 	}
 
 	static BOOL XLUE_STDCALL AttachListenerCallBack(void* /*userData*/, void* objHandle, const char* eventName, 
@@ -140,7 +140,7 @@ private:
 		this_class* lpThis = ThisFromObjHandle(objHandle);
 		assert(lpThis);
 
-		return lpThis->AttachListener(eventName, luaState, luaFuncRef, isPushBack, lpEventCookie);
+		return lpThis->AttachListener(eventName, luaState, luaFuncRef, isPushBack, lpEventCookie)? TRUE : FALSE;
 	}
 
 	static BOOL XLUE_STDCALL RemoveListenerCallBack(void* /*userData*/, void* objHandle, const char* eventName, 
@@ -149,7 +149,7 @@ private:
 		this_class* lpThis = ThisFromObjHandle(objHandle);
 		assert(lpThis);
 
-		return lpThis->RemoveListener(eventName, eventCookie);
+		return lpThis->RemoveListener(eventName, eventCookie)? TRUE : FALSE;
 	}
 
 	static void XLUE_STDCALL OnAttachListenerCallBack(void* /*userData*/, void* objHandle, const char* eventName, 

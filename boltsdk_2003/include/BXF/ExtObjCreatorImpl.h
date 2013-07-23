@@ -47,15 +47,15 @@ public:
 	}
 
 	template<typename FinalClass>
-	void FillCStruct(ExtObjCreator* lpExtParser)
+	void FillCStruct(ExtObjCreator* lpExtCreator)
 	{
-		assert(lpExtParser);
+		assert(lpExtCreator);
 
-		lpExtParser->size = sizeof(ExtObjCreator);
-		lpExtParser->userData = this;
+		lpExtCreator->size = sizeof(ExtObjCreator);
+		lpExtCreator->userData = this;
 
-		lpExtParser->lpfnCreateObj = CreateObjCallBack;
-		lpExtParser->lpfnDestroyObj = DestroyObjCallBack;
+		lpExtCreator->lpfnCreateObj = CreateObjCallBack;
+		lpExtCreator->lpfnDestroyObj = DestroyObjCallBack;
 	}
 
 public:

@@ -186,12 +186,12 @@ public:
 		return XLUE_GetHostWndWindowHandle(m_hHostWnd);
 	}
 
-	BOOL SetHostWndTitle(const char* lpTitle) const
+	bool SetHostWndTitle(const char* lpTitle) const
 	{
 		assert(m_hHostWnd);
 		assert(XLUE_IsHostWndValid(m_hHostWnd));
 
-		return XLUE_SetHostWndTitle(m_hHostWnd, lpTitle);
+		return !!XLUE_SetHostWndTitle(m_hHostWnd, lpTitle);
 	}
 
 	const char* GetHostWndTitle() const
@@ -202,36 +202,36 @@ public:
 		return XLUE_GetHostWndTitle(m_hHostWnd);
 	}
 
-	BOOL SetHostWndEnable(BOOL enable) const
+	bool SetHostWndEnable(BOOL enable) const
 	{
 		assert(m_hHostWnd);
 		assert(XLUE_IsHostWndValid(m_hHostWnd));
 
-		return XLUE_SetHostWndEnable(m_hHostWnd, enable);
+		return !!XLUE_SetHostWndEnable(m_hHostWnd, enable);
 	}
 
-	BOOL GetHostWndEnable() const
+	bool GetHostWndEnable() const
 	{
 		assert(m_hHostWnd);
 		assert(XLUE_IsHostWndValid(m_hHostWnd));
 
-		return XLUE_GetHostWndEnable(m_hHostWnd);
+		return !!XLUE_GetHostWndEnable(m_hHostWnd);
 	}
 
-	BOOL SetHostWndTopMost(BOOL topmost) const
+	bool SetHostWndTopMost(BOOL topmost) const
 	{
 		assert(m_hHostWnd);
 		assert(XLUE_IsHostWndValid(m_hHostWnd));
 
-		return XLUE_SetHostWndTopMost(m_hHostWnd, topmost);
+		return !!XLUE_SetHostWndTopMost(m_hHostWnd, topmost);
 	}
 
-	BOOL GetHostWndTopMost() const
+	bool GetHostWndTopMost() const
 	{
 		assert(m_hHostWnd);
 		assert(XLUE_IsHostWndValid(m_hHostWnd));
 
-		return XLUE_GetHostWndTopMost(m_hHostWnd);
+		return !!XLUE_GetHostWndTopMost(m_hHostWnd);
 	}
 
 	XL_BITMAP_HANDLE GetWindowBitmap() const

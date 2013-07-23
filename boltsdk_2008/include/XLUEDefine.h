@@ -9,7 +9,7 @@
 *   FileName    :   XLUEDefine.h
 *   Author      :   xlue group(xlue@xunlei.com)
 *   Create      :   2013-5-16
-*   LastChange  :   2013-7-4
+*   LastChange  :   2013-7-23
 *   History     :	
 *
 *   Description :   XLUE主模块的相关数据结构定义
@@ -27,6 +27,7 @@ extern "C"{
 #endif // __cplusplus
 
 typedef void* OS_HOSTWND_HANDLE;
+typedef void* XLUE_XML_HANDLE;
 
 // 鼠标消息定义
 #define XLUE_ACTION_LMOUSE_DOWN      0x10
@@ -177,14 +178,6 @@ typedef enum __ExtObjType
 
 }ExtObjType;
 
-// 扩展元对象预注册的类型
-typedef enum __ExtObjPreRegisterType
-{
-	ExtObjPreRegisterType_module = 0,		// dll+导出接口的形式
-	ExtObjPreRegisterType_callBack = 1		// 回调函数的形式
-
-}ExtObjPreRegisterType;
-
 // 对象上的拖放事件类型
 typedef enum __DragEventType
 {
@@ -196,12 +189,7 @@ typedef enum __DragEventType
 
 }DragEventType;
 
-// 扩展元对象的属性
-typedef enum __ExtObjAttribute
-{
-	ExtObjAttribute_clipsens = 0x01,
-
-}ExtObjAttribute;
+/*------------------ 扩展模块的相关接口定义 -----------------*/
 
 // 所有引擎DLL扩展模块都需要实现的两个导出接口，分别用以初始化和反初始化操作
 // 返回TRUE表示初始化成功，FALSE表示失败
@@ -211,33 +199,62 @@ typedef enum __ExtObjAttribute
 typedef BOOL (XLUE_STDCALL *LPFNEXTMODULEINITFUNC)();
 typedef BOOL (XLUE_STDCALL *LPFNEXTMODULEUNINITFUNC)();
 
-// 外部扩展对象需要实现的导出接口或者回调，当真正需要创建该类别对象时候，会调用次接口/回调
-// 外部扩展模块可以在这个函数里面真正注册扩展对象
-typedef BOOL (XLUE_STDCALL *LPFNREGISTEREXTOBJCALLBACK)(const char* lpObjClass);
+/*------------------ 扩展类型的预注册相关定义 -----------------*/
 
-// 扩展元对象的预注册结构体，用以实现按需加载和初始化指定的扩展元对象
-typedef struct __ExtObjPreRegisterInfo
+// 扩展类型的预注册种类
+typedef enum __ExtPreRegisterType
+{
+	ExtPreRegisterType_module = 0,		// dll+导出接口的形式
+	ExtPreRegisterType_callBack = 1		// 回调函数的形式
+
+}ExtPreRegisterType;
+
+// 引擎可扩展内部类型的类别定义
+#define XLUE_EXTCATEGORY_OBJ		"extobject"
+#define XLUE_EXTCATEGORY_RES		"extresource"
+#define XLUE_EXTCATEGORY_HOSTWND	"exthostwnd"
+
+// 外部各种扩展需要实现的导出接口或者回调，当真正需要创建该扩展类型时候，会调用次接口/回调
+// 外部扩展模块可以在这个函数里面真正注册扩展类型
+// lpExtCategory是扩展类别
+// lpExtType对应具体的扩展类型
+typedef BOOL (XLUE_STDCALL *LPFNREGISTEREXTTYPECALLBACK)(const char* lpExtCategory, const char* lpExtType);
+
+// 扩展类型的预注册结构体，用以实现按需加载和初始化指定的扩展类型
+typedef struct __ExtPreRegisterInfo
 {
 	// 结构体的大小
 	size_t size;
 
 	// 预注册类别
-	ExtObjPreRegisterType type;
+	ExtPreRegisterType type;
 
-	// 元对象的class，不能和内置元对象class重复
-	const char* className;
+	// 扩展类型所属的类别，可取值XLUE_EXTCATEGORY_XXX
+	const char* categroyName;
+
+	// 对应扩展类型的类型名称，不能和内置类型名称重复
+	const char* typeName;
 
 	// module模式下的参数
-	// 初始化该扩展元对象时候，会先加载lpModulePath指定的文件，然后调用该module上的lpInitFuncName导出函数进行初始化
-	// lpInitFuncName导出函数的签名式必须和LPFNREGISTEREXTOBJCALLBACK一致; 返回TRUE标识该元对象真正注册成功
+	// 初始化该扩展类型时候，会先加载lpModulePath指定的文件，然后调用该module上的lpInitFuncName导出函数进行初始化
+	// lpInitFuncName导出函数的签名式必须和LPFNREGISTEREXTTYPECALLBACK一致; 返回TRUE标识该元对象真正注册成功
 	const wchar_t* lpModulePath;
 	const char* lpInitFuncName;
 
 	// callback模式下的参数
-	// 初始化该扩展元对象时候，会先调用该函数，返回TRUE标识该元对象真正注册成功
-	LPFNREGISTEREXTOBJCALLBACK lpRegisterCallBack;
+	// 初始化该扩展类型时候，会先调用该函数，返回TRUE标识该元对象真正注册成功
+	LPFNREGISTEREXTTYPECALLBACK lpRegisterCallBack;
 
-}ExtObjPreRegisterInfo;
+}ExtPreRegisterInfo;
+
+/*------------------ 扩展元对象的相关定义 -----------------------------*/
+
+// 扩展元对象的属性
+typedef enum __ExtObjAttribute
+{
+	ExtObjAttribute_clipsens = 0x01,
+
+}ExtObjAttribute;
 
 // 扩展元对象的创建和销毁管理回调
 typedef struct __ExtObjCreator
@@ -577,6 +594,11 @@ typedef struct __ExtObjRegisterInfo
 
 }ExtObjRegisterInfo;
 
+/*------------------ 扩展资源的相关定义 --------------------------------*/
+
+// 引擎扩展资源句柄，基于引用计数管理
+typedef void* XLUE_RESOURCE_HANDLE;
+
 // 内置资源类型定义
 #define XLUE_RESTYPE_UNKNOWN	"unknown"
 
@@ -600,6 +622,111 @@ typedef enum __ResEventFlag
 	ResEventFlag_user = 2,
 
 }ResEventFlag;
+
+// 扩展资源的属性
+typedef enum __ExtResourceAttribute
+{
+	// 该资源在xml里面的配置没有子节点，形如
+	// <resname id="xxx" value="xxxx"/>
+	// 指定该属性资源xml解析会有较高的效率
+	ExtResourceAttribute_multiLevelXML = 0x01,	
+
+}ExtResourceAttribute;
+
+// 扩展资源的创建和销毁回调管理
+typedef struct __ExtResourceCreator
+{
+	// 结构体的大小
+	size_t size;
+
+	// 用户自定义数据，作为回调函数第一个参数
+	void* userData;
+
+	// 创建一个指定类型的扩展资源，如果成功返回一个唯一的handle来标识
+	void* (XLUE_STDCALL *lpfnCreateRes)(void* userData, const char* lpResType, XLUE_RESOURCE_HANDLE hResHandle);
+	
+	// 销毁扩展资源的外部实例，objHandle为创建时候返回的handle
+	void (XLUE_STDCALL *lpfnDestroyRes)(void* userData, void* resHandle);
+
+}ExtResourceCreator;
+
+// 扩展资源的具体方法定义
+typedef struct __ExtResourceMethods
+{
+	// 结构体的大小
+	size_t size;
+
+	// 用户自定义数据，作为回调函数第一个参数
+	void* userData;
+
+	// 加载和释放内部资源，用以实现用时加载和闲时的垃圾回收
+	BOOL (XLUE_STDCALL *lpfnLoadRes)(void* userData, void* lpResHandle);
+	BOOL (XLUE_STDCALL* lpfnFreeRes)(void* userData, void* lpResHandle);
+
+}ExtResourceMethods;
+
+// 扩展资源的xml解析器回调方法定义
+typedef struct __ExtResourceParser
+{
+	// 结构体的大小
+	size_t size;
+
+	// 用户自定义数据，作为回调函数第一个参数
+	void* userData;
+
+	// 从xml解析资源，hResXML只可在该函数里面访问，不可超出该函数的范围
+	BOOL (XLUE_STDCALL *lpfnParseFromXML)(void* userData, void* lpResHandle, XLUE_XML_HANDLE hResXML);
+
+	// 从lua table动态解析资源，资源属性在lua table里面定义和对应的xml定义结构须保持一致
+	BOOL (XLUE_STDCALL *lpfnParseFromLua)(void* userData, void* lpResHandle, lua_State* luaState, int index);
+
+}ExtResourceParser;
+
+// 扩展资源的lua扩展相关回调定义
+typedef struct __ExtResourceLuaHost
+{
+	// 结构体的大小
+	size_t size;
+
+	// 用户自定义数据，作为回调函数第一个参数
+	void* userData;
+
+	// 获取所有的lua扩展api
+	BOOL (XLUE_STDCALL *lpfnGetLuaFunctions)(void* userData, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount);
+
+	// 注册额外的辅助lua类或者全局对象
+	BOOL (XLUE_STDCALL *lpfnRegisterAuxClass)(void* userData, XL_LRT_ENV_HANDLE hEnv);
+
+}ExtResourceLuaHost;
+
+// 扩展元对象的完备注册信息
+typedef struct __ExtResourceRegisterInfo
+{
+	// 结构体的大小
+	size_t size;
+
+	// 扩展资源的类型，不能和内置资源类型XLUE_RESTYPE_XXX重复
+	// 资源类型应该是全小写字母，该类型值也是资源xml里面使用的
+	// 形如<resType id="xxx" value="xxx"/>
+	const char* resType;
+
+	// 扩展资源的属性，可以取ExtResourceAttribute值的一个或者多个
+	unsigned long attribute;
+
+	// 扩展资源的创建/销毁管理器，必须不为空
+	ExtResourceCreator* lpExtResCreator;
+
+	// 扩展资源的核心方法
+	ExtResourceMethods* lpExtResMethods;
+
+	// 扩展资源的xml解析器，如果需要从xml里面配置该资源，那么该字段不得为空
+	ExtResourceParser* lpExtResParser;
+
+	// 扩展资源的lua扩展，如果需要在lua里操作该资源对象，那么该字段不得为空
+	ExtResourceLuaHost* lpExtResLuaHost;
+
+}ExtResourceRegisterInfo;
+
 
 #ifdef __cplusplus
 } // extern "C"

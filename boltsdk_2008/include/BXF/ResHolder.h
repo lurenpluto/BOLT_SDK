@@ -27,17 +27,16 @@ namespace Xunlei
 namespace Bolt
 {
 
-template<typename _ResHandle, ResType _type>
+template<typename _ResHandle>
 struct ResTraits
 {
 	typedef _ResHandle ResHandle;
-	static const ResType type = _type;
 };
 
 //template<typename ResHandle, ResType type, typename AddRefFunc, RefFunc releasefunc2, LoadFunc funcs>
 #define DECLARE_XLGRAPHIC_RESTRAITS(resName, resHandle, resType) \
 struct resName##ResTraits \
-	: public ResTraits<resHandle, resType> \
+	: public ResTraits<resHandle> \
 	{ \
 		static unsigned long AddRef(resHandle handle) \
 		{ \
@@ -52,19 +51,23 @@ struct resName##ResTraits \
 			assert(hResProvider); \
 			return XLUE_Get##resName##FromProvider(hResProvider, id, lpResHandle, lpFromResProvider); \
 		} \
+		static const char* GetResType() \
+		{\
+			return resType;\
+		}\
 	};
 
-DECLARE_XLGRAPHIC_RESTRAITS(Bitmap, XL_BITMAP_HANDLE, ResType_bitmap);
-DECLARE_XLGRAPHIC_RESTRAITS(Texture, XL_TEXTURE_HANDLE, ResType_texture);
-DECLARE_XLGRAPHIC_RESTRAITS(Font, XL_FONT_HANDLE, ResType_font);
-DECLARE_XLGRAPHIC_RESTRAITS(ImageList, XL_IMAGELIST_HANDLE, ResType_imagelist);
-DECLARE_XLGRAPHIC_RESTRAITS(ImageSeq, XL_IMAGESEQ_HANDLE, ResType_imageseq);
-DECLARE_XLGRAPHIC_RESTRAITS(Curve, XL_CURVE_HANDLE, ResType_curve);
-DECLARE_XLGRAPHIC_RESTRAITS(Pen, XL_PEN_HANDLE, ResType_pen);
-DECLARE_XLGRAPHIC_RESTRAITS(Brush, XL_BRUSH_HANDLE, ResType_brush);
+DECLARE_XLGRAPHIC_RESTRAITS(Bitmap, XL_BITMAP_HANDLE, XLUE_RESTYPE_BITMAP);
+DECLARE_XLGRAPHIC_RESTRAITS(Texture, XL_TEXTURE_HANDLE, XLUE_RESTYPE_TEXTURE);
+DECLARE_XLGRAPHIC_RESTRAITS(Font, XL_FONT_HANDLE, XLUE_RESTYPE_FONT);
+DECLARE_XLGRAPHIC_RESTRAITS(ImageList, XL_IMAGELIST_HANDLE, XLUE_RESTYPE_IMAGELIST);
+DECLARE_XLGRAPHIC_RESTRAITS(ImageSeq, XL_IMAGESEQ_HANDLE, XLUE_RESTYPE_IMAGESEQ);
+DECLARE_XLGRAPHIC_RESTRAITS(Curve, XL_CURVE_HANDLE, XLUE_RESTYPE_CURVE);
+DECLARE_XLGRAPHIC_RESTRAITS(Pen, XL_PEN_HANDLE, XLUE_RESTYPE_PEN);
+DECLARE_XLGRAPHIC_RESTRAITS(Brush, XL_BRUSH_HANDLE, XLUE_RESTYPE_BRUSH);
 
 struct ColorResTraits
-	: public ResTraits<XL_Color, ResType_color>
+	: public ResTraits<XL_Color>
 {
 	static unsigned long AddRef(XL_Color /*cr*/)
 	{
@@ -81,6 +84,11 @@ struct ColorResTraits
 		assert(hResProvider);
 
 		return XLUE_GetColorFromProvider(hResProvider, id, lpColor, lpFromResProvider);
+	}
+
+	static const char* GetResType()
+	{
+		return XLUE_RESTYPE_COLOR;
 	}
 };
 
@@ -185,6 +193,11 @@ public:
 	const char* GetID() const
 	{
 		return m_id.c_str();
+	}
+
+	const char* GetType() const
+	{
+		return ResTraits::GetResType();
 	}
 
 	res_handle GetHandle()
@@ -293,8 +306,9 @@ private:
 		if(m_hFromResProvider != NULL && !m_id.empty())
 		{
 			assert(m_eventCookie == 0);
-			assert(ResTraits::type != ResType_unknown);
-			m_eventCookie = XLUE_ResProviderAttachResEvent(m_hFromResProvider, m_id.c_str(), ResTraits::type, OnResEventCallBack, this);
+			assert(::strcmp(GetType(), XLUE_RESTYPE_UNKNOWN) != 0);
+
+			m_eventCookie = XLUE_ResProviderAttachResEvent(m_hFromResProvider, m_id.c_str(), GetType(), OnResEventCallBack, this);
 
 			assert(m_eventCookie);
 		}
@@ -304,10 +318,10 @@ private:
 	{
 		if(m_hFromResProvider != NULL && m_eventCookie != 0)
 		{
-			assert(ResTraits::type != ResType_unknown);
+			assert(::strcmp(GetType(), XLUE_RESTYPE_UNKNOWN) != 0);
 			assert(!m_id.empty());
 
-			BOOL ret = XLUE_ResProviderDetachResEvent(m_hFromResProvider, m_id.c_str(), ResTraits::type, m_eventCookie);
+			BOOL ret = XLUE_ResProviderDetachResEvent(m_hFromResProvider, m_id.c_str(), GetType(), m_eventCookie);
 			assert(ret);
 
 			m_eventCookie =  0;

@@ -138,13 +138,13 @@ struct MethodsStructFiller<NullClass, type>
 	}
 };
 
-// 完全使用BOLT扩展框架辅助类情况下使用的注册辅助类，如果某个类没有实现，用NullClass代替
+// 完全使用BOLT扩展框架辅助类情况下使用的扩展元对象注册辅助类，如果某个类没有实现，用NullClass代替
 template<ExtObjType type, typename ObjectClass, typename CreatorClass, 
 typename ParserClass = NullClass, typename LuaHostClass = NullClass,
 typename EventClass = NullClass>
 struct ExtObjRegisterHelper
 {
-	static BOOL Register(const char* className, unsigned long attribute)
+	static bool Register(const char* className, unsigned long attribute)
 	{
 		assert(className);
 
@@ -168,7 +168,7 @@ struct ExtObjRegisterHelper
 		ObjectStructFiller<ExtObjEvent, EventClass> event;
 		registerInfo.lpExtObjEvent = event;
 
-		return XLUE_RegisterExtObj(&registerInfo);
+		return !!XLUE_RegisterExtObj(&registerInfo);
 	}
 };
 

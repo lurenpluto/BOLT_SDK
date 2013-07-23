@@ -154,13 +154,15 @@ public:
 		return !!XLUE_PushObject(luaState, hObj);
 	}
 
+public:
+
 	// 获取该扩展元对象所有的lua扩展api	
-	virtual BOOL GetLuaFunction(const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount) = 0;
+	virtual bool GetLuaFunction(const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount) = 0;
 
 	// 注册额外的辅助lua类或者全局对象
-	virtual BOOL RegisterAuxClass(const char* /*className*/, XL_LRT_ENV_HANDLE /*hEnv*/)
+	virtual bool RegisterAuxClass(const char* /*className*/, XL_LRT_ENV_HANDLE /*hEnv*/)
 	{
-		return TRUE;
+		return true;
 	}
 
 private:
@@ -175,12 +177,12 @@ private:
 
 	static BOOL XLUE_STDCALL GetLuaFunctionsCallBack(void* userData, const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
 	{
-		return ThisFromUserData(userData)->GetLuaFunction(className, lplpLuaFunctions, lpFuncCount);
+		return ThisFromUserData(userData)->GetLuaFunction(className, lplpLuaFunctions, lpFuncCount)? TRUE : FALSE;
 	}
 
 	static BOOL XLUE_STDCALL RegisterAuxClassCallBack(void* userData, const char* className, XL_LRT_ENV_HANDLE hEnv)
 	{
-		return ThisFromUserData(userData)->RegisterAuxClass(className, hEnv);
+		return ThisFromUserData(userData)->RegisterAuxClass(className, hEnv)? TRUE : FALSE;
 	}
 };
 
@@ -204,14 +206,14 @@ public:
 public:
 
 	// ExtObjLuaHostImpl
-	virtual BOOL GetLuaFunction(const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
+	virtual bool GetLuaFunction(const char* className, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
 	{
 		return DefaultGetLuaFunction(className, lplpLuaFunctions, lpFuncCount);
 	}
 
 private:
 
-	BOOL DefaultGetLuaFunction(const char* /*className*/, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
+	bool DefaultGetLuaFunction(const char* /*className*/, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount)
 	{
 		assert(lplpLuaFunctions);
 		assert(lpFuncCount);
@@ -228,7 +230,7 @@ private:
 
 		*lpFuncCount = count;
 
-		return TRUE;
+		return true;
 	}
 };
 
