@@ -398,7 +398,6 @@ XLUE_API(long) XLUE_TurnObjectAniBindRenderObj(XLUE_ANIMATION_HANDLE hAnimation,
 XLUE_API(long) XLUE_TurnObjectAniBindFrontObj(XLUE_ANIMATION_HANDLE hAnimation,XLUE_LAYOUTOBJ_HANDLE hFrontObj,LPCRECT pFrontView);
 XLUE_API(long) XLUE_TurnObjectAniBindBackObj(XLUE_ANIMATION_HANDLE hAnimation,XLUE_LAYOUTOBJ_HANDLE hBackObj);
 XLUE_API(long) XLUE_TurnObjectAniSetFlag(XLUE_ANIMATION_HANDLE hAnimation,TurnObjectFlag flag);
-XLUE_API(XLUE_HOSTWND_HANDLE) XLUE_GetHostWndByID(const char* id);
 
 
 /*--------------------hostwnd相关方法---------------------------------------------*/
@@ -481,7 +480,7 @@ XLUE_API(BOOL) XLUE_BeginEnumHostWnd();
 XLUE_API(XLUE_HOSTWND_HANDLE) XLUE_GetNextHostWnd();
 
 XLUE_API(XLUE_HOSTWND_HANDLE) XLUE_GetHostWndByHandle(OS_HOSTWND_HANDLE hWnd);
-
+XLUE_API(XLUE_HOSTWND_HANDLE) XLUE_GetHostWndByID(const char* id);
 
 /*------------------------XAR和资源等相关方法----------------------------------*/
 
@@ -556,8 +555,16 @@ XLUE_API(long) XLUE_ReleaseResource(XLUE_RESOURCE_HANDLE hResHandle);
 
 XLUE_API(const char*) XLUE_GetResType(XLUE_RESOURCE_HANDLE hResHandle);
 XLUE_API(const char*) XLUE_GetResID(XLUE_RESOURCE_HANDLE hResHandle);
+
+// 获取扩展资源类型的外部句柄，也就是ExtResourceCreator返回的自定义句柄
 XLUE_API(void*) XLUE_GetResExtHandle(XLUE_RESOURCE_HANDLE hResHandle);
 
+// 获取扩展资源类型的真正资源句柄，比如对于依赖XGP的扩展icon类型来说，void*等价于XLGP_ICON_HANDLE
+// 对于bitmap类型来说，void*等价于XL_BITMAP_HANDLE
+// 资源句柄基于引用计数管理，如果返回值不为nil，那么需要调用XLUE_ReleaseResRealHandle释放！
+XLUE_API(void*) XLUE_GetResRealHandle(XLUE_RESOURCE_HANDLE hResHandle);
+XLUE_API(long) XLUE_AddRefResRealHandle(XLUE_RESOURCE_HANDLE hResHandle, void* lpResRealHandle);
+XLUE_API(long) XLUE_ReleaseResRealHandle(XLUE_RESOURCE_HANDLE hResHandle, void* lpResRealHandle);
 
 /*------------------------------全局辅助API--------------------------------------------*/
 

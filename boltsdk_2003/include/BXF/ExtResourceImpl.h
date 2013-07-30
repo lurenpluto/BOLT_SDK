@@ -82,7 +82,7 @@ public:
 	}
 };
 
-template<typename ResourceClass>
+
 class ExtResourceMethodsImpl
 	: public ResourceWrapper
 {
@@ -130,24 +130,36 @@ public:
 
 		lpExtMethods->size = sizeof(ExtResourceMethods);
 		lpExtMethods->userData = NULL;
+		
+		lpExtMethods->lpfnGetRealHandle = GetRealHandleCallBack;
+		lpExtMethods->lpfnAddRefRealHandle = AddRefRealHandleCallBack;
+		lpExtMethods->lpfnReleaseRealHandle = ReleaseRealHandleCallBack;
 
-		AssignIfOverride(this_class, final_class, OnLoadRes, lpExtMethods);
-		AssignIfOverride(this_class, final_class, OnFreeRes, lpExtMethods);
+		AssignIfOverride(this_class, final_class, LoadRes, lpExtMethods);
+		AssignIfOverride(this_class, final_class, FreeRes, lpExtMethods);
 	}
 
 public:
 
 	// 真正加载该资源，主要用以实现按需加载
-	virtual bool OnLoadRes()
+	virtual bool LoadRes(const wchar_t* /*lpResFolder*/)
 	{
 		return true;
 	}
 
 	// 释放该资源，主要用以闲时的垃圾回收
-	virtual bool OnFreeRes()
+	virtual bool FreeRes()
 	{
 		return true;
 	}
+
+	// 获取对应的真正资源句柄，比如XL_BITMAP_HANDLE，XLGP_ICON_HANDLE等
+	// 返回值不需增加引用计数！！
+	virtual void* GetRealHandle() = NULL;
+
+	// 真正资源句柄的生命周期基于引用计数管理
+	virtual long AddRefRealHandle(void* /*lpRealHandle*/) = NULL;
+	virtual long ReleaseRealHandle(void* /*lpRealHandle*/) = NULL;
 
 private:
 
@@ -160,14 +172,29 @@ private:
 
 private:
 
-	static BOOL XLUE_STDCALL LoadResCallBack(void* /*userData*/, void* lpResHandle)
+	static BOOL XLUE_STDCALL LoadResCallBack(void* /*userData*/, void* lpResHandle, const wchar_t* lpResFolder)
 	{
-		return ThisFromResHandle(lpResHandle)->OnLoadRes()? TRUE : FALSE;
+		return ThisFromResHandle(lpResHandle)->LoadRes(lpResFolder)? TRUE : FALSE;
 	}
 
 	static BOOL XLUE_STDCALL FreeResCallBack(void* /*userData*/, void* lpResHandle)
 	{
-		return ThisFromResHandle(lpResHandle)->OnFreeRes()? TRUE : FALSE;
+		return ThisFromResHandle(lpResHandle)->FreeRes()? TRUE : FALSE;
+	}
+
+	static void* XLUE_STDCALL GetRealHandleCallBack(void* /*userData*/, void* lpResHandle)
+	{
+		return ThisFromResHandle(lpResHandle)->GetRealHandle();
+	}
+
+	static long XLUE_STDCALL AddRefRealHandleCallBack(void* /*userData*/, void* lpResHandle, void* lpResRealHandle)
+	{
+		return ThisFromResHandle(lpResHandle)->AddRefRealHandle(lpResRealHandle);
+	}
+
+	static long XLUE_STDCALL ReleaseRealHandleCallBack(void* /*userData*/, void* lpResHandle, void* lpResRealHandle)
+	{
+		return ThisFromResHandle(lpResHandle)->ReleaseRealHandle(lpResRealHandle);
 	}
 };
 
@@ -222,15 +249,15 @@ private:
 	
 	static void* XLUE_STDCALL CreateResourceCallBack(void* userData, const char* lpResType, XLUE_RESOURCE_HANDLE hResHandle)
 	{
-		resource_class* lpObj = ThisFromUserData(userData)->CreateResource(lpResType, hResHandle);
+		resource_class* lpResObj = ThisFromUserData(userData)->CreateResource(lpResType, hResHandle);
 
-		return lpObj->GetObjectExtHandle();
+		return lpResObj->GetResourceExtHandle();
 	}
 
 	static void XLUE_STDCALL DestroyResourceCallBack(void* userData, void* lpResHandle)
 	{
 		resource_class* lpResObj = ExtLayoutObjMethodsImpl::ObjectFromExtHandle<resource_class>(lpResHandle);
-		assert(lpObj);
+		assert(lpResObj);
 
 		return ThisFromUserData(userData)->DestroyResource(lpResObj);
 	}
@@ -298,15 +325,15 @@ private:
 	static BOOL XLUE_STDCALL ParseFromXMLCallBack(void* userData, void* lpResHandle, XLUE_XML_HANDLE hResXML)
 	{
 		resource_class* lpResObj = ExtResourceMethodsImpl::ResourceObjFromExtHandle<resource_class>(lpResHandle);
-		assert(lpObj);
+		assert(lpResObj);
 
-		return ThisFromUserData(userData)->ParseFromXML(lpResObj, value);
+		return ThisFromUserData(userData)->ParseFromXML(lpResObj, hResXML);
 	}
 	
 	static BOOL XLUE_STDCALL ParseFromLuaCallBack(void* userData, void* lpResHandle, lua_State* luaState, int index)
 	{
 		resource_class* lpResObj = ExtResourceMethodsImpl::ResourceObjFromExtHandle<resource_class>(lpResHandle);
-		assert(lpObj);
+		assert(lpResObj);
 
 		return ThisFromUserData(userData)->ParseFromLua(lpResObj, luaState, index);
 	}
@@ -326,12 +353,12 @@ public:
 	typedef ResourceClass resource_class;
 
 public:
-	ExtResourceParserImpl()
+	ExtResourceParserImplEx()
 	{
 
 	}
 
-	virtual ~ExtResourceParserImpl()
+	virtual ~ExtResourceParserImplEx()
 	{
 
 	}

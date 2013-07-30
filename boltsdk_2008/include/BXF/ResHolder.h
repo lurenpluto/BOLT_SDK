@@ -92,6 +92,30 @@ struct ColorResTraits
 	}
 };
 
+// 扩展资源类型的traits基类
+// 子类T需要实现const char* GetResType()方法
+template<typename T>
+struct ExtResTraits
+	: public ResTraits<XLUE_RESOURCE_HANDLE>
+{
+	static unsigned long AddRef(XLUE_RESOURCE_HANDLE hResHandle)
+	{
+		return XLUE_AddRefResource(hResHandle);
+	}
+
+	static unsigned long Release(XLUE_RESOURCE_HANDLE hResHandle)
+	{
+		return XLUE_ReleaseResource(hResHandle);
+	}
+
+	static long Load(XLUE_RESPROVIDER_HANDLE hResProvider, const char* id, XLUE_RESOURCE_HANDLE* lpResHandle, XLUE_RESPROVIDER_HANDLE* lpFromResProvider)
+	{
+		assert(hResProvider);
+
+		return XLUE_GetResFromProvider(hResProvider, T::GetResType(), id, lpResHandle, lpFromResProvider);
+	}
+};
+
 template<typename ResTraits>
 class BaseResHolder
 {
@@ -328,9 +352,9 @@ private:
 		}
 	}
 
-	BOOL OnResEvent(const char* id, ResEventFlag flag)
+	bool OnResEvent(const char* /*id*/, ResEventFlag flag)
 	{
-		if(flag == ResEventFlag_load || flag == ResEventFlag_update)
+		if (flag == ResEventFlag_load || flag == ResEventFlag_update)
 		{
 			if (m_loadStatus != LoadStatus_Loading)
 			{
@@ -340,14 +364,16 @@ private:
 				OnResChange();
 			}
 		}
+
+		return true;
 	}
 
-	BOOL XLUE_STDCALL OnResEventCallBack(void* userData, const char* id, ResEventFlag flag)
+	static BOOL XLUE_STDCALL OnResEventCallBack(void* userData, const char* id, ResEventFlag flag)
 	{
 		this_class* lpThis = (this_class*)userData;
 		assert(lpThis);
 
-		lpThis->OnResEvent(id, flag);
+		return lpThis->OnResEvent(id, flag)? TRUE : FALSE;
 	}
 
 private:
@@ -373,6 +399,70 @@ typedef BaseResHolder<ColorResTraits>		ColorResHolder;
 typedef BaseResHolder<CurveResTraits>		CurveResHolder;
 typedef BaseResHolder<PenResTraits>			PenResHolder;
 typedef BaseResHolder<BrushResTraits>		BrushResHolder;
+
+template<typename OwnerClass, typename ResTraits>
+class BaseResHolderEx
+	: public BaseResHolder<ResTraits>
+{
+public:
+	typedef OwnerClass owner_class;
+	typedef BaseResHolder<ResTraits> base_class;
+
+	typedef void (owner_class::*LPFNOnResChange)();
+	typedef void (owner_class::*LPFNOnResLoadFailed)();
+
+public:
+
+	BaseResHolderEx()
+		:m_lpOwner(NULL),
+		m_lpfnOnResChange(NULL),
+		m_lpfnOnResLoadFailed(NULL)
+	{
+
+	}
+
+	void SetOwner(owner_class* lpOwner)
+	{
+		m_lpOwner = lpOwner;
+	}
+
+	void SetResFunc(LPFNOnResChange lpfnOnResChange, LPFNOnResLoadFailed lpfnOnResLoadFailed)
+	{
+		m_lpfnOnResChange = lpfnOnResChange;
+		m_lpfnOnResLoadFailed = lpfnOnResLoadFailed;
+	}
+
+protected:
+
+	// 资源发生改变
+	virtual void OnResChange()
+	{
+		if (m_lpOwner != NULL && m_lpfnOnResChange != NULL)
+		{
+			(m_lpOwner->*m_lpfnOnResChange)();
+		}
+
+		base_class::OnResChange();
+	}
+
+	// 资源加载发生错误
+	virtual void OnResLoadFailed()
+	{
+		if (m_lpOwner != NULL && m_lpfnOnResLoadFailed != NULL)
+		{
+			(m_lpOwner->*m_lpfnOnResLoadFailed)();
+		}
+
+		base_class::OnResLoadFailed();
+	}
+
+private:
+
+	owner_class* m_lpOwner;
+
+	LPFNOnResChange m_lpfnOnResChange;
+	LPFNOnResLoadFailed m_lpfnOnResLoadFailed;
+};
 
 } // Bolt
 } // Xunlei

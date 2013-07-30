@@ -660,8 +660,16 @@ typedef struct __ExtResourceMethods
 	void* userData;
 
 	// 加载和释放内部资源，用以实现用时加载和闲时的垃圾回收
-	BOOL (XLUE_STDCALL *lpfnLoadRes)(void* userData, void* lpResHandle);
+	BOOL (XLUE_STDCALL *lpfnLoadRes)(void* userData, void* lpResHandle, const wchar_t* lpResFolder);
 	BOOL (XLUE_STDCALL* lpfnFreeRes)(void* userData, void* lpResHandle);
+
+	// 获取对应的真正资源句柄，比如XL_BITMAP_HANDLE，XLGP_ICON_HANDLE等
+	// 返回值不需增加引用计数！！
+	void* (XLUE_STDCALL *lpfnGetRealHandle)(void* userData, void* lpResHandle);
+
+	// 真正资源句柄的生命周期基于引用计数管理
+	long (XLUE_STDCALL *lpfnAddRefRealHandle)(void* userData, void* lpResHandle, void* lpRealHandle);
+	long (XLUE_STDCALL *lpfnReleaseRealHandle)(void* userData, void* lpResHandle, void* lpRealHandle);
 
 }ExtResourceMethods;
 
@@ -692,10 +700,10 @@ typedef struct __ExtResourceLuaHost
 	void* userData;
 
 	// 获取所有的lua扩展api
-	BOOL (XLUE_STDCALL *lpfnGetLuaFunctions)(void* userData, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount);
+	BOOL (XLUE_STDCALL *lpfnGetLuaFunctions)(void* userData, const char* lpResType, const XLLRTGlobalAPI** lplpLuaFunctions, size_t* lpFuncCount);
 
 	// 注册额外的辅助lua类或者全局对象
-	BOOL (XLUE_STDCALL *lpfnRegisterAuxClass)(void* userData, XL_LRT_ENV_HANDLE hEnv);
+	BOOL (XLUE_STDCALL *lpfnRegisterAuxClass)(void* userData, const char* lpResType, XL_LRT_ENV_HANDLE hEnv);
 
 }ExtResourceLuaHost;
 
