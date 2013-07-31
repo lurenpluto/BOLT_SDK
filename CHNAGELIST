@@ -1,3 +1,49 @@
+530版本改动列表
+
+1.	完善BXF的扩展资源子框架
+扩展资源子框架进一步改进和完善，并在此基础上增加了icon扩展资源类型(在官方扩展XLUEExtObject.dll里面)
+
+2.	改进WebBrowseObject对键盘输入的支持
+新的策略使得IE控件对键盘输入的支持更加完善，避免某些情况下ie内嵌ACX控件无法获取键盘输入的bug
+
+3.	修正WindowlessBoltBrowserObject进程外服务模式下的光标策略，在发生同步重入删除时候可能导致的崩溃
+
+4.	对象树在获取光标时候对对象锁定保护，避免同步重入删除可能导致的崩溃
+
+5.	修正扩展元对象的ResProvider设置时机为在创建extobject之前设置
+方便扩展元对象在外部对象的构造函数里面使用resprovider
+
+6.	增加操作扩展资源真正资源句柄的相关接口
+XLUE_GetResRealHandle
+XLUE_AddRefResRealHandle
+XLUE_ReleaseResRealHandle
+
+7.	BXF的扩展类型配置支持扩展资源类型
+
+---------------------------------------------------------------------------------------------------------------------------
+
+526版本改动列表
+
+1.	核心逻辑完善：元对象的OnInitControl增加重入判定，避免同步添加对象可能导致的重复触发事件
+由于OnInitControl事件触发是深度优先，同层对象是自上向下的顺序触发的，所在在某个对象的OninitControl里面对下面尚未触发OnInitControl的对象，动态添加子对象，可能会导致该子对象多次触发OnInitControl，所以版本起对此作了限定，但是还是提醒不要逆时序进行添加、移除对象的操作，虽然修正后不会重复触发事件，但是会破坏原有的时序，出现不可预期的结果！
+
+2.	EditObject增加GetAllowBeep和SetAllowBeep的lua接口
+这两个接口可以用来动态修改EditObject的allowbeep属性，接口签名如下：
+bool GetAllowBeep()
+void SetAllowBeep(bool enable)
+
+3.	修复hostwnd创建窗口后初始焦点状态可能出错的bug
+该bug可能导致hostwnd在某些情况下无法正常处理鼠标和键盘输入，本版本已经修正
+
+4.	修复ModalHostWnd某些情况下创建窗口后无法获取焦点的bug
+该bug可能ModalHostWnd弹出后某些情况下由于没有焦点，而导致不能正常处理键盘输入，本版本已经修正
+
+5.	修复模板对象挂接OnPreCreateInstance事件后，无法动态移除的bug
+
+6.	修复XARManager挂接OnPreLoadXAR事件后，无法动态移除的bug
+
+---------------------------------------------------------------------------------------------------------------------------
+
 522版本改动列表
 
 1.	增加BXF的外部扩展资源子框架
