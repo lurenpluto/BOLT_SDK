@@ -42,5 +42,6 @@
 #include <BXF/ExtObjRegisterHelper.h>
 
 #include <BXF/ExtResourceImpl.h>
+#include <BXF/ExpWrapper.h>
 
 #endif // __BOLTEXTFRAMEWORK_H__
