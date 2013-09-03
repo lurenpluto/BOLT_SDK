@@ -303,6 +303,7 @@ XLGRAPHIC_API(XL_Color) XL_RGB2HSL(const XL_Color clrSource);
 //-----------Bitmap数据结构定义---------------------------
 XLGRAPHIC_API(XL_BITMAP_HANDLE) XL_CreateBitmap(DWORD BitmapColorType,unsigned long Width,unsigned long Height);
 XLGRAPHIC_API(XL_BITMAP_HANDLE) XL_CreateBindBitmap(XLBitmapInfo* pBitmapInfo,unsigned char* pBuffer);
+XLGRAPHIC_API(XL_BITMAP_HANDLE) XL_CreateBindBitmapEx(XLBitmapInfo* pBitmapInfo,unsigned char* pBuffer, BOOL bufferPreMultiplied);
 
 XLGRAPHIC_API(unsigned long) XL_AddRefBitmap(XL_BITMAP_HANDLE hBitmap);
 XLGRAPHIC_API(unsigned long) XL_ReleaseBitmap(XL_BITMAP_HANDLE hBitmap);

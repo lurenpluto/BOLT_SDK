@@ -95,6 +95,8 @@ XLUE_API(long) XLUE_InitLuaHost(void*);
 
 XLUE_API(long) XLUE_RegisterStandardObjects(void*);
 XLUE_API(long) XLUE_RegisterAnimation(void*);
+XLUE_API(long) XLUE_RegisterResource(void*);
+XLUE_API(long) XLUE_RegisterHostWnd(void*);
 
 XLUE_API(long) XLUE_Uninit(void*);
 XLUE_API(long) XLUE_UninitLuaHost(void*);

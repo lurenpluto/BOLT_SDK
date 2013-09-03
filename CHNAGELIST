@@ -1,3 +1,81 @@
+544版本改动列表
+
+1.	XLUEIPC模板增加句柄机制，避免各种错误使用可能导致的崩溃
+XLUEIPC模块的核心对象channel、session、sever和interface，在引用计数基础上引入真句柄机制，避免错误使用已释放对象可能导致的崩溃等问题。该次改动属于较大的改动，但是接口没有改变，对使用者对没有影响
+
+2.	修复TurnObjectAnimation创建位图失败情况下，可能导致的崩溃
+
+3.	修复图形库创建bitmap，指定scanlinelength时候导致创建错误的bug
+
+---------------------------------------------------------------------------------------------------------------------------
+
+542版本改动列表
+
+1.	核心改动：新增HostWndFactory全局对象，支持在lua里面动态创建hostwnd
+该全局对象的名字是Xunlei.UIEngine.HostWndFactory，目前有下面方法：
+hostwnd CreateHostWnd(hostwndid, hostwndclass, ownpackage)
+
+使用方法如下：
+local factory = XLGetObject("Xunlei.UIEngine.HostWndFactory")                                                         
+factory:CreateHostWnd("temp", "FrameHostWnd")
+
+2.	核心改动：重构和改进hostwnd和hostwndfactory机制
+新的机制支持扩展hostwnd类型，创建hostwnd有更快的速度，并且和lua交互也更高效，对于跨平台支持也更完善和优雅
+
+3.	核心改动：完善XLUE的初始化和反初始化逻辑，增加XLUE_RegisterHostWnd和XLUE_RegisterResource两个接口
+新的初始化逻辑更加完善，并修复两处反初始化时候可能导致的内存泄露问题
+
+4.	修复RichEditObject在插入内嵌对象后，销毁RichEditObject元对象时候可能导致出错的bug
+
+5.	完善xarmanager的退出时反初始化逻辑，增加清除事件逻辑
+
+---------------------------------------------------------------------------------------------------------------------------
+
+540版本改动列表
+
+1.	WindowlessFlashObject增加alivetimeout属性，用以设置远程模式下心跳检测时间间隔
+默认的检测时间间隔是1000ms，可以通过alivetimeout属性来修改该时间间隔
+
+2.	WindowlessFlashObject增加SetAliveTimeout和GetAliveTime接口
+这两个接口分别用以设置和获取alivetimeout属性，接口签名如下：
+void SetAliveTimeout(unsigned int timeout)
+unsigned int GetAliveTimeout()
+
+3.	修复WindowlessFlashObject的SetFlashModule接口无法生效的bug
+该接口可以显示指定该对象使用的flash控件模块
+
+4.	XLUEIPC的channel的心跳检测和断开检测分离
+方便心跳检测可独立使用单独的时间间隔
+
+5.	XLUEIPC增加XLIPC_GetChannelID接口，用以获取指定channel的id
+接口签名如下：
+XLUEIPC_API(const wchar_t*) XLIPC_GetChannelID(XLIPC_CHANNEL hChannel)
+
+6.	完善XLUEIPC错误码，细化某些出错情况下的返回值
+
+7.	进一步完善XLUEIPC和WindowlessFlashObject的日志
+
+---------------------------------------------------------------------------------------------------------------------------
+
+538版本改动列表
+
+1.	改进图形库bitmap的clip机制
+在新的机制下，clip得来的bitmap会保持对原bitmap的引用，依次类推
+
+2.	改进图形库bitmap的预乘机制
+新的机制完善了对clip出来的bitmap的预乘处理，避免某些情况下clip得出的子bitmap无法正确预乘处理的bug
+3.	图形库增加XL_CreateBindBitmapEx接口
+该接口可以从一个已经过预乘处理的位图buffer，创建一个bitmap
+
+4.	RichEditObject的段落格式支持水平对齐样式
+该改动属于XLTS富文本排版的较大改动，支持水平对齐样式
+
+5.	RichEditObject增加支持单行模式，multiline属性正式生效
+
+6.	修复richeditobject的SetWantReturn无法正常工作的bug
+
+---------------------------------------------------------------------------------------------------------------------------
+
 536版本改动列表
 
 1.	引擎核心增加完善的事件定义管理系统

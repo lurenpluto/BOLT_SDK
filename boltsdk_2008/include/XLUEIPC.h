@@ -74,6 +74,10 @@ DECLARE_XLIPC_HANDLE(XLIPC_INTERFACE)
 #define XLIPC_RESULT_INVALID_STRUCT		26
 #define XLIPC_RESULT_UNEXPECTED			27
 #define XLIPC_RESULT_SERVER_CLOSED		28
+#define XLIPC_RESULT_DISCONNNECT		29
+#define XLIPC_RESULT_ASYNCALLFRAME_NOT_FOUND	30
+#define XLIPC_RESULT_SYNCCALLFRAME_NOT_FOUND	31
+#define XLIPC_RESULT_REPLY_FAILED	32
 
 // 通道相关函数
 #define CHANNEL_CONNECTTYPE_CONNECT		1
@@ -113,6 +117,9 @@ XLUEIPC_API(long) XLIPC_SetChannelCallBack(XLIPC_CHANNEL hChannel, const Channel
 
 // 设置channel的连接超时时间，默认为500ms
 XLUEIPC_API(long) XLIPC_SetChannelTimeout(XLIPC_CHANNEL hChannel, unsigned long timeout);
+
+// 查询channel id
+XLUEIPC_API(const wchar_t*) XLIPC_GetChannelID(XLIPC_CHANNEL hChannel);
 
 // 设置状态和查询状态
 XLUEIPC_API(long) XLIPC_SetChannelStatus(XLIPC_CHANNEL hChannel, long newStatus);
