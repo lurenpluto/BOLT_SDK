@@ -180,6 +180,10 @@ typedef long (XLUE_STDCALL *fnGlobalSetCallback) (lua_State* luaState,const char
 #define XLLRT_RESULT_DEBUG_BUFNOTENOUGH 30
 #define XLLRT_RESULT_PARAM_INVALID 31
 #define XLLRT_RESULT_NOT_IMPL 32
+#define XLLRT_RESULT_TYPEERROR_NOTUSERDATA 33
+#define XLLRT_RESULT_TYPEERROR_NOMETATABLE 34
+#define XLLRT_RESULT_TYPEERROR_NOCLASSNAME 35
+#define XLLRT_RESULT_TYPEERROR_CLASSMISMATCH 36
 
 //获取Xunlei Runtime的版本号
 XL_LRT_API(unsigned long) XLLRT_GetVersion();
@@ -214,6 +218,7 @@ XL_LRT_API(long) XLLRT_RegisterClass(XL_LRT_ENV_HANDLE hEnv,const char* classNam
 XL_LRT_API(long) XLLRT_UnRegisterClass(XL_LRT_ENV_HANDLE hEnv,const char* className);
 XL_LRT_API(long) XLLRT_DoRegisterClass(const char* className,lua_State* luaState);
 XL_LRT_API(BOOL) XLLRT_IsClassRegistered(XL_LRT_ENV_HANDLE hEnv, const char* className);
+XL_LRT_API(BOOL) XLLRT_IsDerivedClass(XL_LRT_ENV_HANDLE hEnv, const char* lpDerivedClass, const char* lpBaseClass);
 
 // 枚举相关接口
 // 返回的枚举器是当前env的一个快照，只可以在一个线程里面使用！
@@ -275,8 +280,20 @@ XL_LRT_API(BOOL) XLLRT_GetNextGlobalClass(XL_LRT_ENUMERATOR hEnum, XLLRTClass* l
 XL_LRT_API(BOOL) XLLRT_EndEnum(XL_LRT_ENUMERATOR hEnum);
 
 
+
+// 获取index指定的userdata对应的className
+XL_LRT_API(const char*) XLLRT_GetXLObjectClass(lua_State* luaState, int index);
+
 // push一个对象到lua栈
-XL_LRT_API(long) XLLRT_PushXLObject(lua_State* luaState,const char* className,void* pRealObj);
+XL_LRT_API(long) XLLRT_PushXLObject(lua_State* luaState, const char* className, void* pRealObj);
+
+// 类似于lua_touserdata，从lua栈获取一个userdata，如果该userdata是className指定的class或者子类，
+// 那么返回值为XLLRT_RESULT_SUCCESS，并lplpRet返回该userdata，否则lplpRet返回NULL
+XL_LRT_API(long) XLLRT_GetXLObject(lua_State* luaState, int index, const char* className, void** lplpObj);
+
+// 类似于luaL_checkuserdata，基于XLLRT_GetXLObject实现，不同的是如果类型不是className或子类，或者不是userdata，那么会调用luaL_typerror触发错误
+XL_LRT_API(long) XLLRT_CheckXLObject(lua_State* luaState, int index, const char* className, void** lplpObj);
+
 
 //--LUA 运行时---
 // 对luaState的包裹，允许使用协程

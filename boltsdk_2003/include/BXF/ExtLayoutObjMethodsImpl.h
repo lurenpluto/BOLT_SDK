@@ -46,7 +46,7 @@ public:
 	virtual ~ExtLayoutObjMethodsImpl()
 	{
 		assert(m_hObj);
-		assert(XLUE_IsObjValid(m_hObj));
+		//assert(XLUE_IsObjValid(m_hObj));
 		m_hObj = NULL;
 	}
 

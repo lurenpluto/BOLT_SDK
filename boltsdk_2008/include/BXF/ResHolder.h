@@ -162,13 +162,23 @@ public:
 	{
 		m_source = Source_ID;
 
-		if(!m_id.empty() && lpID != NULL)
+		if (lpID != NULL)
 		{
-			if(strcmp(lpID, m_id.c_str()) == 0)
+			if(::strcmp(lpID, m_id.c_str()) == 0)
 			{
 				return;
 			}
+		}
+		else
+		{
+			if (m_id.empty())
+			{
+				return;
+			}
+		}
 
+		if(!m_id.empty())
+		{
 			DetachEvent();
 		}
 

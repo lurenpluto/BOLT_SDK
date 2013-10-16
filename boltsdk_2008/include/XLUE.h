@@ -200,6 +200,9 @@ XLUE_API(BOOL) XLUE_ObjPaint(XLUE_LAYOUTOBJ_HANDLE hObj, XL_BITMAP_HANDLE hDestB
 XLUE_API(void) XLUE_EnableObjInputTarget(XLUE_LAYOUTOBJ_HANDLE hObj,BOOL isEnable);
 XLUE_API(BOOL) XLUE_CanObjHandleInput(XLUE_LAYOUTOBJ_HANDLE hObj);
 
+// 显式的让元对象处理鼠标和键盘输入事件
+XLUE_API(long) XLUE_ObjProcessInput(XLUE_LAYOUTOBJ_HANDLE hObj, unsigned long actionType, unsigned long wParam,unsigned long lParam, BOOL* lpHandled);
+
 XLUE_API(void) XLUE_SetObjCaptureMouse(XLUE_LAYOUTOBJ_HANDLE hObj,BOOL isCapture);
 XLUE_API(BOOL) XLUE_GetObjCaptureMouse(XLUE_LAYOUTOBJ_HANDLE hObj);
 

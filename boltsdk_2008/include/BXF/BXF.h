@@ -43,5 +43,6 @@
 
 #include <BXF/ExtResourceImpl.h>
 #include <BXF/ExpWrapper.h>
+#include <BXF/ExtObjSafeLock.h>
 
 #endif // __BOLTEXTFRAMEWORK_H__

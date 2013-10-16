@@ -1,3 +1,105 @@
+560版本改动列表
+
+1.	XLUE模块增加XLUE_ObjProcessInput接口
+该接口主要用以BXF扩展框架，可以由外部显式的向元对象推送鼠标和键盘消息，用以实现更自由的扩展元对象
+
+2.	BXF增加扩展元对象的保护锁辅助代码
+该辅助代码用以在扩展元对象里面，实现更完善的同步事件
+
+3.	完善hostwnd和object的xml解析出错提示
+新的出错提示会提示出错的xml的完整路径，方便开发定位错误
+
+4.	修复BXF的ResHolder在修改资源id时候，可能导致事件不能正确卸载的bug
+
+5.	修复BXF的扩展元对象，挂接lua事件返回cookie出错的bug
+
+6.	修复MenuHostWnd的SetTopLeftSpacing方法，导致对象树原点出错的bug
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+558版本改动列表
+
+1.	核心改动：对象树新增OnCreate和OnDestroy两个事件
+这两个事件分别在对象树被实例化和销毁的时候触发，事件签名如下：
+long result, bool handled, bool callnext OnCreate(objtree self)
+long result, bool handled, bool callnext OnDestroy(objtree self)
+
+         这两个事件和对象树的其它事件一样，可以在xml里面静态配置，也可以通过AttachListener/RemoveListener来动态挂接和移除
+
+2.	增强TextObject的autoresize属性
+增强后的autoresize属性，会根据TextObject的水平对齐属性halign和垂直对齐属性valign，来智能的改变到合适的位置和大小，而不是全部按照左上对齐
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+556版本改动列表
+
+1.	LuaRuntime新增了有关注册class的多个接口，可以用来实现基于XLLuaRuntime的C++继承体系的lua封装
+XLLuaRuntime在设计之初就支持继承，所以可以把一个基于C++的继承体系，对等的注册到lua环境，但是却缺乏对应的类型检测机制，在从lua环境获取userdata时候，只能通过lua_touserdata或者luaL_checkuserdata两个lua原生方法来获取，很多情况下只能进行弱类型检测，具有一定的风险，所以本版本起luaruntime新增多个接口，用以增强LuaRuntime的类型支持
+
+新增接口如下：
+const char* XLLRT_GetXLObjectClass (lua_State* luaState, int index);
+//获取指定userdata的对应class，该userdata须是通过XLLRT_PushXLObject设置到lua虚拟机的
+
+long XLLRT_CheckXLObject(lua_State* luaState, int index, const char* className, void** lplpObj);
+long XLLRT_GetXLObject(lua_State* luaState, int index, const char* className, void** lplpObj);
+//从lua栈获取一个指定class的userdata，如果该userdata是指定的class或者其子类，那么会返回该userdata
+
+BOOL XLLRT_IsDerivedClass(XL_LRT_ENV_HANDLE hEnv, const char* lpDerivedClass, const char* lpBaseClass);
+//判断两个注册到LuaEnv的class，是否具有继承关系
+
+
+2.	改进XLUEIPC的通道机制，通道连接不再进行心跳检测，只保留断开检测
+最近收到多个产品的反馈，在有些情况下，比如机器很卡或者进程CPU占用率较高的情况下，经常会导致IPC模块断开连接，所以经过慎重考虑，决定移除心跳连接机制，只保留断开连接机制
+
+3.	完善BXF扩展资源框架，修复不能正确支持多层xml节点定义的bug
+
+4.	完善Flash相关对象的日志输出，用以出错诊断
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+552版本改动列表
+
+1.	改进进程外Flash服务器策略，改为每个Flash对象使用独立的服务器进程，涉及到WindowlessFlashObject的进程外服务模型
+主要是为了避免Flash模块的崩溃或者其它异常，导致的后续对象的Flash服务异常
+
+2.	RealObject、FlashObject和WebBrowseObject增加输入消息处理器机制
+该机制主要用以捕获实窗口对象上的鼠标和键盘消息，可以方便的作为元对象层的鼠标和键盘消息来处理；设置hookinput=1，那么实窗口对象可以直接挂接鼠标和键盘消息，来处理来自实窗口的鼠标和键盘消息，并且返回handled=true，可以拦截该事件
+
+新增属性hookinput，默认为关闭
+新增方法，可以用来动态打开和关闭hookpinput特性：
+void SetHookInput(bool enable)
+bool GetHookInput()
+
+3.	FrameHostWnd如果没有指定有效owner，那么使用默认owner
+现在的策略是：在创建非子窗口的FrameHostWnd的时候，如果没有指定有效的owner，那么一律采用引擎的默认owner
+
+4.	改进进程外Flash的销毁流程，进程外Flash服务可以在销毁时候触发事件
+修正后的Flash进程外服务，在Flash关闭时候，通过FlashCall或者FSCommand触发的事件，也可以通知到主进程并正确触发了
+
+5.	XLUE所有模块，日志版默认关闭日志文件和控制台输出，但错误弹框策略没有改变
+这个主要是为了避免使用日志版引擎开发时候，过多的日志和控制台输出导致的cpu占用率过高和debugview信息量过大，如果需要XLUE输出到日志文件或控制台，请在C:\TSLOG_CONFIG\XLUE.INI文件里面，配置以下字段：
+[Output]
+DebugView=ON
+FileLog=ON
+
+
+6.	重构FlashObject和WebBrowseObject的lua封装和parser
+重构后的FlashObject和WebBrowseObject，完全继承RealObject的属性和方法
+
+7.	修复EditObject的WinEdit内核的LinkNotify事件一处可能导致错误触发事件的bug
+
+8.	修复XLFSIO在创建缓存文件失败的情况下，XAR校验可能导致的崩溃
+
+9.	修正XLUEIPC日志版，通道发送数据返回值的错误码可能出错的bug
+
+10.	修正日志版的WindowlessFlashObject一处由于重入可能导致的崩溃
+
+---------------------------------------------------------------------------------------------------------------------------
+
 548版本改动列表
 
 1.	重构HostWnd的xml解析流程
