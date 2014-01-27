@@ -184,6 +184,8 @@ typedef long (XLUE_STDCALL *fnGlobalSetCallback) (lua_State* luaState,const char
 #define XLLRT_RESULT_TYPEERROR_NOMETATABLE 34
 #define XLLRT_RESULT_TYPEERROR_NOCLASSNAME 35
 #define XLLRT_RESULT_TYPEERROR_CLASSMISMATCH 36
+#define XLLRT_RESULT_OUT_OF_MEMORY 37
+#define XLLRT_RESULT_INSUFFICIENT_BUFFER 38
 
 //获取Xunlei Runtime的版本号
 XL_LRT_API(unsigned long) XLLRT_GetVersion();
@@ -284,15 +286,27 @@ XL_LRT_API(BOOL) XLLRT_EndEnum(XL_LRT_ENUMERATOR hEnum);
 // 获取index指定的userdata对应的className
 XL_LRT_API(const char*) XLLRT_GetXLObjectClass(lua_State* luaState, int index);
 
-// push一个对象到lua栈
+// push一个对象指针到lua栈
 XL_LRT_API(long) XLLRT_PushXLObject(lua_State* luaState, const char* className, void* pRealObj);
 
-// 类似于lua_touserdata，从lua栈获取一个userdata，如果该userdata是className指定的class或者子类，
+// push指定长度的对象数据到lua栈，对象数据是lpRealObjData指向的objLen个字节数据
+XL_LRT_API(long) XLLRT_PushXLObjectEx(lua_State *luaState, const char* className, void* lpRealObjData, size_t objDataLen);
+
+
+// 类似于lua_touserdata，从lua栈获取一个void*类型的userdata，如果该userdata是className指定的class或者子类，
 // 那么返回值为XLLRT_RESULT_SUCCESS，并lplpRet返回该userdata，否则lplpRet返回NULL
 XL_LRT_API(long) XLLRT_GetXLObject(lua_State* luaState, int index, const char* className, void** lplpObj);
 
+// 基本等同于XLLRT_GetXLObject，只不过可以从lua栈获取一个指定长度的userdata，lpObjDataBuffer指向的buffer须>=该userdata的实际长度！！
+// 如果bufferLen长度小于lua栈上对应的userdata数据长度，那么会返回XLLRT_RESULT_INSUFFICIENT_BUFFER
+// lpObjDataLen不为空的话，返回该userdata的实际长度
+XL_LRT_API(long) XLLRT_GetXLObjectEx(lua_State* luaState, int index, const char* className, void* lpObjDataBuffer, size_t bufferLen, size_t *lpObjDataLen);
+
 // 类似于luaL_checkuserdata，基于XLLRT_GetXLObject实现，不同的是如果类型不是className或子类，或者不是userdata，那么会调用luaL_typerror触发错误
 XL_LRT_API(long) XLLRT_CheckXLObject(lua_State* luaState, int index, const char* className, void** lplpObj);
+
+// 基于XLLRT_GetXLObjectEx实现，，不同的是如果类型不是className或子类，或者不是userdata，那么会调用luaL_typerror触发错误
+XL_LRT_API(long) XLLRT_CheckXLObjectEx(lua_State* luaState, int index, const char* className, void* lpObjDataBuffer, size_t bufferLen, size_t *lpObjDataLen);
 
 
 //--LUA 运行时---
@@ -310,6 +324,9 @@ XL_LRT_API(XL_LRT_ENV_HANDLE) XLLRT_GetOwnerEnv(XL_LRT_RUNTIME_HANDLE hRunTime);
 XL_LRT_API(const char*) XLLRT_GetRuntimeID(XL_LRT_RUNTIME_HANDLE hRuntime);
 XL_LRT_API(lua_State*) XLLRT_GetLuaState(XL_LRT_RUNTIME_HANDLE hRunTime);
 XL_LRT_API(XL_LRT_RUNTIME_HANDLE) XLLRT_GetRuntimeFromLuaState(lua_State* luaState);
+
+// 切换luaruntime到当前线程，接下来所有对该runtime和对应的luastate的使用都须在新的线程
+XL_LRT_API(unsigned long) XLLRT_SwitchRuntimeThread(XL_LRT_RUNTIME_HANDLE hRuntime);
 
 XL_LRT_API(size_t) XLLRT_GetAllLuaState(lua_State** luaState, size_t nCount );
 XL_LRT_API(const wchar_t*) XLLRT_AddLoadLuaFile(const wchar_t* lpLuaFile);
@@ -403,5 +420,14 @@ XL_LRT_API(lua_CFunction) XLLRT_GetFunctionAddress( lua_CFunction lpFun );
 XL_LRT_API(long) XLLRT_Stat(long type);
 
 XL_LRT_API(long) XLLRT_DumpTable(XL_LRT_RUNTIME_HANDLE hRuntime, long tableRef);
+
+
+// int64类型支持的相关接口
+XL_LRT_API(BOOL) XLLRT_RegisterInt64(XL_LRT_RUNTIME_HANDLE hRuntime);
+
+XL_LRT_API(BOOL) XLLRT_PushInt64(lua_State *luaState, long long value);
+XL_LRT_API(long long) XLLRT_CheckInt64(lua_State *luaState, int index);
+// 如果目标是不是int64类型，那么就转换为lua_number的类型
+XL_LRT_API(long long) XLLRT_GetInt64(lua_State *luaState, int index);
 
 #endif //_XUNLEI_LUA_RUNTIME_H_

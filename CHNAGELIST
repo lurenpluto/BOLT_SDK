@@ -1,3 +1,179 @@
+586版本改动列表
+
+1.	核心修正：改进LoadXAR逻辑，避免错误加载同名目录
+由于XAR存在文件夹、zip和xar三种格式，所以如果存在多个search目录，并且某目录下存在同名的目录，但该目录不是有效的XAR目录，那么有可能会错误加载该目录，导致加载xar失败；现在策略修正为判断一个目录是不是有效的xar，如果不是，那么会继续搜索
+
+2.	修复Session的异步连接器在超时后可能导致的崩溃
+
+3.	修复EventLockList某些情况下计数出错的bug
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+582版本改动列表
+
+1.	核心改动：改进FrameHostWnd和ModalHostWnd对所绑定对象树的根对象的Resize策略
+562版本引入的该进制，原为NormalHostWnd在大小改变的情况下，会同步所绑定的对象树的根对象位置，但是导致迅雷7.9等很多产品不兼容，出现窗口大小异常等问题，所以本版本起对该机制做了改进，以兼容绝大多数情况
+
+新的机制为：如果FrameHostWnd和ModalHostWnd指定了有效的Border属性，那么会启用自动Resize根对象的机制；否则仍需要自己对根对象进行Resize处理
+
+2.	修复XLUEIPC模块批量注册Methods，在反注册时候可能导致的崩溃
+3.	修复XLUEIPC的一处session在应答时候可能导致的崩溃
+
+---------------------------------------------------------------------------------------------------------------------------
+
+578版本改动列表
+
+1.	核心功能：XLUEIPC增加Server相关的lua封装
+基于之前版本增加Session/Interface封装，加上本版本的Server相关封装，可以完善的在lua里面发起跨进程session，并对远程的lua方法同步或者异步调用，使用起来极为方便，并且安全可靠，这个接下来会有详细的文档介绍使用方法和示例DEMO
+
+2.	核心修复：修复事件系统的LockList在重入情况下，多次移除同事件可能导致的引擎内存池错误
+该错误在同步事件触发时候，多次对该事件进行移除，可能导致LockList对一个事件多次解锁，导致内置的内存池被破坏，从而可能导致崩溃出现
+现已对LockList进行了修正和改进，涉及下面三个改动：
+a)	区分事件节点的锁定和删除，采用不同策略
+b)	增加事件节点的多次删除判定，避免多次移除(日志版会弹出错误提示窗口)
+c)	LockList的内存池分配器增加线程安全检测，确保只在UI线程发起调用
+
+3.	修复HostWnd在开启Layer属性情况下，某些情况下对窗口更新可能导致的显示错误
+主要体现在下面几个功能：
+a)	窗口最小化情况下，调用接口获取窗口截图
+b)	窗口最小化情况下，调用接口强制刷新窗口
+c)	窗口存在联动窗口+最小化+超时释放缓存+window7+开启窗口Aero预览情况下，任务栏悬浮显示主窗口的预览图
+
+4.	XLUEIPC模块新增三个接口
+XLIPC_GetServerCallback        获取指定Server上的回调函数和userdata
+XLIPC_GetServerIsWorking     判断一个server是否在工作中
+XLIPC_GetSessionCallBack      获取指定Session的回调函数和userdata
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+576版本改动列表
+
+1.	改进XLLuaRuntime模块的Env相关的线程机制
+现在Env相关函数是线程安全的，同一个Env可以在多个线程里面使用，同时在Env相关函数不再强制线程安全检测；但LuaRuntime和lua_state仍是非线程安全的，只可在创建线程(或切换到的目标线程)里面使用
+
+2.	XLLuaRuntime模块新增XLLRT_SwitchRuntimeThread方法，可以切换一个LuaRuntime所属线程
+函数签名如下：
+XL_LRT_API(unsigned long) XLLRT_SwitchRuntimeThread(XL_LRT_RUNTIME_HANDLE hRuntime)
+
+调用该方法，可以切换该LuaRuntime(lua_state)到当前线程；LuaRuntime切换到新线程以后，接来下所有的执行都须在新线程里面，不可以在之前所属线程里面执行任何方法和lua代码
+
+3.	XAR增加一个新方法QueryXMLType，用以判断该xar里面是否定义了指定的类型或者模板
+
+函数签名如下：
+bool QueryXMLType(const char* type, const char* id);
+
+其中type可以取值如下：
+?	control                        自定义控件
+?	animation_def          自定义动画
+?	ObjectTemplate       对象模板
+?	ObjectTreeTemplate        对象树模板
+?	HostWndTemplate 宿主窗口模板
+?	AnimationTemplate         动画模板
+
+id便是对应的类型或者模板的id
+
+4.	XLUE的内存池机制，在日志版增加Block越界检测和Block重复释放检测机制
+该检测用以检测引擎的内存池机制，确保在出现块越界和重复释放错误的时候，日志版会弹出错误提示，方便出错定位
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+570版本改动列表
+
+1.	核心功能：XLLuaRuntime增加自定义长度userdata支持
+之前的luaruntime只支持将一个指针类型的userdata放置到lua栈，在很多时候会导致不便利，需要增加中间封装，现在LuaRuntime 支持自定义长度userdata
+新增接口如下：
+XLLRT_PushXLObjectEx
+XLLRT_GetXLObjectEx
+XLLRT_CheckXLObjectEx
+
+用以将一个指定长度的userdata防止到lua栈，或者从lua栈指定位置取出，是对原有的XLLRT_PushXLObject、XLLRT_GetXLObject、XLLRT_CheckXLObject的增强，使用方式保持一致，需要注意的是userdata大小须保持一致！
+
+2.	核心功能：XLUEIPC的session、interface和stream增加lua封装，可以非常方便的在lua层面实现跨进程的接口粒度的交互，支持lua类型自动转换，支持lua闭包等
+
+XLUEIPC新增一个接口，用以注册XLUEIPC的功能到lua环境，方可在lua里面使用
+XLIPC_RegisterLuaHost
+
+这个接下来会有详细的使用说明，现在如果有需求使用的，可以联系我们
+
+3.	XLUEIPC增加几个新接口，方便深度使用：
+
+XLIPC_GetSessionInterface     查询某个session上是否注册了指定接口
+XLIPC_RegisterMethodEx        注册一个方法到指定的interface，并且在该接口被删除时候，通过指定回调函数的方式获得通知
+XLIPC_ClearAllMethods          清除一个interface上已经注册的所有方法
+XLIPC_StreamWriteDouble/XLIPC_StreamReadDouble          增加stream对double类型的支持
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+566版本改动列表
+
+1.	核心改进：XLLuaRuntime模块增加官方的int64类型支持
+长久以来由于lua不支持int64整型，导致了很多不便，很多产品也有各自的实现，为了方便和统一，LuaRuntime从本版本起内置了int64类型，可以像lua内置类型一样使用，支持加减乘除、取模、乘方、比较等运算，可以和其它数据类型方便的转换
+
+内置int64支持如下方法：
+tointeger          转换为 lua_integer类型
+tonumber        转换为lua_number类型
+tostring            转换为字符串类型
+tohex                 转换为16进制的字符串类型
+fromstring       把字符串转换为int64类型
+frominteger     把lua_integer转换为int64类型
+fromnumber   把lua_number转换为int64类型
+
+make(low, higt)       把两个32bit整型拼接为一个64位整型
+lowpart             获取低32bit值
+highpart           获取高32bit值
+
+XLLuaRuntime模块新增下面几个接口：
+//注册int64类型到对应的luaruntime，这个需要显式的调用，默认创建的luaruntime不会自动注册int64类型
+XL_LRT_API(BOOL) XLLRT_RegisterInt64(XL_LRT_RUNTIME_HANDLE hRuntime);
+
+         //  int64类型和lua栈的交互
+XL_LRT_API(BOOL) XLLRT_PushInt64(lua_State *luaState, long long value);
+XL_LRT_API(long long) XLLRT_CheckInt64(lua_State *luaState, int index);
+
+// 如果目标是不是int64类型，那么就转换为lua_integer的类型，然后再转换为int64类型
+XL_LRT_API(long long) XLLRT_GetInt64(lua_State *luaState, int index);
+
+2.	核心改进：改进XLUEIPC的Session实现，支持外部自定义信道
+改进后的Session，可以基于任意的可靠信道，实现接口粒度的同步/异步调用，具有更大的自由度；默认使用XLUEIPC自带的Channel，以后会增加基于管道的channel，用以实现非UI线程的可靠信道通信
+
+3.	改进RichEditObject的选中背景色支持，不再对选中背景颜色进行alpha预处理
+
+4.	修复hostwnd在移动后导致刷新出错的bug
+
+5.	修复ModalHostWnd在OnCreate事件里获取窗口大小可能不一致的bug
+
+6.	修正AlphaChangeAnimation的SetRecursive接口的lua封装，接收布尔类型参数
+
+7.	修复XLUEOPS一处可能的内存泄露
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+562版本改动列表
+
+1.	FrameHostWnd和ModalHostWnd增加对象树大小联动机制
+之前的普遍做法是在hostwnd的OnSize事件里面，对所绑定的对象树的根对象设置大小；考虑到这种需求的通用性以及对上述两种hostwnd的border属性的改进支持，所以现在FrameHostWnd和ModalHostWnd会在窗口大小改变的时候，自动对根对象进行Resize，需要注意的是，在窗口最大化并且指定了border属性后，根对象的大小将和hostwnd的大小不一致，确保border属性有效
+
+使用562以及以后版本的产品，在FrameHostWnd和ModalHostWnd的OnSize事件里面，无需再对对象树的根对象进行Resize，尤其是使用了border属性的hostwnd
+
+2.	修正FrameHostWnd和ModalHostWnd在最大化后，如果当前系统设置是自动隐藏任务栏，可能导致的如下bug：
+a)	无法智能显示任务栏的bug，新版本当鼠标移到任务栏隐藏的屏幕边缘，任务栏会自动显示，和系统默认的窗口行为一致
+b)	可能覆盖其它topmost窗口的bug，比如迅雷7最大化后覆盖悬浮窗的bug
+c)	窗口边缘超出屏幕边缘的bug，现在窗口将被限制在所在屏幕内，不会在衔接屏幕上显示多余的边缘
+
+3.	Object/ObjTree/Animation/hostwnd增加IsValid方法，用以判断当前对象是否有效
+如果一个Object/ObjTree/Animation/hostwnd已经被移除，但是使用者还持有该对象的句柄，那么可以通过IsValid方法来判断这个对象是否有效
+
+4.	XLUE新增XLUE_IsAnimationValid接口，用以判断一个Animation对象是否有效
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
 560版本改动列表
 
 1.	XLUE模块增加XLUE_ObjProcessInput接口

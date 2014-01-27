@@ -32,6 +32,8 @@
 	#endif //__cplusplus
 #endif // XLUEIPC_EXPORTS
 
+#include <XLLuaRuntime.h>
+
 // 句柄定义
 #define DECLARE_XLIPC_HANDLE(name) struct __XLIPC_SAFE_HANDLE_##name { int unused; }; typedef __XLIPC_SAFE_HANDLE_##name *name;
 
@@ -78,6 +80,7 @@ DECLARE_XLIPC_HANDLE(XLIPC_INTERFACE)
 #define XLIPC_RESULT_ASYNCALLFRAME_NOT_FOUND	30
 #define XLIPC_RESULT_SYNCCALLFRAME_NOT_FOUND	31
 #define XLIPC_RESULT_REPLY_FAILED	32
+#define XLIPC_RESULT_NOT_IMPL	33
 
 // 通道相关函数
 #define CHANNEL_CONNECTTYPE_CONNECT		1
@@ -156,6 +159,9 @@ XLUEIPC_API(long) XLIPC_CloseServer(XLIPC_SERVER hServer);
 XLUEIPC_API(long) XLIPC_AddRefServer(XLIPC_SERVER hServer);
 XLUEIPC_API(long) XLIPC_ReleaseServer(XLIPC_SERVER hServer);
 
+XLUEIPC_API(long) XLIPC_GetServerCallback(XLIPC_SERVER server, ServerCallBackDef* lpCallBack);
+XLUEIPC_API(long) XLIPC_GetServerIsWorking(XLIPC_SERVER server, bool* lpIsWorking);
+
 // 在服务器上等待(非阻塞消息)连接，返回的session只可以在对应的线程里面使用
 XLUEIPC_API(long) XLIPC_AcceptSession(XLIPC_SERVER hServer, XLIPC_SESSION* lpSession);
 
@@ -169,6 +175,36 @@ XLUEIPC_API(long) XLIPC_SyncConnectServer(const wchar_t* serverID, int type, int
 
 // 根据一个已经建立的channel，直接生成一个session，channel会托管于该session
 XLUEIPC_API(long) XLIPC_NewSession(XLIPC_CHANNEL hChannel, XLIPC_SESSION* lpSession);
+
+// 根据一个自定义通道，生成一个session
+typedef long (__stdcall* SESSIONCHANNEL_ASYNSENDDATA)(void* userData, const void* lpBuffer, size_t bufferLen);
+typedef long (__stdcall* SESSIONCHANNEL_SYNCSENDDATA)(void* userData, const void* lpBuffer, size_t bufferLen, int timeout);
+typedef long (__stdcall* SESSIONCHANNEL_SETSTATUS)(void* userData, long status);
+typedef long (__stdcall* SESSIONCHANNEL_GETSTATUS)(void* userData, long* lpStatus);
+typedef long (__stdcall* SESSIONCHANNEL_CLOSE)(void* userData);
+
+
+typedef struct tagSessionChannelDef
+{
+	unsigned long cbSize;
+
+	void* userData;
+
+	SESSIONCHANNEL_ASYNSENDDATA lpfnAsynSendData;
+	SESSIONCHANNEL_SYNCSENDDATA lpfnSyncSendData;
+
+	SESSIONCHANNEL_SETSTATUS lpfnSetStatus;
+	SESSIONCHANNEL_GETSTATUS lpfnGetStatus;
+
+	SESSIONCHANNEL_CLOSE lpfnClose;
+
+}SessionChannelDef;
+
+// 自定义通道向session推送的数据和断开通知
+XLUEIPC_API(long) XLIPC_SessionChannelOnRevData(XLIPC_SESSION hSession, const void* lpBuffer, size_t bufferLen);
+XLUEIPC_API(long) XLIPC_SessionChannelOnDisconnect(XLIPC_SESSION hSession);
+
+XLUEIPC_API(long) XLIPC_CreateSession(const SessionChannelDef* lpSessionChannelDef, XLIPC_SESSION* lpSession);
 
 // 异步连接服务器
 typedef long (__stdcall* SESSIONCONNECTCALLBACK)(void* userData, XLIPC_SESSION hNewSession, long result);
@@ -187,6 +223,7 @@ typedef struct tagSessionCallBackDef
 }SessionCallBackDef;
 
 XLUEIPC_API(long) XLIPC_SetSessionCallBack(XLIPC_SESSION hSession, const SessionCallBackDef* lpCallBack);
+XLUEIPC_API(long) XLIPC_GetSessionCallBack(XLIPC_SESSION hSession, SessionCallBackDef* lpCallBack);
 
 // 设置同步发送数据和应答超时时间
 XLUEIPC_API(long) XLIPC_SetSessionTimeout(XLIPC_SESSION hSession, long timeout);
@@ -203,6 +240,9 @@ XLUEIPC_API(long) XLIPC_GetSessionStatus(XLIPC_SESSION hSession, long* lpStatus)
 XLUEIPC_API(long) XLIPC_RegisterSessionInterface(XLIPC_SESSION hSession, XLIPC_INTERFACE hInterface);
 XLUEIPC_API(long) XLIPC_UnRegisterSessionInterface(XLIPC_SESSION hSession, const char* id);
 XLUEIPC_API(long) XLIPC_QuerySessionInterface(XLIPC_SESSION hSession, const char* id);
+
+//根据id获取interface,使用者在使用完毕之后一定要release
+XLUEIPC_API(long) XLIPC_GetSessionInterface(XLIPC_SESSION hSession, const char *id, XLIPC_INTERFACE* lpInterface);
 
 XLUEIPC_API(long) XLIPC_QuerySessionRemoteInterface(XLIPC_SESSION hSession, const char* interfaceID, int timeout);
 XLUEIPC_API(long) XLIPC_QuerySessionRemoteMethod(XLIPC_SESSION hSession, const char* interfaceID, const char* methodID, int timeout);
@@ -239,6 +279,11 @@ XLUEIPC_API(long) XLIPC_ReleaseInterface(XLIPC_INTERFACE hInterface);
 
 typedef long (__stdcall* INTERFACEMETHOD)(void* userData, XLIPC_STREAM hParamStream, XLIPC_STREAM* lpRetStream);
 XLUEIPC_API(long) XLIPC_RegisterMethod(XLIPC_INTERFACE hInterface, const char* methodID, INTERFACEMETHOD method, void* userData);
+
+// method方法被释放时候的回调
+typedef void (__stdcall *LPFNMETHODRELEASECALLBACK)(XLIPC_INTERFACE hInterface, const char *methodID, INTERFACEMETHOD method, void *userData);
+XLUEIPC_API(long) XLIPC_RegisterMethodEx(XLIPC_INTERFACE hInterface, const char* methodID, INTERFACEMETHOD method, void* userData, LPFNMETHODRELEASECALLBACK lpfnReleaseCallBack);
+
 XLUEIPC_API(long) XLIPC_UnRegisterMethod(XLIPC_INTERFACE hInterface, const char* methodID);
 XLUEIPC_API(long) XLIPC_QueryMethod(XLIPC_INTERFACE hInterface, const char* methodID, INTERFACEMETHOD* lpMethod, void** lpUserData);
 
@@ -252,7 +297,8 @@ typedef struct tagXLIPCInterfaceMethod
 // 注册一组method
 XLUEIPC_API(long) XLIPC_RegisterMethods(XLIPC_INTERFACE hInterface, const XLIPCInterfaceMethod* lpMethodVector, void* userData);
 
-
+// 清除所有已经注册的方法
+XLUEIPC_API(long) XLIPC_ClearAllMethods(XLIPC_INTERFACE hInterface);
 
 // 参数和返回值流相关定义和接口
 #define XLIPC_PTYPE_NULL		0
@@ -267,6 +313,7 @@ XLUEIPC_API(long) XLIPC_RegisterMethods(XLIPC_INTERFACE hInterface, const XLIPCI
 #define XLIPC_PTYPE_BOOLEAN		9
 #define XLIPC_PTYPE_BYTES		10
 #define XLIPC_PTYPE_INT64		11
+#define XLIPC_PTYPE_DOUBLE      12
 
 XLUEIPC_API(XLIPC_STREAM) XLIPC_CreateStream();
 XLUEIPC_API(long) XLIPC_StreamAddRef(XLIPC_STREAM hStream);
@@ -283,9 +330,11 @@ XLUEIPC_API(long) XLIPC_StreamWriteDWord(XLIPC_STREAM hStream, DWORD dwValue);
 XLUEIPC_API(long) XLIPC_StreamWriteInt(XLIPC_STREAM hStream, int iValue);
 XLUEIPC_API(long) XLIPC_StreamWriteLong(XLIPC_STREAM hStream, long lValue);
 XLUEIPC_API(long) XLIPC_StreamWriteBoolean(XLIPC_STREAM hStream, BOOL bValue);
-XLUEIPC_API(long) XLIPC_StreamWriteInt64(XLIPC_STREAM hStream, __int64 value);
+XLUEIPC_API(long) XLIPC_StreamWriteInt64(XLIPC_STREAM hStream, long long value);
+XLUEIPC_API(long) XLIPC_StreamWriteDouble(XLIPC_STREAM hStream, double value);
 XLUEIPC_API(long) XLIPC_StreamWriteBytes(XLIPC_STREAM hStream, const unsigned char* lpBuffer, int nLength);
 XLUEIPC_API(long) XLIPC_StreamWriteStream(XLIPC_STREAM hStream, XLIPC_STREAM hSrc);
+
 
 XLUEIPC_API(long) XLIPC_StreamReadString(XLIPC_STREAM hStream, char* lpString, size_t nLength, size_t* lpcbLength);
 XLUEIPC_API(long) XLIPC_StreamReadWString(XLIPC_STREAM hStream, wchar_t* lpString, size_t nLength, size_t* lpcbLength);
@@ -295,7 +344,8 @@ XLUEIPC_API(long) XLIPC_StreamReadDWord(XLIPC_STREAM hStream, DWORD* dwValue);
 XLUEIPC_API(long) XLIPC_StreamReadInt(XLIPC_STREAM hStream, int* iValue);
 XLUEIPC_API(long) XLIPC_StreamReadLong(XLIPC_STREAM hStream, long* lValue);
 XLUEIPC_API(long) XLIPC_StreamReadBoolean(XLIPC_STREAM hStream, BOOL* bValue);
-XLUEIPC_API(long) XLIPC_StreamReadInt64(XLIPC_STREAM hStream, __int64* value);
+XLUEIPC_API(long) XLIPC_StreamReadInt64(XLIPC_STREAM hStream, long long* value);
+XLUEIPC_API(long) XLIPC_StreamReadDouble(XLIPC_STREAM hStream, double* value);
 XLUEIPC_API(long) XLIPC_StreamReadBytes(XLIPC_STREAM hStream, unsigned char* lpBuffer, size_t nLength, size_t* lpcbLength);
 XLUEIPC_API(long) XLIPC_StreamReadStream(XLIPC_STREAM hStream, XLIPC_STREAM* hDest);
 
@@ -303,5 +353,7 @@ XLUEIPC_API(void) XLIPC_StreamClear(XLIPC_STREAM hStream);
 
 XLUEIPC_API(long) XLIPC_StreamEncode(XLIPC_STREAM hStream, char* lpBuffer, size_t nLength, size_t* lpcbLength);
 XLUEIPC_API(long) XLIPC_StreamDecode(XLIPC_STREAM hStream, const char* lpBuffer, size_t nLength);
+
+XLUEIPC_API(BOOL) XLIPC_RegisterLuaHost(XL_LRT_ENV_HANDLE hEnv);
 
 #endif //__XLIPC_H__ 

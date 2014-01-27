@@ -353,6 +353,8 @@ XLUE_API(BOOL) XLUE_QueryTimer(unsigned int timerID);
 XLUE_API(BOOL) XLUE_KillTimer(unsigned int timerID, void** lplpUserData);
 
 /*--------------------动画相关方法--------------------------*/
+XLUE_API(BOOL) XLUE_IsAnimationValid(XLUE_ANIMATION_HANDLE hAnimation);
+
 XLUE_API(XLUE_ANIMATION_HANDLE) XLUE_CreateAnimation(const char* className,const char* lpID, const char* package);
 XLUE_API(long) XLUE_AddRefAnimation(XLUE_ANIMATION_HANDLE hAnimation);
 XLUE_API(long) XLUE_ReleaseAnimation(XLUE_ANIMATION_HANDLE hAnimation);
