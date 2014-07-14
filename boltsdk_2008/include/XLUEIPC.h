@@ -18,21 +18,24 @@
 #ifndef __XLUEIPC_H__ 
 #define __XLUEIPC_H__ 
 
-#ifdef XLUEIPC_EXPORTS
-	#ifdef __cplusplus
-		#define XLUEIPC_API(x) extern "C" __declspec(dllexport) x __stdcall 
+#include <XLLuaRuntime.h>
+
+#ifndef XLUEIPC_EXTERN_C
+	#ifdef __cplusplus	
+		#define XLUEIPC_EXTERN_C extern "C"
 	#else
-		#define XLUEIPC_API(x) __declspec(dllexport) x __stdcall 
-	#endif //__cplusplus
+		#define XLUEIPC_EXTERN_C 
+	#endif // __cplusplus
+#endif // XLUEIPC_EXTERN_C
+
+#if defined(XLUE_UNIONLIB)
+	#define XLUEIPC_API(x) XLUEIPC_EXTERN_C  x __stdcall 
+#elif defined(XLUEIPC_EXPORTS)
+	#define XLUEIPC_API(x) XLUEIPC_EXTERN_C __declspec(dllexport) x __stdcall 
 #else // XLUEIPC_EXPORTS
-	#ifdef __cplusplus
-		#define XLUEIPC_API(x) extern "C" __declspec(dllimport) x __stdcall 
-	#else
-		#define XLUEIPC_API(x) __declspec(dllimport) x __stdcall 
-	#endif //__cplusplus
+	#define XLUEIPC_API(x) XLUEIPC_EXTERN_C __declspec(dllimport) x __stdcall 
 #endif // XLUEIPC_EXPORTS
 
-#include <XLLuaRuntime.h>
 
 // 句柄定义
 #define DECLARE_XLIPC_HANDLE(name) struct __XLIPC_SAFE_HANDLE_##name { int unused; }; typedef __XLIPC_SAFE_HANDLE_##name *name;
@@ -354,6 +357,11 @@ XLUEIPC_API(void) XLIPC_StreamClear(XLIPC_STREAM hStream);
 XLUEIPC_API(long) XLIPC_StreamEncode(XLIPC_STREAM hStream, char* lpBuffer, size_t nLength, size_t* lpcbLength);
 XLUEIPC_API(long) XLIPC_StreamDecode(XLIPC_STREAM hStream, const char* lpBuffer, size_t nLength);
 
+//lua相关
 XLUEIPC_API(BOOL) XLIPC_RegisterLuaHost(XL_LRT_ENV_HANDLE hEnv);
+XLUEIPC_API(XLIPC_SESSION) XLIPC_CheckSessionFromLua(lua_State*luaState, int index);
+XLUEIPC_API(BOOL) XLIPC_PushSessionToLua(lua_State *luaState, XLIPC_SESSION session);
+XLUEIPC_API(XLIPC_SERVER) XLIPC_CheckServerFromLua(lua_State*luaState, int index);
+XLUEIPC_API(BOOL) XLIPC_PushServerToLua(lua_State *luaState, XLIPC_SERVER server);
 
 #endif //__XLIPC_H__ 

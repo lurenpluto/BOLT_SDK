@@ -35,7 +35,9 @@
 #endif //XLUE_STDCALL
 
 #if defined(_MSC_VER)
-	#if defined(XLGRAPHIC_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLMATH_API(x) XLMATH_EXTERN_C  x __stdcall 
+	#elif defined(XLGRAPHIC_EXPORTS)
 			#define XLMATH_API(x) XLMATH_EXTERN_C __declspec(dllexport) x __stdcall 
 	#elif defined (XLUE_UNION)
 			#define XLMATH_API(x) XLMATH_EXTERN_C  x __stdcall 
@@ -43,7 +45,9 @@
 			#define XLMATH_API(x) XLMATH_EXTERN_C __declspec(dllimport) x __stdcall 
 	#endif // XLGRAPHIC_EXPORTS
 #elif defined(__GNUC__)
-	#if defined(XLGRAPHIC_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLMATH_API(x) XLMATH_EXTERN_C  __attribute__((__stdcall__)) x
+	#elif defined(XLGRAPHIC_EXPORTS)
 			#define XLMATH_API(x) XLMATH_EXTERN_C __attribute__((__visibility__("default"), __stdcall__)) x
 	#elif defined (XLUE_UNION)
 			#define XLMATH_API(x) XLMATH_EXTERN_C  __attribute__((__stdcall__)) x

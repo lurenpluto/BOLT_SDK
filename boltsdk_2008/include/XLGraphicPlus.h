@@ -36,7 +36,9 @@
 #endif //XLUE_STDCALL
 
 #if defined(_MSC_VER)
-	#if defined(XLGRAPHICPLUS_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLGRAPHICPLUS_API(x) XLGRAPHICPLUS_EXTERN_C  x __stdcall 
+	#elif defined(XLGRAPHICPLUS_EXPORTS)
 			#define XLGRAPHICPLUS_API(x) XLGRAPHICPLUS_EXTERN_C __declspec(dllexport) x __stdcall 
 	#elif defined (XLUE_UNION)
 			#define XLGRAPHICPLUS_API(x) XLGRAPHICPLUS_EXTERN_C  x __stdcall 
@@ -44,7 +46,9 @@
 			#define XLGRAPHICPLUS_API(x) XLGRAPHICPLUS_EXTERN_C __declspec(dllimport) x __stdcall 
 	#endif // XLGRAPHICPLUS_EXPORTS
 #elif defined(__GNUC__)
-	#if defined(XLGRAPHICPLUS_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLGRAPHICPLUS_API(x) XLGRAPHICPLUS_EXTERN_C  __attribute__((__stdcall__)) x
+	#elif defined(XLGRAPHICPLUS_EXPORTS)
 			#define XLGRAPHICPLUS_API(x) XLGRAPHICPLUS_EXTERN_C __attribute__((__visibility__("default"), __stdcall__)) x
 	#elif defined (XLUE_UNION)
 			#define XLGRAPHICPLUS_API(x) XLGRAPHICPLUS_EXTERN_C  __attribute__((__stdcall__)) x

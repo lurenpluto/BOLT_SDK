@@ -48,7 +48,9 @@ extern "C"{
 #endif //XLUE_STDCALL
 
 #if defined(_MSC_VER)
-	#if defined(XLUE_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLUE_API(x) XLUE_EXTERN_C  x __stdcall 
+	#elif defined(XLUE_EXPORTS)
 			#define XLUE_API(x) XLUE_EXTERN_C __declspec(dllexport) x __stdcall 
 	#elif defined (XLUE_UNION)
 			#define XLUE_API(x) XLUE_EXTERN_C  x __stdcall 
@@ -56,7 +58,9 @@ extern "C"{
 			#define XLUE_API(x) XLUE_EXTERN_C __declspec(dllimport) x __stdcall 
 	#endif // XLUE_EXPORTS
 #elif defined(__GNUC__)
-	#if defined(XLUE_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLUE_API(x) XLUE_EXTERN_C  __attribute__((__stdcall__)) x
+	#elif defined(XLUE_EXPORTS)
 			#define XLUE_API(x) XLUE_EXTERN_C __attribute__((__visibility__("default"), __stdcall__)) x
 	#elif defined (XLUE_UNION)
 			#define XLUE_API(x) XLUE_EXTERN_C  __attribute__((__stdcall__)) x
@@ -104,6 +108,16 @@ XLUE_API(long) XLUE_UninitLoader(void*);
 XLUE_API(long) XLUE_UninitHandleMap(void*);
 
 XLUE_API(long) XLUE_ClearLuaObj(void*);
+
+#if defined(XLUE_UNIONLIB)
+// LIB模式下用来执行XLUEOPS的功能，如果参数指定了XLUEOPS，那么该方法会执行直到该服务需要退出，否则会立刻返回
+// 宿主进程可以根据返回值来决定当前进程类型和需要做什么事情：
+// 1. 返回0，说明该进程是普通进程，那么接下来继续自己流程即可
+// 2. 返回非0，说明该进程是XLUEOPS进程，那么XLUE_OPSMain返回后，直接退出进程
+//     a) 返回1，说明执行成功并执行完毕了
+//	   b) 返回-1，说明初始化服务失败
+XLUE_API(int)  XLUE_OPSMain(const wchar_t *lpCmdLine);
+#endif // XLUE_UNIONLIB
 
 // 设置textobject使用的默认文本渲染引擎
 XLUE_API(unsigned long) XLUE_SetTextObjectDefaultTextType(unsigned long textType);

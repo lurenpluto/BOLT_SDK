@@ -53,7 +53,9 @@ extern "C"{
 #endif //XLUE_STDCALL
 
 #if defined(_MSC_VER)
-	#if defined(XLLUA_RUNTIME_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XL_LRT_API(x) XLLUARUNTIME_EXTERN_C  x __stdcall 
+	#elif defined(XLLUA_RUNTIME_EXPORTS)
 			#define XL_LRT_API(x) XLLUARUNTIME_EXTERN_C __declspec(dllexport) x __stdcall 
 	#elif defined (XLUE_UNION)
 			#define XL_LRT_API(x) XLLUARUNTIME_EXTERN_C  x __stdcall 
@@ -61,7 +63,9 @@ extern "C"{
 			#define XL_LRT_API(x) XLLUARUNTIME_EXTERN_C __declspec(dllimport) x __stdcall 
 	#endif // XLLUA_RUNTIME_EXPORTS
 #elif defined(__GNUC__)
-	#if defined(XLLUA_RUNTIME_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XL_LRT_API(x) XLLUARUNTIME_EXTERN_C  __attribute__((__stdcall__)) x
+	#elif defined(XLLUA_RUNTIME_EXPORTS)
 			#define XL_LRT_API(x) XLLUARUNTIME_EXTERN_C __attribute__((__visibility__("default"), __stdcall__)) x
 	#elif defined (XLUE_UNION)
 			#define XL_LRT_API(x) XLLUARUNTIME_EXTERN_C  __attribute__((__stdcall__)) x

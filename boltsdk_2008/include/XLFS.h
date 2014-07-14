@@ -42,7 +42,9 @@
 #endif //XLUE_STDCALL
 
 #if defined(_MSC_VER)
-	#if defined(XLFS_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLFS_API(x) XLFS_EXTERN_C  x __stdcall 
+	#elif defined(XLFS_EXPORTS)
 			#define XLFS_API(x) XLFS_EXTERN_C __declspec(dllexport) x __stdcall 
 	#elif defined (XLUE_UNION)
 			#define XLFS_API(x) XLFS_EXTERN_C  x __stdcall 
@@ -50,7 +52,9 @@
 			#define XLFS_API(x) XLFS_EXTERN_C __declspec(dllimport) x __stdcall 
 	#endif // XLFS_EXPORTS
 #elif defined(__GNUC__)
-	#if defined(XLFS_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLFS_API(x) XLFS_EXTERN_C  __attribute__((__stdcall__)) x
+	#elif defined(XLFS_EXPORTS)
 			#define XLFS_API(x) XLFS_EXTERN_C __attribute__((__visibility__("default"), __stdcall__)) x
 	#elif defined (XLUE_UNION)
 			#define XLFS_API(x) XLFS_EXTERN_C  __attribute__((__stdcall__)) x

@@ -36,7 +36,9 @@
 #endif //XLUE_STDCALL
 
 #if defined(_MSC_VER)
-	#if defined(XLUE_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLI18N_API(x) XLI18N_EXTERN_C  x __stdcall 
+	#elif defined(XLUE_EXPORTS)
 			#define XLI18N_API(x) XLI18N_EXTERN_C __declspec(dllexport) x __stdcall 
 	#elif defined (XLUE_UNION)
 			#define XLI18N_API(x) XLI18N_EXTERN_C  x __stdcall 
@@ -44,7 +46,9 @@
 			#define XLI18N_API(x) XLI18N_EXTERN_C __declspec(dllimport) x __stdcall 
 	#endif // XLUE_EXPORTS
 #elif defined(__GNUC__)
-	#if defined(XLUE_EXPORTS)
+	#if defined(XLUE_UNIONLIB)
+			#define XLI18N_API(x) XLI18N_EXTERN_C  __attribute__((__stdcall__)) x
+	#elif defined(XLUE_EXPORTS)
 			#define XLI18N_API(x) XLI18N_EXTERN_C __attribute__((__visibility__("default"), __stdcall__)) x
 	#elif defined (XLUE_UNION)
 			#define XLI18N_API(x) XLI18N_EXTERN_C  __attribute__((__stdcall__)) x

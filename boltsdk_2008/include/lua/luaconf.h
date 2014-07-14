@@ -155,9 +155,13 @@
 
 	#if defined(_MSC_VER)
 		#if defined(LUA_CORE) || defined(LUA_LIB)
-			#define LUA_API __declspec(dllexport)
+			#if defined(XLUE_UNIONLIB)
+				#define LUA_API extern
+			#else
+				#define LUA_API __declspec(dllexport)
+			#endif
 		#else
-			#ifdef XLUE_UNION
+			#if (defined(XLUE_UNION) || defined(XLUE_UNIONLIB))
 				#define LUA_API extern
 			#else // XLUE_UNION
 				#define LUA_API __declspec(dllimport)
@@ -165,9 +169,13 @@
 		#endif
 	#elif defined(__GNUC__)
 		#if defined(LUA_CORE) || defined(LUA_LIB)
-			#define LUA_API __attribute__((__visibility__("default")))
+			#if defined(XLUE_UNIONLIB)
+				#define LUA_API extern
+			#else
+				#define LUA_API __attribute__((__visibility__("default")))
+			#endif
 		#else
-			#ifdef XLUE_UNION
+			#if (defined(XLUE_UNION) || defined(XLUE_UNIONLIB))
 				#define LUA_API extern
 			#else // XLUE_UNION
 				#define LUA_API __attribute__((__visibility__("default")))
