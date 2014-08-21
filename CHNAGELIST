@@ -1,4 +1,23 @@
 
+596版本改动列表
+
+1.	NormalHostWnd增加toolwindow相关的C和lua接口
+	XLUE_SetHostWndToolWindow
+	XLUE_GetHostWndToolWindow
+
+	Lua接口为
+	SetToolWindow
+	GetToolWindow
+
+2.	修复hostwnd在作为child窗口，并位于非第一屏幕情况下可能导致的最大大小不正确的bug
+3.	修复RealObject等实窗口对象在开启hookinput情况下，导致某些input消息可能重复触发事件的bug
+4.	修复WindowlessFlashObject一处由于销毁重入可能导致的崩溃
+5.	改进HostWnd一处可能的逻辑错误
+6.	多处细节改进和修正
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
 594版本改动列表
 
 1.	改进和完善XLUEIPC模块的Lua封装
