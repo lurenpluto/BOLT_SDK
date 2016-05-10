@@ -1,3 +1,19 @@
+608版本改动列表
+
+1. 修复TextEnv的SetTextFont一处Release导致的崩溃
+2. UELoader增加ole初始化设定
+3. 修复turnanimation一个结束可能导致的崩溃
+4. 修复flashobject的bkncolor解析错误的bug
+5. 回滚realobject一处hook消息处理
+6. 修复hostwnd在销毁解绑objtree时重入可能导致的崩溃
+7. 修复一个层窗口取缩略图时可能导致的崩溃
+8. 修复richedit滚动以后改变size 光标定位不对的问题
+9. realobject的消息处理的handled使用用户返回值
+10. 修复图形库拉伸超大图可能导致的崩溃
+11. 修复Richeditobject只有一个字符时按上下键光标定位错误的问题
+
+---------------------------------------------------------------------------------------------------------------------------
+
 598版本改动列表
 
 1.	XLLuaruntime开放标准的lua io库
