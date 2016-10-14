@@ -203,7 +203,7 @@ function UpdatePath(edit,item)
 	local tmp = ""
 	while item.level >= 3 do
 		local txt = item.txt
-		local id = string.match(txt,"^([^\(]*)")
+		local id = string.match(txt,"^([^\\(]*)")
 		tmp = string.format("%s\\%s",tostring(id),tmp)
 		item = item.parent
 	end
@@ -334,7 +334,7 @@ function OnInitControl(self)
 						--dofile(path.."ggg.lua")
 						dofile(path.."\\ggg.lua")
 						local item = mapitem[tmp.index]
-						-- XLPrint(string.format("Find item = %s, by index=%d", tostring(item), tmp.index))
+						XLPrint(string.format("Find item = %s, by index=%d", tostring(item), tmp.index))
 						local index = tmp.index
 						--if not item then Refresh(bkg) end
 						if item and item ~= tree:GetSelected() then

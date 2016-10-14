@@ -30,6 +30,7 @@ extern "C"{
 
 #include <lua/lua.h>
 #include <lua/lauxlib.h>
+#include <lua/luaext.h>
 
 #ifdef __cplusplus
 }
@@ -190,6 +191,7 @@ typedef long (XLUE_STDCALL *fnGlobalSetCallback) (lua_State* luaState,const char
 #define XLLRT_RESULT_TYPEERROR_CLASSMISMATCH 36
 #define XLLRT_RESULT_OUT_OF_MEMORY 37
 #define XLLRT_RESULT_INSUFFICIENT_BUFFER 38
+#define XLLRT_RESULT_NOT_MATCH 39
 
 //获取Xunlei Runtime的版本号
 XL_LRT_API(unsigned long) XLLRT_GetVersion();
@@ -312,6 +314,8 @@ XL_LRT_API(long) XLLRT_CheckXLObject(lua_State* luaState, int index, const char*
 // 基于XLLRT_GetXLObjectEx实现，，不同的是如果类型不是className或子类，或者不是userdata，那么会调用luaL_typerror触发错误
 XL_LRT_API(long) XLLRT_CheckXLObjectEx(lua_State* luaState, int index, const char* className, void* lpObjDataBuffer, size_t bufferLen, size_t *lpObjDataLen);
 
+
+XL_LRT_API(int) XLLRT_VerifyXLObjectClass(lua_State *luaState, int index, const char* className, BOOL canBeDrived);
 
 //--LUA 运行时---
 // 对luaState的包裹，允许使用协程
